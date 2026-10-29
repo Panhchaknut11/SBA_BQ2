@@ -1,0 +1,7 @@
+source,stream,longest_constant_minutes,constant_runs_at_least_60min,constant_runs_at_least_360min
+raw,temperature,57,0,0
+raw,humidity,23,0,0
+raw,both sensors,20,0,0
+clean,temperature,79,1,0
+clean,humidity,23,0,0
+clean,both sensors,20,0,0

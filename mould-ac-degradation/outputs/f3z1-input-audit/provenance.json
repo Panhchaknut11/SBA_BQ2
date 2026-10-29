@@ -1,0 +1,88 @@
+{
+  "audit_as_of": "2026-10-30",
+  "floor": 3,
+  "zone": 1,
+  "scope": "Input audit only; no models or source corrections",
+  "source_commit_at_run": "f53414d64e9101190d7015ebd71e6c5018704078",
+  "expected_minutes": 790560,
+  "period_start": "2018-07-01 00:00",
+  "period_end": "2019-12-31 23:59",
+  "timezone_note": "Building CSVs have naive timestamps. ERA5 loader requests Asia/Bangkok. Matching keys do not independently confirm clock alignment.",
+  "range_checks": {
+    "temperature_C": [
+      15,
+      40
+    ],
+    "rh_pct": [
+      0,
+      100
+    ],
+    "power_kW": ">=0; no rated-capacity upper bound available"
+  },
+  "candidate_daily_gate": "95% of all 1440 expected minutes; sensitivity at 90/95/100%; working day labels are inferred activity, not measured occupancy",
+  "event_gate": "30 contiguous power minutes before/after transition, unchanged power state for 60 minutes after, paired temperature/RH for those 60 minutes; raw variant requires source observations rather than filled readings",
+  "input_manifest": [
+    {
+      "path": "data/2018Floor3.csv",
+      "bytes": 30189495,
+      "sha256": "43ba1ba6f18a5e7acd54f7f0761bd1c075e66ca4ccd74b310496bb67a8c74d72"
+    },
+    {
+      "path": "data/2019Floor3.csv",
+      "bytes": 77311428,
+      "sha256": "1742aaf67232b38c29ed6fd2df44c12e08626b5827ff1c9121c10d89b15e19d2"
+    },
+    {
+      "path": "data-cleaning/outputs/clean/2018Floor3.csv",
+      "bytes": 30361136,
+      "sha256": "f5cdc9b66a9de3880c1aa1d5a9b79363863b1c479b0691990e407b0b43dac61d"
+    },
+    {
+      "path": "data-cleaning/outputs/clean/2019Floor3.csv",
+      "bytes": 77426487,
+      "sha256": "9e656cafc408ef6b76495c115e1e2c84e38fce909068fa337a410cc9f75ad194"
+    },
+    {
+      "path": "data-cleaning/outputs/analytics/data_quality.csv",
+      "bytes": 22127,
+      "sha256": "91fd188fe4eb0bc53eca759f27a2a489565f5027f9fb922009bf7dd36cdaac2d"
+    },
+    {
+      "path": "data-cleaning/outputs/analytics/removed_readings.csv",
+      "bytes": 1781725,
+      "sha256": "976aa4960c66d4095105d64c48c3a6a77a38ec1b7e34bdc6faef72f0581c2d01"
+    },
+    {
+      "path": "data-cleaning/outputs/analytics/zone_hourly.csv",
+      "bytes": 32598578,
+      "sha256": "fe2b35fc24ced0899be878b21337b777dabaaab2a11d4b7db5c11ceaca7cca0d"
+    },
+    {
+      "path": "baseline/data/bangkok_era5_hourly_2018-2019.csv",
+      "bytes": 448055,
+      "sha256": "4177245c849238480bbbb1e012de431a616613c7372fcbdadddd053f8b60de66"
+    },
+    {
+      "path": "data-cleaning/main.ipynb",
+      "bytes": 2899330,
+      "sha256": "acb0c887be0bda59e147aa0fe7edf962c2001fe83ed36041930fd3e17b4f24eb"
+    },
+    {
+      "path": "baseline/humidity_risk_baseline.py",
+      "bytes": 21209,
+      "sha256": "92b67940beb99bd8fd78ac04504d681d87ad82d48d72ba3b3dce816d947a92ef"
+    },
+    {
+      "path": "mould-ac-degradation/bq2_utils.ipynb",
+      "bytes": 33338,
+      "sha256": "b29ae0bded094b0ce86d93835bf9f5ddb9cb747799778de638c9cf0b32e85810"
+    }
+  ],
+  "audit_code_sha256": "6d11f616c4680498fa8772d6e8d2e80c734ec5cf12db26ba62f35e4f94950297",
+  "versions": {
+    "pandas": "3.1.0",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2",
+    "ipykernel": "7.4.0"
+  }
+}

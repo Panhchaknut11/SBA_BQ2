@@ -1,0 +1,5 @@
+source,rows,invalid_timestamps,duplicate_timestamps,sorted,first,last,off_minute_grid
+data/2018Floor3.csv,264960,0,0,True,2018-07-01 00:00:00,2018-12-31 23:59:00,0
+data/2019Floor3.csv,525600,0,0,True,2019-01-01 00:00:00,2019-12-31 23:59:00,0
+data-cleaning/outputs/clean/2018Floor3.csv,264960,0,0,True,2018-07-01 00:00:00,2018-12-31 23:59:00,0
+data-cleaning/outputs/clean/2019Floor3.csv,525600,0,0,True,2019-01-01 00:00:00,2019-12-31 23:59:00,0

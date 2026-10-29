@@ -1,0 +1,191 @@
+{
+  "expected_minutes": 790560,
+  "expected_hours": 13176,
+  "clean_AC_coverage_pct": 86.05633980975512,
+  "raw_AC_coverage_pct": 85.94021959117588,
+  "clean_environment_coverage_pct": 63.61768872697835,
+  "raw_environment_coverage_pct": 63.05087532888079,
+  "clean_joint_coverage_pct": 61.92041084800648,
+  "raw_joint_coverage_pct": 61.31995041489577,
+  "AC_on_threshold_kW": 5.75,
+  "weather": {
+    "expected_hours": 13176,
+    "weather_rows": 13176,
+    "duplicate_weather_timestamps": 0,
+    "missing_weather_cells": 0,
+    "unmatched_F3Z1_hours": 0,
+    "negative_rainfall_hours": 0,
+    "RH_outside_0_100_hours": 0,
+    "dew_point_above_temperature_by_more_than_0_2C_hours": 0
+  },
+  "event_summary": [
+    {
+      "event": "start",
+      "helper_candidates": 626,
+      "continuous_state_30min": 626,
+      "eligible_clean_60min": 444,
+      "eligible_raw_observed_60min": 355,
+      "helper_events_not_strict": 0,
+      "strict_events_missing_from_helper": 0
+    },
+    {
+      "event": "stop",
+      "helper_candidates": 583,
+      "continuous_state_30min": 583,
+      "eligible_clean_60min": 399,
+      "eligible_raw_observed_60min": 303,
+      "helper_events_not_strict": 0,
+      "strict_events_missing_from_helper": 0
+    }
+  ],
+  "daily_95pct_gate": [
+    {
+      "period": "2018 reference candidate",
+      "minimum_daily_coverage_pct": 95,
+      "working_days": 123,
+      "clean_energy_days": 90,
+      "raw_energy_days": 90,
+      "clean_joint_days": 45,
+      "raw_joint_days": 35
+    },
+    {
+      "period": "2019 full year",
+      "minimum_daily_coverage_pct": 95,
+      "working_days": 241,
+      "clean_energy_days": 216,
+      "raw_energy_days": 216,
+      "clean_joint_days": 170,
+      "raw_joint_days": 169
+    },
+    {
+      "period": "Jul-Aug 2018",
+      "minimum_daily_coverage_pct": 95,
+      "working_days": 42,
+      "clean_energy_days": 41,
+      "raw_energy_days": 41,
+      "clean_joint_days": 39,
+      "raw_joint_days": 29
+    },
+    {
+      "period": "Jul-Aug 2019",
+      "minimum_daily_coverage_pct": 95,
+      "working_days": 41,
+      "clean_energy_days": 40,
+      "raw_energy_days": 40,
+      "clean_joint_days": 40,
+      "raw_joint_days": 40
+    }
+  ],
+  "largest_environment_gaps": [
+    {
+      "source": "clean",
+      "stream": "environment",
+      "start": "2018-09-12T15:22:00.000",
+      "end": "2019-03-06T13:43:00.000",
+      "minutes": 251902,
+      "days": 174.9319444444
+    },
+    {
+      "source": "clean",
+      "stream": "environment",
+      "start": "2019-11-28T09:23:00.000",
+      "end": "2019-12-19T11:52:00.000",
+      "minutes": 30390,
+      "days": 21.1041666667
+    }
+  ],
+  "largest_AC_total_gaps": [
+    {
+      "source": "clean",
+      "stream": "ac",
+      "start": "2018-10-11T08:55:00.000",
+      "end": "2018-11-26T14:39:00.000",
+      "minutes": 66585,
+      "days": 46.2395833333
+    },
+    {
+      "source": "clean",
+      "stream": "ac",
+      "start": "2019-01-23T09:41:00.000",
+      "end": "2019-02-12T15:15:00.000",
+      "minutes": 29135,
+      "days": 20.2326388889
+    },
+    {
+      "source": "clean",
+      "stream": "ac",
+      "start": "2019-03-25T09:57:00.000",
+      "end": "2019-04-03T16:58:00.000",
+      "minutes": 13382,
+      "days": 9.2930555556
+    }
+  ],
+  "flatlines": [
+    {
+      "source": "raw",
+      "stream": "temperature",
+      "longest_constant_minutes": 57,
+      "constant_runs_at_least_60min": 0,
+      "constant_runs_at_least_360min": 0
+    },
+    {
+      "source": "raw",
+      "stream": "humidity",
+      "longest_constant_minutes": 23,
+      "constant_runs_at_least_60min": 0,
+      "constant_runs_at_least_360min": 0
+    },
+    {
+      "source": "raw",
+      "stream": "both sensors",
+      "longest_constant_minutes": 20,
+      "constant_runs_at_least_60min": 0,
+      "constant_runs_at_least_360min": 0
+    },
+    {
+      "source": "clean",
+      "stream": "temperature",
+      "longest_constant_minutes": 79,
+      "constant_runs_at_least_60min": 1,
+      "constant_runs_at_least_360min": 0
+    },
+    {
+      "source": "clean",
+      "stream": "humidity",
+      "longest_constant_minutes": 23,
+      "constant_runs_at_least_60min": 0,
+      "constant_runs_at_least_360min": 0
+    },
+    {
+      "source": "clean",
+      "stream": "both sensors",
+      "longest_constant_minutes": 20,
+      "constant_runs_at_least_60min": 0,
+      "constant_runs_at_least_360min": 0
+    }
+  ],
+  "flatline_trace": [
+    {
+      "start": "2018-08-20T04:01:00.000",
+      "end": "2018-08-20T05:19:00.000",
+      "clean_constant_minutes": 79,
+      "raw_temperature_missing_minutes": 4,
+      "raw_observed_temperature_distinct_values": 1,
+      "raw_RH_distinct_values": 8
+    }
+  ],
+  "Jul_Aug_startup_windows": [
+    {
+      "year": 2018,
+      "helper_candidates": 84,
+      "cleaned_60min_windows": 81,
+      "raw_observed_60min_windows": 29
+    },
+    {
+      "year": 2019,
+      "helper_candidates": 82,
+      "cleaned_60min_windows": 78,
+      "raw_observed_60min_windows": 71
+    }
+  ]
+}
