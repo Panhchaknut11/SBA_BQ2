@@ -1,0 +1,193 @@
+floor,column,zone,device,unit,type,raw_missing_pct,implausible_removed,spikes_removed,short_gap_min_filled,final_missing_pct,longest_gap_min,note
+1,z1_Light(kW),1,Light,kW,Light,0.3,0,0,463,0.24,589,
+1,z1_Plug(kW),1,Plug,kW,Plug,0.14,0,0,75,0.13,318,
+1,z2_AC1(kW),2,AC1,kW,AC,0.29,0,0,408,0.24,590,
+1,z2_AC2(kW),2,AC2,kW,AC,0.28,0,2,288,0.24,590,
+1,z2_AC3(kW),2,AC3,kW,AC,0.28,0,1,288,0.24,588,
+1,z2_AC4(kW),2,AC4,kW,AC,0.28,0,0,288,0.24,588,
+1,z2_Light(kW),2,Light,kW,Light,0.26,0,0,145,0.24,588,
+1,z2_Plug(kW),2,Plug,kW,Plug,3.86,0,0,344,3.82,28066,
+1,z3_Light(kW),3,Light,kW,Light,0.14,0,1,131,0.12,319,
+1,z3_Plug(kW),3,Plug,kW,Plug,0.28,0,14,302,0.24,588,
+1,z4_Light(kW),4,Light,kW,Light,0.14,0,1,115,0.13,320,
+2,z1_AC1(kW),1,AC1,kW,AC,3.83,0,0,347,3.78,29133,
+2,z1_Light(kW),1,Light,kW,Light,0.14,0,0,42,0.13,319,
+2,z1_Plug(kW),1,Plug,kW,Plug,0.14,0,0,32,0.13,320,
+2,z1_S1(degC),1,S1,degC,Temperature,34.74,0,0,4158,34.21,251842,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+2,z1_S1(RH%),1,S1,RH%,Humidity,34.74,0,0,4158,34.21,251842,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+2,z1_S1(lux),1,S1,lux,Illuminance,34.74,0,0,4158,34.21,251842,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+2,z2_AC1(kW),2,AC1,kW,AC,3.85,0,0,176,3.83,29133,
+2,z2_AC2(kW),2,AC2,kW,AC,0.33,0,0,1556,0.13,319,
+2,z2_AC3(kW),2,AC3,kW,AC,0.33,0,0,1556,0.13,319,
+2,z2_AC4(kW),2,AC4,kW,AC,0.33,0,0,1556,0.13,319,
+2,z2_AC5(kW),2,AC5,kW,AC,0.14,0,3,87,0.13,319,
+2,z2_AC6(kW),2,AC6,kW,AC,0.14,0,3,87,0.13,319,
+2,z2_AC7(kW),2,AC7,kW,AC,0.14,0,3,87,0.13,319,
+2,z2_AC8(kW),2,AC8,kW,AC,0.14,0,1,85,0.13,319,
+2,z2_AC9(kW),2,AC9,kW,AC,0.14,0,3,87,0.13,319,
+2,z2_AC10(kW),2,AC10,kW,AC,0.14,0,3,87,0.13,319,
+2,z2_AC11(kW),2,AC11,kW,AC,0.14,0,0,84,0.13,319,
+2,z2_AC12(kW),2,AC12,kW,AC,0.14,0,0,84,0.13,319,
+2,z2_AC13(kW),2,AC13,kW,AC,0.14,0,1,85,0.13,319,
+2,z2_AC14(kW),2,AC14,kW,AC,0.14,0,0,84,0.13,319,
+2,z2_Light(kW),2,Light,kW,Light,0.15,0,1,146,0.13,319,
+2,z2_Plug(kW),2,Plug,kW,Plug,0.15,0,1,179,0.13,320,
+2,z2_S1(degC),2,S1,degC,Temperature,32.93,0,0,4333,32.38,251863,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+2,z2_S1(RH%),2,S1,RH%,Humidity,32.93,0,0,4330,32.38,251863,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+2,z2_S1(lux),2,S1,lux,Illuminance,32.93,0,0,4332,32.38,251863,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+2,z3_Light(kW),3,Light,kW,Light,0.14,0,7,39,0.13,319,
+2,z3_Plug(kW),3,Plug,kW,Plug,0.14,0,1,27,0.13,320,
+2,z3_S1(degC),3,S1,degC,Temperature,33.5,0,0,3535,33.05,251030,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+2,z3_S1(RH%),3,S1,RH%,Humidity,33.5,0,0,3534,33.05,251030,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+2,z3_S1(lux),3,S1,lux,Illuminance,33.5,0,0,3538,33.05,251030,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+2,z4_AC1(kW),4,AC1,kW,AC,3.83,0,3,421,3.78,29133,
+2,z4_Light(kW),4,Light,kW,Light,0.33,0,0,1556,0.13,319,
+2,z4_Plug(kW),4,Plug,kW,Plug,0.15,0,0,178,0.13,320,
+2,z4_S1(degC),4,S1,degC,Temperature,46.58,0,0,1943,46.33,357929,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+2,z4_S1(RH%),4,S1,RH%,Humidity,46.58,0,0,1941,46.33,357929,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+2,z4_S1(lux),4,S1,lux,Illuminance,46.58,0,0,1946,46.33,357929,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+3,z1_AC1(kW),1,AC1,kW,AC,8.97,0,0,3637,8.51,66149,
+3,z1_AC2(kW),1,AC2,kW,AC,8.97,0,0,3637,8.51,66149,
+3,z1_AC3(kW),1,AC3,kW,AC,8.97,0,0,3637,8.51,66149,
+3,z1_AC4(kW),1,AC4,kW,AC,13.0,0,0,327,12.96,59218,
+3,z1_Light(kW),1,Light,kW,Light,7.57,0,31,430,7.52,58069,
+3,z1_Plug(kW),1,Plug,kW,Plug,7.56,0,30,298,7.52,58069,
+3,z1_S1(degC),1,S1,degC,Temperature,36.95,0,0,4478,36.38,251902,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+3,z1_S1(RH%),1,S1,RH%,Humidity,36.95,0,0,4480,36.38,251902,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+3,z1_S1(lux),1,S1,lux,Illuminance,36.95,0,0,4483,36.38,251902,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+3,z2_AC1(kW),2,AC1,kW,AC,13.0,0,0,316,12.96,59218,
+3,z2_Light(kW),2,Light,kW,Light,7.68,0,11,1226,7.53,58069,
+3,z2_Plug(kW),2,Plug,kW,Plug,7.56,0,7,356,7.51,55946,
+3,z2_S1(degC),2,S1,degC,Temperature,34.71,0,0,4077,34.19,251909,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+3,z2_S1(RH%),2,S1,RH%,Humidity,34.71,0,0,4081,34.19,251909,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+3,z2_S1(lux),2,S1,lux,Illuminance,34.71,0,0,4078,34.19,251909,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+3,z3_Light(kW),3,Light,kW,Light,7.56,0,33,197,7.54,58069,
+3,z3_Plug(kW),3,Plug,kW,Plug,7.56,0,28,119,7.55,55947,
+3,z4_AC1(kW),4,AC1,kW,AC,13.0,0,0,314,12.96,59218,
+3,z4_Light(kW),4,Light,kW,Light,8.1,0,43,4187,7.58,58869,
+3,z4_Plug(kW),4,Plug,kW,Plug,7.75,0,43,1497,7.57,58867,
+3,z4_S1(degC),4,S1,degC,Temperature,33.95,0,0,3772,33.47,251913,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+3,z4_S1(RH%),4,S1,RH%,Humidity,33.95,0,0,3772,33.47,251913,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+3,z4_S1(lux),4,S1,lux,Illuminance,33.95,0,0,3771,33.47,251913,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+3,z5_AC1(kW),5,AC1,kW,AC,13.0,0,0,309,12.96,59218,
+3,z5_Light(kW),5,Light,kW,Light,8.1,0,34,4196,7.58,58869,
+3,z5_Plug(kW),5,Plug,kW,Plug,7.57,0,37,180,7.55,58782,
+3,z5_S1(degC),5,S1,degC,Temperature,43.94,0,0,3137,43.55,283159,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+3,z5_S1(RH%),5,S1,RH%,Humidity,43.94,0,0,3137,43.55,283159,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+3,z5_S1(lux),5,S1,lux,Illuminance,43.94,0,0,3137,43.55,283159,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+4,z1_AC1(kW),1,AC1,kW,AC,21.34,0,1,1748,21.12,89391,
+4,z1_AC2(kW),1,AC2,kW,AC,21.34,0,1,1748,21.12,89391,
+4,z1_AC3(kW),1,AC3,kW,AC,21.34,0,1,1748,21.12,89391,
+4,z1_AC4(kW),1,AC4,kW,AC,4.93,0,0,349,4.89,33741,
+4,z1_Light(kW),1,Light,kW,Light,10.49,0,2,649,10.41,40387,
+4,z1_Plug(kW),1,Plug,kW,Plug,4.3,0,2,83,4.29,30819,
+4,z1_S1(degC),1,S1,degC,Temperature,33.45,0,0,5382,32.77,252027,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+4,z1_S1(RH%),1,S1,RH%,Humidity,33.45,0,0,5379,32.77,252027,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+4,z1_S1(lux),1,S1,lux,Illuminance,33.45,0,0,5380,32.77,252027,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+4,z2_AC1(kW),2,AC1,kW,AC,4.93,0,0,351,4.89,33741,
+4,z2_Light(kW),2,Light,kW,Light,10.49,0,2,649,10.41,40387,
+4,z2_Plug(kW),2,Plug,kW,Plug,10.49,0,0,647,10.41,40387,
+4,z2_S1(degC),2,S1,degC,Temperature,34.35,0,0,4208,33.81,252002,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+4,z2_S1(RH%),2,S1,RH%,Humidity,34.35,0,0,4208,33.81,252002,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+4,z2_S1(lux),2,S1,lux,Illuminance,34.35,0,0,4207,33.81,252002,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+4,z3_Light(kW),3,Light,kW,Light,4.31,0,1,165,4.29,32931,
+4,z3_Plug(kW),3,Plug,kW,Plug,4.31,0,0,111,4.3,30818,
+4,z4_AC1(kW),4,AC1,kW,AC,4.93,0,0,350,4.89,33741,
+4,z4_Light(kW),4,Light,kW,Light,4.59,0,2,2092,4.32,33110,
+4,z4_Plug(kW),4,Plug,kW,Plug,4.43,0,1,862,4.32,30818,
+4,z4_S1(degC),4,S1,degC,Temperature,44.68,0,0,3824,44.19,251976,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+4,z4_S1(RH%),4,S1,RH%,Humidity,44.68,0,0,3824,44.19,251976,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+4,z4_S1(lux),4,S1,lux,Illuminance,44.68,0,0,3824,44.19,251976,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+4,z5_AC1(kW),5,AC1,kW,AC,4.93,0,0,352,4.88,33741,
+4,z5_Light(kW),5,Light,kW,Light,4.59,0,2,2091,4.32,33111,
+4,z5_Plug(kW),5,Plug,kW,Plug,4.31,0,0,79,4.3,30818,
+4,z5_S1(degC),5,S1,degC,Temperature,33.87,0,0,4608,33.29,248523,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+4,z5_S1(RH%),5,S1,RH%,Humidity,33.87,0,0,4609,33.29,248523,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+4,z5_S1(lux),5,S1,lux,Illuminance,33.87,0,0,4609,33.29,248523,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+5,z1_AC1(kW),1,AC1,kW,AC,1.72,0,0,7095,0.82,5338,
+5,z1_AC2(kW),1,AC2,kW,AC,1.72,0,0,7095,0.82,5338,
+5,z1_AC3(kW),1,AC3,kW,AC,1.72,0,0,7095,0.82,5338,
+5,z1_AC4(kW),1,AC4,kW,AC,4.95,0,0,761,4.85,29133,
+5,z1_Light(kW),1,Light,kW,Light,1.02,0,23,320,0.98,3298,
+5,z1_Plug(kW),1,Plug,kW,Plug,0.92,0,6,966,0.79,1751,
+5,z1_S1(degC),1,S1,degC,Temperature,41.68,33972,0,7879,44.98,251873,Reads ~14 °C in office hours vs 20-22 °C in other zones; likely in AC supply air. Readings < 15 °C removed; remaining office-hours values still biased cold. Exclude from comfort analysis. No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+5,z1_S1(RH%),1,S1,RH%,Humidity,41.68,0,0,3885,41.19,251873,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+5,z1_S1(lux),1,S1,lux,Illuminance,41.68,0,0,3885,41.19,251873,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+5,z2_AC1(kW),2,AC1,kW,AC,4.94,0,0,666,4.85,29133,
+5,z2_Light(kW),2,Light,kW,Light,3.73,0,20,2546,3.41,19060,
+5,z2_Plug(kW),2,Plug,kW,Plug,3.73,0,1,2527,3.41,19060,
+5,z2_S1(degC),2,S1,degC,Temperature,49.09,0,0,4672,48.5,252201,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+5,z2_S1(RH%),2,S1,RH%,Humidity,49.09,0,0,4672,48.5,252201,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+5,z2_S1(lux),2,S1,lux,Illuminance,49.09,0,0,4672,48.5,252201,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+5,z3_Light(kW),3,Light,kW,Light,1.12,0,0,2479,0.81,3191,
+5,z3_Plug(kW),3,Plug,kW,Plug,0.91,0,0,919,0.79,1743,
+5,z4_AC1(kW),4,AC1,kW,AC,4.92,0,0,500,4.85,29133,
+5,z4_Light(kW),4,Light,kW,Light,2.21,0,9,7790,1.23,6352,
+5,z4_Plug(kW),4,Plug,kW,Plug,0.9,0,7,900,0.79,1743,
+5,z4_S1(degC),4,S1,degC,Temperature,37.06,0,0,3895,36.57,248541,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+5,z4_S1(RH%),4,S1,RH%,Humidity,37.06,0,0,3896,36.57,248541,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+5,z4_S1(lux),4,S1,lux,Illuminance,37.06,0,0,3894,36.57,248541,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+5,z5_AC1(kW),5,AC1,kW,AC,4.93,0,0,626,4.85,29133,
+5,z5_Light(kW),5,Light,kW,Light,2.21,0,10,7799,1.23,6352,
+5,z5_Plug(kW),5,Plug,kW,Plug,1.49,0,0,2392,1.19,4912,
+5,z5_S1(degC),5,S1,degC,Temperature,33.69,0,0,3562,33.24,248543,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+5,z5_S1(RH%),5,S1,RH%,Humidity,33.69,0,0,3561,33.24,248543,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+5,z5_S1(lux),5,S1,lux,Illuminance,33.69,0,0,3560,33.24,248543,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+6,z1_AC1(kW),1,AC1,kW,AC,12.97,0,0,340,12.92,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z1_Light(kW),1,Light,kW,Light,12.98,0,0,102,12.96,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z1_Plug(kW),1,Plug,kW,Plug,12.99,0,0,184,12.96,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z1_S1(degC),1,S1,degC,Temperature,47.32,0,0,4849,46.71,251210,No data after 2019-10-22 13:27 (source file truncated). No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+6,z1_S1(RH%),1,S1,RH%,Humidity,47.32,0,0,4850,46.71,251210,No data after 2019-10-22 13:27 (source file truncated). No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+6,z1_S1(lux),1,S1,lux,Illuminance,47.32,0,0,4852,46.71,251210,"No data after 2019-10-22 13:27 (source file truncated). No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+6,z2_AC1(kW),2,AC1,kW,AC,12.97,0,0,333,12.92,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z2_Light(kW),2,Light,kW,Light,12.98,0,0,102,12.96,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z2_Plug(kW),2,Plug,kW,Plug,12.96,0,8,58,12.95,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z2_S1(degC),2,S1,degC,Temperature,49.63,0,0,4223,49.09,250156,No data after 2019-10-22 13:27 (source file truncated). No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+6,z2_S1(RH%),2,S1,RH%,Humidity,49.63,0,0,4223,49.09,250156,No data after 2019-10-22 13:27 (source file truncated). No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+6,z2_S1(lux),2,S1,lux,Illuminance,49.63,0,0,4223,49.09,250156,"No data after 2019-10-22 13:27 (source file truncated). No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+6,z3_Light(kW),3,Light,kW,Light,12.96,0,0,47,12.95,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z3_Plug(kW),3,Plug,kW,Plug,12.96,0,1,48,12.96,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z4_AC1(kW),4,AC1,kW,AC,13.2,0,0,1592,13.0,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z4_AC2(kW),4,AC2,kW,AC,13.2,0,1,1593,13.0,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z4_AC3(kW),4,AC3,kW,AC,13.2,0,1,1593,13.0,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z4_AC4(kW),4,AC4,kW,AC,12.97,0,0,341,12.92,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z4_Light(kW),4,Light,kW,Light,13.09,0,1,1060,12.96,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z4_Plug(kW),4,Plug,kW,Plug,12.96,0,0,59,12.95,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z4_S1(degC),4,S1,degC,Temperature,45.52,0,0,5059,44.88,248561,No data after 2019-10-22 13:27 (source file truncated). No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+6,z4_S1(RH%),4,S1,RH%,Humidity,45.52,0,0,5058,44.88,248561,No data after 2019-10-22 13:27 (source file truncated). No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+6,z4_S1(lux),4,S1,lux,Illuminance,45.52,0,0,5058,44.88,248561,"No data after 2019-10-22 13:27 (source file truncated). No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+6,z5_AC1(kW),5,AC1,kW,AC,12.97,0,0,365,12.92,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z5_Light(kW),5,Light,kW,Light,13.17,0,1,1653,12.96,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z5_Plug(kW),5,Plug,kW,Plug,13.09,0,0,1059,12.96,101432,No data after 2019-10-22 13:27 (source file truncated).
+6,z5_S1(degC),5,S1,degC,Temperature,46.1,0,0,3456,45.66,251984,No data after 2019-10-22 13:27 (source file truncated). No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+6,z5_S1(RH%),5,S1,RH%,Humidity,46.1,0,0,3463,45.66,251984,No data after 2019-10-22 13:27 (source file truncated). No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+6,z5_S1(lux),5,S1,lux,Illuminance,46.1,0,0,3456,45.66,251984,"No data after 2019-10-22 13:27 (source file truncated). No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+7,z1_AC1(kW),1,AC1,kW,AC,0.61,0,0,2405,0.31,1440,
+7,z1_AC2(kW),1,AC2,kW,AC,0.61,0,0,2405,0.31,1440,
+7,z1_AC3(kW),1,AC3,kW,AC,0.61,0,0,2405,0.31,1440,
+7,z1_AC4(kW),1,AC4,kW,AC,3.83,0,0,361,3.79,29133,
+7,z1_Light(kW),1,Light,kW,Light,0.38,0,0,1974,0.13,320,
+7,z1_Plug(kW),1,Plug,kW,Plug,0.15,0,0,208,0.13,319,
+7,z1_S1(degC),1,S1,degC,Temperature,33.55,0,0,3764,33.07,252093,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+7,z1_S1(RH%),1,S1,RH%,Humidity,33.55,0,0,3762,33.07,252093,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+7,z1_S1(lux),1,S1,lux,Illuminance,33.56,0,0,3762,33.08,252150,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+7,z2_AC1(kW),2,AC1,kW,AC,3.83,0,0,364,3.79,29133,
+7,z2_Light(kW),2,Light,kW,Light,0.38,0,0,1974,0.13,320,
+7,z2_Plug(kW),2,Plug,kW,Plug,0.42,0,0,2295,0.13,320,
+7,z2_S1(degC),2,S1,degC,Temperature,33.01,0,0,3742,32.54,248815,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+7,z2_S1(RH%),2,S1,RH%,Humidity,33.01,0,0,3743,32.54,248815,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+7,z2_S1(lux),2,S1,lux,Illuminance,33.01,0,0,3746,32.54,248815,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+7,z3_Light(kW),3,Light,kW,Light,0.28,0,0,1238,0.12,320,
+7,z3_Plug(kW),3,Plug,kW,Plug,0.46,0,0,1739,0.24,923,
+7,z4_AC1(kW),4,AC1,kW,AC,3.83,0,0,346,3.79,29133,
+7,z4_Light(kW),4,Light,kW,Light,0.99,0,0,5838,0.26,924,
+7,z4_Plug(kW),4,Plug,kW,Plug,0.61,0,0,2405,0.31,1440,
+7,z4_S1(degC),4,S1,degC,Temperature,34.15,0,0,5804,33.42,248566,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+7,z4_S1(RH%),4,S1,RH%,Humidity,34.15,0,0,5805,33.42,248566,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+7,z4_S1(lux),4,S1,lux,Illuminance,34.16,0,0,5808,33.42,248566,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
+7,z5_AC1(kW),5,AC1,kW,AC,3.83,0,0,340,3.79,29133,
+7,z5_Light(kW),5,Light,kW,Light,0.57,0,0,2116,0.3,1440,
+7,z5_Plug(kW),5,Plug,kW,Plug,0.61,0,0,2405,0.31,1440,
+7,z5_S1(degC),5,S1,degC,Temperature,35.64,0,0,4366,35.09,251978,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+7,z5_S1(RH%),5,S1,RH%,Humidity,35.64,0,0,4366,35.09,251978,No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage).
+7,z5_S1(lux),5,S1,lux,Illuminance,35.64,0,0,4367,35.09,251978,"No sensor data 12-15 Sep 2018 to 6 Mar 2019 (building-wide outage). Never exceeds ~140 lux vs 300-500 lux typical at office desks; sensor probably not at desk height. Use as a relative indicator (lights on/off, daylight), not absolute desk illuminance."
