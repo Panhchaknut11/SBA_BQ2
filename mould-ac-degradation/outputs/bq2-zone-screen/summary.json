@@ -1,0 +1,41 @@
+{
+  "scope": "20 BQ2 zones; July-August 2018 reference and July-August 2019 evaluation",
+  "reference_gate": "20 days and four calendar weeks",
+  "evaluation_gate": "10 supported days and four weeks; 2018 convex hull by session",
+  "uncertainty": "2000 calendar-week bootstrap replicates; nominal conditional 95%; no multiplicity adjustment",
+  "stronger_lead_gate": "consistent direction across both input versions; reference CV MAE <= mean-only CV MAE",
+  "secondary_lead_gate": "consistent descriptive direction plus mean-only sensitivity; weak reference explicitly flagged",
+  "versions": {
+    "pandas": "3.1.0",
+    "numpy": "2.5.4",
+    "statsmodels": "0.15.0",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2"
+  },
+  "code_sha256": {
+    "bq2_zone_screen.py": "45964d8bad3e2881895e8fa3370db148390abeabe98e2cad7addbfe4ef80f18c",
+    "f3z1_first_pass.py": "db0fd49f455a13e202486dd9c035a304ec558e7bd3a37223eb143d05edbe2979",
+    "f3z1_audit.py": "6d11f616c4680498fa8772d6e8d2e80c734ec5cf12db26ba62f35e4f94950297"
+  },
+  "inspection_categories": {
+    "Insufficient comparable evidence": 8,
+    "Review operating change": 2,
+    "Verify AC meter mapping": 2,
+    "No consistent adverse departure": 2,
+    "Review fill-dependent energy lead": 2,
+    "Inspect energy and controls": 1,
+    "Verify environmental sensor": 1,
+    "Inspect energy change; validate reference": 1,
+    "Inspect environment; validate reference": 1
+  },
+  "model_status_counts": {
+    "insufficient supported evaluation days/weeks": 36,
+    "insufficient reference days/weeks": 27,
+    "supported; reference does not improve mean-only validation": 24,
+    "supported descriptive comparison": 17,
+    "meter mapping QA hold: near-all-zero raw AC meter(s): z1_AC1(kW), z1_AC3(kW)": 6,
+    "meter mapping QA hold: near-all-zero raw AC meter(s): z1_AC1(kW)": 6,
+    "sensor QA hold: known unusually cold sensor; placement/calibration unresolved; raw environmental values outside analysis validity bounds": 4
+  },
+  "source_manifest": "input_manifest.json"
+}

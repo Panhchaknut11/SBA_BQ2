@@ -10,7 +10,7 @@ The intended result is an inspection shortlist supported by humidity exposure, A
 
 - **Both AIs:** read [AGENTS.md](AGENTS.md), the canonical project context and working rules. [CLAUDE.md](CLAUDE.md) directs Claude to that same file.
 - **People:** use this README for setup, notebook run order and Git workflow.
-- **Current stage, 30 October 2026:** setup, the F3-Z1 input audit and the first F3-Z1 modelling pass are complete. Review [the executed Track B notebook](mould-ac-degradation/bq2_ac.ipynb) before expanding to other zones. Track A and the combined notebook remain planned.
+- **Current stage, 30 October 2026:** the reviewed F3-Z1 example has expanded to quality checks and a July-August 2018/2019 screen across all 20 BQ2 zones. Review [the executed Track B notebook](mould-ac-degradation/bq2_ac.ipynb) and its inspection shortlist. Track A and the joint risk matrix remain planned.
 
 ## Responsibilities
 
@@ -47,12 +47,14 @@ mould-ac-degradation/
   f3z1_input_audit.ipynb          Executed input audit, before modelling
   f3z1_audit.py                  Inspectable audit calculations
   f3z1_first_pass.py             F3-Z1 reference models and sensitivity checks
+  bq2_zone_screen.py             Zone QA, gated comparisons and inspection triage
   requirements.txt              Base requirements plus Track B modelling dependencies
   bq2_humidity.ipynb              Planned, Track A
-  bq2_ac.ipynb                    Executed first pass, F3-Z1 only
+  bq2_ac.ipynb                    Executed current 20-zone screen, Track B
   bq2_risk_matrix.ipynb           Planned, combined
   outputs/f3z1-input-audit/       Audit tables, source hashes and figures
   outputs/f3z1-first-pass/        Model features, predictions, validation and figures
+  outputs/bq2-zone-screen/        Current quality/model evidence and inspection shortlist
 ```
 
 The helper is currently **`bq2_utils.ipynb`**. There is no `bq2_utils.py`; use the notebook-loading cell below rather than `from bq2_utils import ...`.
@@ -181,7 +183,7 @@ This writes only the audit notebook and its own output folder. It does not regen
 
 ## F3-Z1 first modelling pass
 
-Open [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb) after the input audit. It uses July-August 2018 as a reference and July-August 2019 for evaluation, comparing existing cleaned inputs against unchanged source observations. Coefficients and energy-model selection use 2018 only. Common support, day balancing and calendar-week uncertainty checks limit the comparison to the observed evidence.
+The historical first pass used July-August 2018 as a reference and July-August 2019 for evaluation, comparing existing cleaned inputs against unchanged source observations. Its notebook is preserved in [commit b56f716](https://github.com/Panhchaknut11/SBA_BQ2/blob/b56f716/mould-ac-degradation/bq2_ac.ipynb). Its tables/figures remain in `outputs/f3z1-first-pass/`; the active notebook now covers all 20 zones and verifies that F3-Z1's features and estimates reproduce.
 
 | Supported 2019 departure from the reference | With existing fills | Without filled/replaced readings |
 |---|---:|---:|
@@ -191,19 +193,37 @@ Open [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb) after the input audit. It
 
 These findings do not establish AC decline or higher efficiency. Initial rooms are about 2.4°C cooler in 2019, leaving too little overlap for a fair cooling comparison. Higher RH accompanies cooler room temperatures and lower absolute moisture in the eligible readings. Operations, sensor calibration and clock alignment remain unresolved. Removing filled values changes cohort membership substantially; read the notebook's counts, conditional intervals and sensitivity checks before generalising.
 
-Rerun from the repository root with `.venv` active:
+## Current BQ2 zone screen
+
+Open [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb). It first checks all source files and constructs the two input versions, then fits only quality-eligible metric comparisons. One/four-meter configurations use explicit channel lists. Sources and shared helpers are preserved.
+
+| Inspection lead | With fills | Without fills | Evidence limitation |
+|---|---:|---:|---|
+| F3-Z4 energy/controls | +13.3%, 22 supported days | +15.2%, 10 days | Model improves on the mean benchmark; cause unresolved |
+| F5-Z4 energy change | +36.7%, 23 days | +36.7%, 23 days | Weather model fails mean-only validation; same-day mean sensitivity is +33.0% |
+| F7-Z2 recorded moisture | +1.15 g/kg, 33 days | +1.14 g/kg, 29 days | Observed-only model slightly misses mean validation; mean sensitivity agrees |
+
+Check F4-Z1/F7-Z1's near-all-zero AC channels and F5-Z1's suspect environmental sensor separately. No zone supports a fair adjusted cooling-rate comparison under this screen's coverage/support rules. These are inspection leads, not confirmed faults, mould or measured efficiency changes. Unsupported zones are not certified healthy.
+
+F5-Z2 (+24.7% energy) and F6-Z4 (+9.7%) are provisional fills-allowed leads with no complete observed-only 2018 energy reference days. The shortlist retains their filling dependence explicitly. F3-Z4 and F5-Z4 also record substantially cooler rooms in their eligible 2019 steady-on cohorts, supporting controls/sensor checks before attributing extra energy to equipment decline.
+
+The model needs 20 reference days across four weeks, then 10 supported evaluation days across four weeks. Stronger leads must also improve mean-only 2018 validation. A separate queue retains descriptive leads supported by both versions and a mean-only sensitivity, with reference limitations visible. The 2,000 week-bootstrap intervals are nominal and conditional; they are not adjusted for screening many zones. Filled/observed-only cohorts overlap and are not independent replications.
+
+The strict 1,440-minute day rule can reject all observed-only reference days even when minute coverage is high. Read `cohort_counts.csv` and each model's status instead of treating unavailable results as zero use or no risk. The notebook explicitly handles Floor 7's day-first source format and logs Floor 6's empty malformed tail row without changing either source.
+
+Rerun the complete current screen from the repository root with `.venv` active:
 
 ```bash
-python -m jupyter nbconvert --execute --to notebook --inplace --ExecutePreprocessor.kernel_name=sba-bq2 --ExecutePreprocessor.timeout=180 mould-ac-degradation/bq2_ac.ipynb
+python -m jupyter nbconvert --execute --to notebook --inplace --ExecutePreprocessor.kernel_name=sba-bq2 --ExecutePreprocessor.timeout=300 mould-ac-degradation/bq2_ac.ipynb
 ```
 
-Calculations are in `mould-ac-degradation/f3z1_first_pass.py`. Outputs under `mould-ac-degradation/outputs/f3z1-first-pass/` include cohort/features tables, predictions with support flags, coefficients, 2018 validation, bootstrap summaries, sensitivity checks, two figures and provenance. CUSUM is diagnostic over available days, includes flagged extrapolations and has no fault threshold. No final zone handover scores are produced. The notebook checks source hashes and preserves raw/cleaned inputs, baseline outputs, the prior audit and shared helper. Review this pass before modelling other zones.
+Current calculations are in `mould-ac-degradation/bq2_zone_screen.py`, reusing `f3z1_first_pass.py` feature/model definitions. Outputs under `mould-ac-degradation/outputs/bq2-zone-screen/` include `inspection_shortlist.csv` (all 20 unique zone keys), quality/coverage tables, model statuses, 2018 validation, support-flagged predictions, coefficients, nominal bootstrap intervals, benchmark sensitivity, figures and provenance. This shortlist is separate from the planned `zone_ac_metrics.csv` handover and joint risk matrix. The historical F3-Z1 CUSUM remains diagnostic with no fault threshold. No final risk scores are produced. Review this screen before changing its window/methods or combining with Track A.
 
 ## Planning milestones
 
 The group plan recorded on 18 October lists **3 November 2026** for analytics, **6 November** for recommendations/KPIs/slides and **9 November** for submission. These are working milestones; confirm the official eLearn upload cutoff. The updated course record places presentations in Week 14, with the exact presentation slot still unconfirmed.
 
-The first F3-Z1 model findings are ready for review. Expansion to other zones, the remaining Track A/Track B work and the risk matrix follow separately after that review.
+The 20-zone screen and inspection leads are ready for review. Remaining seasonal/peer work, Track A and the joint risk matrix follow separately.
 
 ## Setup verification, 30 October 2026
 
