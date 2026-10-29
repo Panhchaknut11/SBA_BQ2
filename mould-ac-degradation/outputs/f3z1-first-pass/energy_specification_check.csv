@@ -1,0 +1,5 @@
+variant,specification,common_supported_days,observed_mean_kWh,expected_mean_kWh,residual_pct
+with_fills,temperature_activity,22,158.12246212121212,174.45142666042992,-9.360178275298464
+with_fills,enthalpy_activity,22,158.12246212121212,176.12230904032998,-10.220083427929678
+without_fills,temperature_activity,11,156.63613636363635,175.24821548930953,-10.620410070200428
+without_fills,enthalpy_activity,11,156.63613636363635,176.3873520171853,-11.197637147829393
