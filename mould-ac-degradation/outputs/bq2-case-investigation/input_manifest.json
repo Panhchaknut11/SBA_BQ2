@@ -1,0 +1,92 @@
+[
+  {
+    "path": "data-cleaning/outputs/analytics/zone_hourly.csv",
+    "sha256": "fe2b35fc24ced0899be878b21337b777dabaaab2a11d4b7db5c11ceaca7cca0d",
+    "bytes": 32598578
+  },
+  {
+    "path": "mould-ac-degradation/outputs/bq2-zone-screen/zone_quality.csv",
+    "sha256": "3fee65d2dd822e2821a6495825a783e74e07bd33c219b80807c55183d7fb3e33",
+    "bytes": 6770
+  },
+  {
+    "path": "mould-ac-degradation/outputs/bq2-zone-screen/predictions.csv",
+    "sha256": "7985df1b3d37d7b54dd779988508f2cb95d32abb4c39a7b97eeef30b143193be",
+    "bytes": 1435531
+  },
+  {
+    "path": "mould-ac-degradation/outputs/bq2-zone-screen/model_summary.csv",
+    "sha256": "2a6348ecc3f819dc257a2cfdd457d11d7f2568598bf58c5a4888e5ef6eb073d4",
+    "bytes": 33536
+  },
+  {
+    "path": "baseline/data/bangkok_era5_hourly_2018-2019.csv",
+    "sha256": "4177245c849238480bbbb1e012de431a616613c7372fcbdadddd053f8b60de66",
+    "bytes": 448055
+  },
+  {
+    "path": "mould-ac-degradation/bq2_utils.ipynb",
+    "sha256": "b29ae0bded094b0ce86d93835bf9f5ddb9cb747799778de638c9cf0b32e85810",
+    "bytes": 33338
+  },
+  {
+    "path": "data/2018Floor3.csv",
+    "sha256": "43ba1ba6f18a5e7acd54f7f0761bd1c075e66ca4ccd74b310496bb67a8c74d72",
+    "bytes": 30189495
+  },
+  {
+    "path": "data/2019Floor3.csv",
+    "sha256": "1742aaf67232b38c29ed6fd2df44c12e08626b5827ff1c9121c10d89b15e19d2",
+    "bytes": 77311428
+  },
+  {
+    "path": "data-cleaning/outputs/clean/2018Floor3.csv",
+    "sha256": "f5cdc9b66a9de3880c1aa1d5a9b79363863b1c479b0691990e407b0b43dac61d",
+    "bytes": 30361136
+  },
+  {
+    "path": "data-cleaning/outputs/clean/2019Floor3.csv",
+    "sha256": "9e656cafc408ef6b76495c115e1e2c84e38fce909068fa337a410cc9f75ad194",
+    "bytes": 77426487
+  },
+  {
+    "path": "data/2018Floor5.csv",
+    "sha256": "7f4fc1570bc52f5cc654f342f93a88bbd94ff5266948e8aa0bfeb03d09267122",
+    "bytes": 33624983
+  },
+  {
+    "path": "data/2019Floor5.csv",
+    "sha256": "218028fe19b327106272a6de908bdddc53da724793a20d9e3c63a341c96f460d",
+    "bytes": 75491946
+  },
+  {
+    "path": "data-cleaning/outputs/clean/2018Floor5.csv",
+    "sha256": "9bd1a15a6e9c228d499e0d6f56b1ab088907f9086673d29f2a8832b74f56f6db",
+    "bytes": 33829704
+  },
+  {
+    "path": "data-cleaning/outputs/clean/2019Floor5.csv",
+    "sha256": "b79361e2c9f36b3d4a725d4c298c0621f6b988397b1d9dbbd08a37d08ce9297b",
+    "bytes": 75531049
+  },
+  {
+    "path": "data/2018Floor7.csv",
+    "sha256": "988bc5803ef622c98dd48abd452dc71920de56ab119e98f8f3f88c18e102936d",
+    "bytes": 34463915
+  },
+  {
+    "path": "data/2019Floor7.csv",
+    "sha256": "75060f5fbaf8d26a8625af339493823a570c88a3a1053b3129a5f515bd00cf42",
+    "bytes": 64668611
+  },
+  {
+    "path": "data-cleaning/outputs/clean/2018Floor7.csv",
+    "sha256": "892347af70fe4e62d70de0a3acf001a8439786e1a19eabfa0c7c5a9a9b090dea",
+    "bytes": 34636190
+  },
+  {
+    "path": "data-cleaning/outputs/clean/2019Floor7.csv",
+    "sha256": "6bbec53a8ccea274f192d79f018c542106d1c55798f135cc3cd8ef8847bafd46",
+    "bytes": 79037510
+  }
+]

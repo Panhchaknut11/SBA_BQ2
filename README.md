@@ -10,7 +10,7 @@ The intended result is an inspection shortlist supported by humidity exposure, A
 
 - **Both AIs:** read [AGENTS.md](AGENTS.md), the canonical project context and working rules. [CLAUDE.md](CLAUDE.md) directs Claude to that same file.
 - **People:** use this README for setup, notebook run order and Git workflow.
-- **Current stage, 30 October 2026:** the reviewed F3-Z1 example has expanded to quality checks and a July-August 2018/2019 screen across all 20 BQ2 zones. Review [the executed Track B notebook](mould-ac-degradation/bq2_ac.ipynb) and its inspection shortlist. Track A and the joint risk matrix remain planned.
+- **Current stage, 30 October 2026:** the 20-zone screen now has a focused [case investigation](mould-ac-degradation/bq2_case_investigation.ipynb) of F3-Z4, F5-Z4 and F7-Z2. Read it for the latest distinction between recorded changes and unconfirmed causes. [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb) remains the Track B entry point. Track A and the joint risk matrix remain planned.
 
 ## Responsibilities
 
@@ -48,6 +48,8 @@ mould-ac-degradation/
   f3z1_audit.py                  Inspectable audit calculations
   f3z1_first_pass.py             F3-Z1 reference models and sensitivity checks
   bq2_zone_screen.py             Zone QA, gated comparisons and inspection triage
+  bq2_case_investigation.py      Focused operating/sensor diagnostic calculations
+  bq2_case_investigation.ipynb   Executed diagnostic companion, three screened cases
   requirements.txt              Base requirements plus Track B modelling dependencies
   bq2_humidity.ipynb              Planned, Track A
   bq2_ac.ipynb                    Executed current 20-zone screen, Track B
@@ -55,6 +57,7 @@ mould-ac-degradation/
   outputs/f3z1-input-audit/       Audit tables, source hashes and figures
   outputs/f3z1-first-pass/        Model features, predictions, validation and figures
   outputs/bq2-zone-screen/        Current quality/model evidence and inspection shortlist
+  outputs/bq2-case-investigation/ Operating-state evidence and reportable conclusions
 ```
 
 The helper is currently **`bq2_utils.ipynb`**. There is no `bq2_utils.py`; use the notebook-loading cell below rather than `from bq2_utils import ...`.
@@ -205,7 +208,7 @@ Open [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb). It first checks all sour
 
 Check F4-Z1/F7-Z1's near-all-zero AC channels and F5-Z1's suspect environmental sensor separately. No zone supports a fair adjusted cooling-rate comparison under this screen's coverage/support rules. These are inspection leads, not confirmed faults, mould or measured efficiency changes. Unsupported zones are not certified healthy.
 
-F5-Z2 (+24.7% energy) and F6-Z4 (+9.7%) are provisional fills-allowed leads with no complete observed-only 2018 energy reference days. The shortlist retains their filling dependence explicitly. F3-Z4 and F5-Z4 also record substantially cooler rooms in their eligible 2019 steady-on cohorts, supporting controls/sensor checks before attributing extra energy to equipment decline.
+F5-Z2 (+24.7% energy) and F6-Z4 (+9.7%) are provisional fills-allowed leads with no complete observed-only 2018 energy reference days. The shortlist retains their filling dependence explicitly. F3-Z4 and F5-Z4 also record substantially cooler ceiling-sensor readings in their eligible 2019 steady-on cohorts, supporting controls/sensor checks before attributing extra energy to equipment decline.
 
 The model needs 20 reference days across four weeks, then 10 supported evaluation days across four weeks. Stronger leads must also improve mean-only 2018 validation. A separate queue retains descriptive leads supported by both versions and a mean-only sensitivity, with reference limitations visible. The 2,000 week-bootstrap intervals are nominal and conditional; they are not adjusted for screening many zones. Filled/observed-only cohorts overlap and are not independent replications.
 
@@ -219,11 +222,29 @@ python -m jupyter nbconvert --execute --to notebook --inplace --ExecutePreproces
 
 Current calculations are in `mould-ac-degradation/bq2_zone_screen.py`, reusing `f3z1_first_pass.py` feature/model definitions. Outputs under `mould-ac-degradation/outputs/bq2-zone-screen/` include `inspection_shortlist.csv` (all 20 unique zone keys), quality/coverage tables, model statuses, 2018 validation, support-flagged predictions, coefficients, nominal bootstrap intervals, benchmark sensitivity, figures and provenance. This shortlist is separate from the planned `zone_ac_metrics.csv` handover and joint risk matrix. The historical F3-Z1 CUSUM remains diagnostic with no fault threshold. No final risk scores are produced. Review this screen before changing its window/methods or combining with Track A.
 
+## Focused case investigation
+
+Open [bq2_case_investigation.ipynb](mould-ac-degradation/bq2_case_investigation.ipynb), the diagnostic companion to the main Track B notebook. It decomposes raw energy changes, checks schedules and inactive-state controls, matches operating-state hours, and tests measurement sensitivity. It uses the same July-August comparison and both input versions, preserving earlier evidence.
+
+- **F3-Z4:** increased on-time and on-power, with less low-power time inside normal business-hour windows. This supports a metered operating-pattern change.
+- **F5-Z4:** nearly unchanged runtime and about 15.1→20.1 kW on-power; roughly 99% of the raw energy increase is an on-power contribution.
+- **F7-Z2:** higher recorded sustained-on moisture and a changed day/night association remain diagnostic leads. Calibration/continuity, ventilation, moisture loads and controls prevent a confirmed degradation attribution.
+
+Cooler readings in F3-Z4/F5-Z4 persist after long near-zero-power periods. The notebook's original-paper context and sensor scenarios therefore matter: actual overcooling, dehumidification loss and mechanical faults remain unconfirmed. A changed uniform T/RH offset cannot explain every state association, but sensor changes are not ruled out. New matched comparisons are descriptive; no new causal or inferential intervals are fitted.
+
+Rerun this focused diagnostic from the repository root:
+
+```bash
+python -m jupyter nbconvert --execute --to notebook --inplace --ExecutePreprocessor.kernel_name=sba-bq2 --ExecutePreprocessor.timeout=300 mould-ac-degradation/bq2_case_investigation.ipynb
+```
+
+The output folder contains the exact energy decomposition, schedules, matched-state/cohort/balance tables, same-day contrasts, monthly sensitivity, sensor scenarios, figures and provenance. `case_conclusions.csv` provides reporting language with competing explanations and next checks. The notebook verifies source hashes and that every prior audit/screen output file remains unchanged. This is a diagnostic companion, not a second active Track B implementation or the joint risk matrix.
+
 ## Planning milestones
 
 The group plan recorded on 18 October lists **3 November 2026** for analytics, **6 November** for recommendations/KPIs/slides and **9 November** for submission. These are working milestones; confirm the official eLearn upload cutoff. The updated course record places presentations in Week 14, with the exact presentation slot still unconfirmed.
 
-The 20-zone screen and inspection leads are ready for review. Remaining seasonal/peer work, Track A and the joint risk matrix follow separately.
+The three-case findings and attribution limits are ready for review. Remaining seasonal/peer work, Track A and the joint risk matrix follow separately.
 
 ## Setup verification, 30 October 2026
 

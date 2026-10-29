@@ -1,0 +1,20 @@
+{
+  "scope": "F3-Z4, F5-Z4, F7-Z2; July-August 2018/2019; with/without existing fills",
+  "source_manifest": "input_manifest.json",
+  "protected_previous_files": 65,
+  "code_sha256": "5f5b2ba60a4bfc118611f78c26f32ceadd0c07ca689f286520f3c4b99b62e491",
+  "matching": "Same hour/state; 1 C outdoor T, 1 g/kg outdoor w; 2018-based plug caliper; >=3 reference dates",
+  "matching_sensitivity": [
+    0.5,
+    1,
+    1.5
+  ],
+  "new_comparisons": "Descriptive; no new causal/inferential intervals",
+  "long_off_control": "At least 24 uninterrupted hours with valid AC power <=0.1 kW; overlaps other states",
+  "versions": {
+    "pandas": "3.1.0",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2"
+  },
+  "mechanical_degradation_confirmed": false
+}
