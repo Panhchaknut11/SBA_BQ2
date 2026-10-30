@@ -7,8 +7,8 @@ This is the canonical BQ2 context for Codex, Claude and human collaborators. Rea
 - **Track A, Panhchaknut:** humidity and mould-risk indicators, including rebound after AC shutdown.
 - **Track B, Lwin:** AC performance and signs of decline, including humidity response while AC runs.
 - **Joint:** risk matrix, case investigation and an evidence-based inspection shortlist for the wider group.
-- **Stage as of 30 October 2026:** Track B has expanded the reviewed F3-Z1 example to a quality-gated July-August 2018/2019 screen of all 20 BQ2 zones. Read `mould-ac-degradation/bq2_ac.ipynb`; current evidence and the inspection shortlist are under `outputs/bq2-zone-screen/`. The prior F3-Z1 audit and first-pass outputs remain preserved, and regression checks reproduce their features/estimates. Track A and the joint risk matrix remain planned.
-- **Current user boundary:** the user authorised quality checks and comparison with/without filled readings across other eligible BQ2 zones, followed by an inspection shortlist. Present this screen for review. It does not authorise changes to shared psychrometrics, upstream cleaning, expansion beyond the 20-zone/July-August comparison, or a final joint risk matrix. Update this status when later work changes it and inspect actual files/Git state before reporting completion.
+- **Stage as of 31 October 2026:** the 20-zone screen and focused investigation of F3-Z4, F5-Z4 and F7-Z2 are consolidated in [the Track B report](mould-ac-degradation/reports/track-b/track_b_report.md). The [integration review](mould-ac-degradation/reports/track-b/review_2026-10-31.md) records four fresh notebook runs, reproduction of all 70 saved CSV tables and eight charts, and independent raw-energy/reference-fit checks. `bq2_ac.ipynb` remains the analysis entry point, with `bq2_case_investigation.ipynb` as its diagnostic companion. No material analytical merge blocker was demonstrated within this historical screening scope. Original evidence is preserved. Broader seasonal/peer work, Track A and the joint risk matrix remain planned.
+- **Current user boundary:** the user explicitly authorised review and ordered merging of PRs #1–#5, deletion of their GitHub branches after verifying all work is safely on `main`, and a checked progress readout. Use merge commits to retain the stacked ancestry, retarget each next PR to `main` after its prerequisite merges, verify every original tip and the final reviewed tree on `origin/main`, then delete only the five merged topic branches. Inspect live Git/PR state rather than inferring completion from this authorization or older prose. After integration, start later authorized work from current `main`. This does not expand the analysis window, alter upstream cleaning/shared psychrometrics, establish faults or authorize starting Track A/the joint matrix without further task direction.
 - **Working milestones:** analytics on 3 November 2026, recommendations/KPIs/slides on 6 November and submission on 9 November, from the group's 18 October plan. The official upload cutoff is unconfirmed. Presentation week is Week 14; the exact slot is unconfirmed.
 
 ## Project
@@ -48,9 +48,13 @@ mould-ac-degradation/         BQ2 analysis (this is where new work goes)
   bq2_ac.ipynb               Executed Track B quality checks and 20-zone screen
   f3z1_first_pass.py          Reused feature definitions and reference estimators
   bq2_zone_screen.py         Zone QA, gated modelling, sensitivity and triage
+  bq2_case_investigation.ipynb / .py   Focused diagnostic companion for three cases
   requirements.txt           Base dependencies plus statsmodels and SciPy
   outputs/f3z1-first-pass/    Features, predictions, validation, hashes and figures
   outputs/bq2-zone-screen/   Current 20-zone evidence and inspection shortlist
+  outputs/bq2-case-investigation/   Operating-state diagnostics and reporting language
+  reports/track-b/track_b_report.md   Consolidated report draft for group review
+  reports/track-b/figures/     Unchanged copies of the two case-investigation charts
 ```
 
 ## Environment and run order
@@ -113,8 +117,7 @@ Weather table (`load_bangkok_era5_weather`): index `Date` (hourly), columns
 2. **Environmental outage around mid-Sep 2018 to early Mar 2019.** Exact boundaries vary by channel. Cool-season environmental coverage is especially limited. July-August is the initial matched-period candidate across years; retain other usable portions when justified. Do not apply a blanket date exclusion to energy-only analysis.
 3. **Floor 6 has no data after 22 Oct 2019 13:27** (truncated source file).
 4. **Floors 3 and 4 lose all power data** for 4-6 weeks in Oct-Nov 2018.
-5. **Stale-value checks were only run on power meters.** Check RH/temperature sensors for flat-lines
-   and drift before treating a humidity change as real.
+5. **Upstream stale-value checks covered power meters.** The later BQ2 audits also checked raw RH/temperature flatlines; no hour-long paired flatline explained the three focused cases. Those checks do not verify calibration, sensor continuity, placement or drift. Keep these unresolved when interpreting year-to-year environmental changes.
 6. **Lux is a relative indicator only** (never above about 140 lux). Not needed for BQ2.
 7. **No measured occupancy, thermostat setpoints, maintenance, failure, airflow or surface-temperature records.** Plug load can provide activity context, but is not measured occupancy. Aggregate zone readings do not identify a failing individual AC unit.
 8. **F7-Z1 AC1 was previously flagged as all-zero.** Verify its meaning before treating it as equipment behaviour; zero power alone does not prove a failed unit.
@@ -178,6 +181,29 @@ The user authorised expansion after reviewing F3-Z1. The active notebook is stil
 - **Controls context:** eligible fills-allowed steady-on temperature means fall from 21.4 to 17.9°C in F3-Z4 and 23.9 to 19.9°C in F5-Z4. These are different descriptive cohorts, not controlled setpoint measurements. Check controls and sensor behaviour before attributing higher energy to declining efficiency.
 - **Limits and unresolved zones:** no zone has a reportable adjusted cooling comparison under these rules. F3-Z1/F3-Z2 show lower supported energy as operating-change context. Other results retain reasons for insufficient reference data, unsupported conditions or weak models. Do not call unreported zones healthy. No final `zone_ac_metrics.csv`, joint risk matrix, fault threshold, seasonal generalisation or RUL result has been produced.
 
+### Focused case investigation and confidence limits
+
+The user requested a closer check after the 20-zone screen. The diagnostic companion reads only F3-Z4, F5-Z4 and F7-Z2 within July-August 2018/2019, with both input versions. It preserves all earlier evidence folders and uses the existing shared psychrometrics.
+
+- **Documented measurement caveat:** the [dataset paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC7371880/) reports ceiling mounting and sensor removal for a firmware update between September 2018 and March 2019. Nominal design values are ±0.4°C/±2 RH percentage points. These do not verify continuity, field calibration or unchanged local placement across years.
+- **Electrical accounting:** decompose raw daily mean energy as mean on-hours × pooled on-power plus below-threshold energy. Symmetric runtime/power contributions reconcile exactly. The comparison uses all 2018 reference days and the screen's supported 2019 days. These accounting terms are not causal contributions to the earlier weather-model residual.
+- **F3-Z4:** on-hours rise from 6.75 to 7.24/7.27 h/day and pooled on-power from 19.39 to 20.59/20.78 kW with/without fills. Below-threshold time inside fixed 08:00–11:00/13:15–16:15 windows falls from about 25 to 1/0 minutes/day. Median start/stop times move only a few minutes. Report a more continuous metered operating pattern; do not claim a large schedule extension, thermostat change or confirmed degradation.
+- **F5-Z4:** runtime remains about 7.45 h/day, while on-power rises 15.13→20.10 kW. About 99.4% of the unadjusted energy difference is an on-power accounting contribution. Control/load/equipment or metering changes remain unverified; actual overcooling and efficiency loss cannot be established.
+- **Inactive controls:** full-hour T/RH/AC/plug data are matched on exact clock hour/state, outdoor temperature, outdoor humidity ratio and plug activity. A separate control requires at least 24 uninterrupted hours of measured AC ≤0.1 kW. F3-Z4/F5-Z4 still show substantially cooler readings in that control. The absolute temperature shift cannot be attributed wholly to active cooling; sensor baseline, placement, other spaces and ambient/thermal changes remain alternatives.
+- **F7-Z2:** matched steady-on recorded moisture is +1.15/+1.16 g/kg with/without fills with little on-power change. Same-day on-minus-night associations shift about +1°C and +1 g/kg, on 35/30 paired days. July and August both retain the moisture lead. This is a possible performance/control issue, not confirmed dehumidification loss or a progressive failure trend. Normal runtime medians stay near 7.98 h; eight 2018 reference days exceed nine on-hours versus none in the supported 2019 cohort, so lower mean runtime is not a shorter routine schedule.
+- **Sensor scenarios:** a common fixed bias barely changes F7-Z2's absolute moisture departure, but opposing year-specific nominal T/RH design-error scenarios can reduce it to around zero. This is an assumption-driven sensitivity, not a measured error estimate or confidence interval. Constant additive T/RH offsets cancel in the respective on-minus-night contrasts; nonlinear moisture, gain/placement changes and state-dependent errors do not necessarily cancel.
+- **Methods:** these new state matches/contrasts are descriptive and do not add causal or inferential intervals. Require three candidate reference dates, ten evaluation/reference days and four weeks; stricter matching or paired-hour sensitivity can become unavailable and is withheld. Same-day contrasts are not a causal difference-in-differences design. Regional weather and unmeasured occupancy/ventilation/control states limit interpretation. Local peers have differing operations and missingness, and are context only.
+- **Handover:** `case_conclusions.csv` records confident observations, competing explanations, degradation status, next checks and reusable reporting language. Prioritise sensor continuity/calibration plus control/meter/equipment records. No mechanical fault, mould condition, COP change or RUL estimate is confirmed. Keep the historical screen's findings and the newer attribution limits distinct.
+
+### Consolidated Track B report and reuse limits
+
+The report at `mould-ac-degradation/reports/track-b/track_b_report.md` is the human-facing consolidation of the existing 20-zone screen and focused case investigation, not another model or a final joint handover. Its adjacent `figures/` contains byte-identical copies of the two case charts. Keep relative asset links portable and preserve the original outputs/provenance when updating the narrative. The report links its calculations and analysis commit; do not silently replace figures with a different cohort or rerun results during a prose-only update.
+
+- **Reportable observations:** F3-Z4 has more continuous metered operation; F5-Z4 has higher on-power with nearly unchanged runtime; F7-Z2 has higher recorded moisture during sustained AC operation. Recommend sensor continuity/calibration checks and operating/control/meter/load investigation before assigning a mechanical cause.
+- **Interpretation:** F3-Z4/F5-Z4 remain cooler after long near-zero-power periods, so actual overcooling is unverified. F7-Z2's absolute moisture change is sensitive to opposing year-specific nominal sensor-error scenarios; those scenarios are assumptions, not measured bias. Neither state associations nor electrical accounting establishes causation.
+- **Reuse limits:** July-August 2018/2019 only; 2018 is not known fault-free; removing fills changes cohorts; some references miss simple benchmarks; nominal conditional intervals have no multiplicity correction. Strict complete-day rules reduce eligibility. No fair adjusted cooling comparison, validated CUSUM fault threshold, controlled peer ranking, COP, RUL, confirmed mechanical fault, measured coil moisture removal or mould finding is established. Missing occupancy, setpoints, ventilation, airflow, cooling output and maintenance/failure outcomes limit attribution. Lower energy and unavailable comparisons do not certify healthy equipment.
+- **Next scope:** group review and later integration with Track A are separate steps. Broader seasonal/peer analysis, Track A and the joint risk matrix remain planned. The report does not complete those deliverables or establish recoverable savings.
+
 **Combined** → `bq2_risk_matrix.ipynb` (planned)
 - Merge the two handover tables on `floor, zone`. Mould exposure on one axis, AC decline on the other, sized by coverage.
 - Quadrants: both high = inspect AC and space; mould only = envelope/ventilation/schedule; AC only = maintenance/energy.
@@ -202,7 +228,7 @@ Save to `mould-ac-degradation/outputs/`, with one unique `floor, zone` key per r
 
 ## Conventions
 
-- Never edit `data/` or `data-cleaning/outputs/`. Read from them; write to `mould-ac-degradation/outputs/`.
+- Never edit `data/` or `data-cleaning/outputs/`. Read from them; write analysis evidence to `mould-ac-degradation/outputs/` and report prose/bundled figures to `mould-ac-degradation/reports/`.
 - One notebook per person/track to avoid merge conflicts. Shared logic goes in `bq2_utils.ipynb`.
 - Baselines from clean, normal days only: `day_type == "working day"`. Never fit a baseline on the period it is evaluated on.
 - Keep the notebook style used in `data-cleaning/main.ipynb`: markdown "what we're checking" → short code cell →
@@ -211,7 +237,7 @@ Save to `mould-ac-degradation/outputs/`, with one unique `floor, zone` key per r
   Do not claim confirmed mould, faults or remaining useful life. Mould metrics use room-air sensors, not surface measurements.
 - Small, separate commits with clear messages (e.g. "Add surface RH and time-of-wetness metrics").
 - Restart the kernel after editing `bq2_utils.ipynb`, then rerun dependent notebooks. Coordinate shared definitions and record changes in the handover/PR; setup itself does not change them.
-- Preserve partner work and Git history. Use task branches and reviewable pull requests into `main`; do not force-push shared history. Stage only intended files. Never commit `.venv`, credentials or temporary execution files.
+- Preserve partner work and Git history. Reuse an existing task branch/PR for related follow-ups while it remains open; start separate work from current `main` with a reviewable PR. The initial delivery used #1 setup → #2 audit → #3 first model → #4 zone screen → #5 case investigation/report. Retain remote branches until their work is verified on `main` and no open PR depends on them. Do not force-push shared history. Stage only intended files. Never commit `.venv`, credentials or temporary execution files.
 - During setup, check dependencies, kernel launch, helper loading and input/weather joins without overwriting source notebooks or upstream outputs. Before handing off later analysis, rerun from a fresh kernel and report exactly what passed and what remains uncertain.
 - Keep shared context in AGENTS.md and setup/run instructions in README.md. CLAUDE.md remains a pointer. Update the owning document in the same change when methods, schemas or status change.
 - For library/API/CLI-specific syntax or setup, resolve and fetch current documentation with the Context7 CLI before relying on remembered details. Never send credentials in documentation queries.

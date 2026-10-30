@@ -1,0 +1,761 @@
+{
+  "review_date": "2026-10-31",
+  "timezone": "Asia/Singapore",
+  "reviewed_analysis_head": "3b47a43027c232399e3bb3309f3983ab01c2ce8f",
+  "notebook_execution": [
+    {
+      "notebook": "input_audit",
+      "status": "passed",
+      "code_cells": 12,
+      "elapsed_seconds": 5.17
+    },
+    {
+      "notebook": "historical_first_pass",
+      "status": "passed",
+      "code_cells": 10,
+      "elapsed_seconds": 6.37
+    },
+    {
+      "notebook": "zone_screen",
+      "status": "passed",
+      "code_cells": 8,
+      "elapsed_seconds": 32.22
+    },
+    {
+      "notebook": "case_investigation",
+      "status": "passed",
+      "code_cells": 6,
+      "elapsed_seconds": 11.13
+    }
+  ],
+  "setup_cell": {
+    "status": "passed",
+    "unique_zone_hours": 263520,
+    "zones": 20,
+    "weather_join_complete": true
+  },
+  "pip_check": "passed",
+  "independent_checks": {
+    "source_hashes_verified": 30,
+    "raw_case_daily_rows_verified": 449,
+    "raw_max_differences": {
+      "ac_kWh": 5.684341886080802e-14,
+      "on_hours": 0.0,
+      "on_kWh": 8.526512829121202e-14,
+      "off_kWh": 8.881784197001252e-16
+    },
+    "independent_models_verified": 41,
+    "models": [
+      {
+        "zone_id": "F3-Z1",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": -15.748628899217367,
+        "saved_mean_residual": -15.748628899216783,
+        "supported_days": 25
+      },
+      {
+        "zone_id": "F3-Z1",
+        "analysis": "energy",
+        "variant": "without_fills",
+        "direct_mean_residual": -17.884930872208972,
+        "saved_mean_residual": -17.884930872208344,
+        "supported_days": 12
+      },
+      {
+        "zone_id": "F3-Z1",
+        "analysis": "moisture",
+        "variant": "with_fills",
+        "direct_mean_residual": -0.39615515283540925,
+        "saved_mean_residual": -0.3961551528354139,
+        "supported_days": 18
+      },
+      {
+        "zone_id": "F3-Z1",
+        "analysis": "moisture",
+        "variant": "without_fills",
+        "direct_mean_residual": -0.40670745360085386,
+        "saved_mean_residual": -0.40670745360081284,
+        "supported_days": 10
+      },
+      {
+        "zone_id": "F3-Z2",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": -10.68596622366827,
+        "saved_mean_residual": -10.685966223668245,
+        "supported_days": 25
+      },
+      {
+        "zone_id": "F3-Z2",
+        "analysis": "energy",
+        "variant": "without_fills",
+        "direct_mean_residual": -10.68596622366827,
+        "saved_mean_residual": -10.685966223668245,
+        "supported_days": 25
+      },
+      {
+        "zone_id": "F3-Z2",
+        "analysis": "moisture",
+        "variant": "with_fills",
+        "direct_mean_residual": -0.5348424922218543,
+        "saved_mean_residual": -0.5348424922218378,
+        "supported_days": 28
+      },
+      {
+        "zone_id": "F3-Z2",
+        "analysis": "moisture",
+        "variant": "without_fills",
+        "direct_mean_residual": -0.5290385462367722,
+        "saved_mean_residual": -0.5290385462367801,
+        "supported_days": 22
+      },
+      {
+        "zone_id": "F3-Z4",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": 17.493278617733424,
+        "saved_mean_residual": 17.493278617733694,
+        "supported_days": 22
+      },
+      {
+        "zone_id": "F3-Z4",
+        "analysis": "energy",
+        "variant": "without_fills",
+        "direct_mean_residual": 19.943171682622825,
+        "saved_mean_residual": 19.943171682623074,
+        "supported_days": 10
+      },
+      {
+        "zone_id": "F3-Z4",
+        "analysis": "moisture",
+        "variant": "with_fills",
+        "direct_mean_residual": -0.9291832398306228,
+        "saved_mean_residual": -0.9291832398306461,
+        "supported_days": 23
+      },
+      {
+        "zone_id": "F3-Z4",
+        "analysis": "moisture",
+        "variant": "without_fills",
+        "direct_mean_residual": -0.9288284063085451,
+        "saved_mean_residual": -0.9288284063085452,
+        "supported_days": 19
+      },
+      {
+        "zone_id": "F3-Z5",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": -6.242862576036099,
+        "saved_mean_residual": -6.242862576036181,
+        "supported_days": 22
+      },
+      {
+        "zone_id": "F3-Z5",
+        "analysis": "energy",
+        "variant": "without_fills",
+        "direct_mean_residual": -6.242862576036099,
+        "saved_mean_residual": -6.242862576036181,
+        "supported_days": 22
+      },
+      {
+        "zone_id": "F4-Z4",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": 8.054354901251596,
+        "saved_mean_residual": 8.054354901251486,
+        "supported_days": 30
+      },
+      {
+        "zone_id": "F4-Z4",
+        "analysis": "moisture",
+        "variant": "with_fills",
+        "direct_mean_residual": -1.5732467604443734,
+        "saved_mean_residual": -1.573246760444393,
+        "supported_days": 22
+      },
+      {
+        "zone_id": "F4-Z4",
+        "analysis": "moisture",
+        "variant": "without_fills",
+        "direct_mean_residual": -1.575145717929432,
+        "saved_mean_residual": -1.5751457179294182,
+        "supported_days": 20
+      },
+      {
+        "zone_id": "F4-Z5",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": 6.069757124490148,
+        "saved_mean_residual": 6.069757124490067,
+        "supported_days": 14
+      },
+      {
+        "zone_id": "F4-Z5",
+        "analysis": "energy",
+        "variant": "without_fills",
+        "direct_mean_residual": 6.084298746097252,
+        "saved_mean_residual": 6.084298746097211,
+        "supported_days": 14
+      },
+      {
+        "zone_id": "F5-Z1",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": -19.65648299230068,
+        "saved_mean_residual": -19.65648299230125,
+        "supported_days": 28
+      },
+      {
+        "zone_id": "F5-Z1",
+        "analysis": "energy",
+        "variant": "without_fills",
+        "direct_mean_residual": -20.826601533387795,
+        "saved_mean_residual": -20.826601533387787,
+        "supported_days": 23
+      },
+      {
+        "zone_id": "F5-Z2",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": 26.5929135423491,
+        "saved_mean_residual": 26.592913542348825,
+        "supported_days": 21
+      },
+      {
+        "zone_id": "F5-Z4",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": 40.26202352438563,
+        "saved_mean_residual": 40.26202352438571,
+        "supported_days": 23
+      },
+      {
+        "zone_id": "F5-Z4",
+        "analysis": "energy",
+        "variant": "without_fills",
+        "direct_mean_residual": 40.26202352438563,
+        "saved_mean_residual": 40.26202352438571,
+        "supported_days": 23
+      },
+      {
+        "zone_id": "F5-Z4",
+        "analysis": "moisture",
+        "variant": "with_fills",
+        "direct_mean_residual": -1.4618989874028143,
+        "saved_mean_residual": -1.461898987402824,
+        "supported_days": 28
+      },
+      {
+        "zone_id": "F5-Z4",
+        "analysis": "moisture",
+        "variant": "without_fills",
+        "direct_mean_residual": -1.4635230435683222,
+        "saved_mean_residual": -1.4635230435683404,
+        "supported_days": 26
+      },
+      {
+        "zone_id": "F6-Z1",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": 15.795978473698943,
+        "saved_mean_residual": 15.79597847369908,
+        "supported_days": 23
+      },
+      {
+        "zone_id": "F6-Z1",
+        "analysis": "energy",
+        "variant": "without_fills",
+        "direct_mean_residual": 22.933472130823414,
+        "saved_mean_residual": 22.933472130823304,
+        "supported_days": 14
+      },
+      {
+        "zone_id": "F6-Z1",
+        "analysis": "moisture",
+        "variant": "with_fills",
+        "direct_mean_residual": -1.2273879319488725,
+        "saved_mean_residual": -1.2273879319488703,
+        "supported_days": 25
+      },
+      {
+        "zone_id": "F6-Z1",
+        "analysis": "moisture",
+        "variant": "without_fills",
+        "direct_mean_residual": -1.1887570460246295,
+        "saved_mean_residual": -1.188757046024632,
+        "supported_days": 17
+      },
+      {
+        "zone_id": "F6-Z2",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": -7.768088874707944,
+        "saved_mean_residual": -7.768088874708013,
+        "supported_days": 29
+      },
+      {
+        "zone_id": "F6-Z2",
+        "analysis": "energy",
+        "variant": "without_fills",
+        "direct_mean_residual": -10.208508444897188,
+        "saved_mean_residual": -10.20850844489695,
+        "supported_days": 29
+      },
+      {
+        "zone_id": "F6-Z2",
+        "analysis": "moisture",
+        "variant": "with_fills",
+        "direct_mean_residual": -0.6891778727931239,
+        "saved_mean_residual": -0.6891778727931115,
+        "supported_days": 28
+      },
+      {
+        "zone_id": "F6-Z2",
+        "analysis": "moisture",
+        "variant": "without_fills",
+        "direct_mean_residual": -0.6602478580626737,
+        "saved_mean_residual": -0.6602478580626698,
+        "supported_days": 23
+      },
+      {
+        "zone_id": "F6-Z4",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": 11.916655559927127,
+        "saved_mean_residual": 11.916655559927179,
+        "supported_days": 12
+      },
+      {
+        "zone_id": "F7-Z2",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": -11.261475038909705,
+        "saved_mean_residual": -11.261475038909339,
+        "supported_days": 20
+      },
+      {
+        "zone_id": "F7-Z2",
+        "analysis": "energy",
+        "variant": "without_fills",
+        "direct_mean_residual": -11.48580275296577,
+        "saved_mean_residual": -11.48580275296581,
+        "supported_days": 14
+      },
+      {
+        "zone_id": "F7-Z2",
+        "analysis": "moisture",
+        "variant": "with_fills",
+        "direct_mean_residual": 1.1511392679180001,
+        "saved_mean_residual": 1.1511392679179995,
+        "supported_days": 33
+      },
+      {
+        "zone_id": "F7-Z2",
+        "analysis": "moisture",
+        "variant": "without_fills",
+        "direct_mean_residual": 1.1369385876955929,
+        "saved_mean_residual": 1.1369385876955853,
+        "supported_days": 29
+      },
+      {
+        "zone_id": "F7-Z5",
+        "analysis": "energy",
+        "variant": "with_fills",
+        "direct_mean_residual": 7.174111124438294,
+        "saved_mean_residual": 7.174111124438596,
+        "supported_days": 18
+      },
+      {
+        "zone_id": "F7-Z5",
+        "analysis": "energy",
+        "variant": "without_fills",
+        "direct_mean_residual": 7.447516875572176,
+        "saved_mean_residual": 7.447516875572205,
+        "supported_days": 12
+      }
+    ],
+    "all_20_zone_keys_unique": true,
+    "all_cooling_results_withheld": true,
+    "temporal_cv_rows_checked": 2362,
+    "chart_sha256": {
+      "energy_contributions.png": "71f813bbfb58d215bd37bcc1ae2db22db8970e7df24b2552e38c919021a855e4",
+      "operating_profiles.png": "ca98b029d60925c72eb3909c91604ddfe9c3e354a9bcf6b6062d309806521a44"
+    },
+    "upstream_and_helpers_unchanged": true
+  },
+  "reproduction_checks": {
+    "csv_checks": [
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/AC_event_input_checks.csv",
+        "rows": 1209,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/AC_event_monthly.csv",
+        "rows": 36,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/AC_event_summary.csv",
+        "rows": 2,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/Jul_Aug_startup_windows.csv",
+        "rows": 2,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/channel_quality.csv",
+        "rows": 7,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/daily_coverage.csv",
+        "rows": 549,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/daily_gate_sensitivity.csv",
+        "rows": 12,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/flatline_trace.csv",
+        "rows": 1,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/hourly_reconciliation.csv",
+        "rows": 4,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/meter_pair_checks.csv",
+        "rows": 6,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/missing_intervals_over_15min.csv",
+        "rows": 358,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/monthly_coverage.csv",
+        "rows": 18,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/sensor_flatline_examples.csv",
+        "rows": 18,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/sensor_flatlines.csv",
+        "rows": 6,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-input-audit/timeline_checks.csv",
+        "rows": 4,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/coefficients.csv",
+        "rows": 24,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/cohort_counts.csv",
+        "rows": 12,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/cross_validation.csv",
+        "rows": 270,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/cusum_available_days.csv",
+        "rows": 56,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/daily_features.csv",
+        "rows": 166,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/energy_candidates.csv",
+        "rows": 4,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/energy_specification_check.csv",
+        "rows": 4,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/event_eligibility.csv",
+        "rows": 332,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/event_features.csv",
+        "rows": 259,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/fixed_window_interpolation.csv",
+        "rows": 158,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/fixed_window_summary.csv",
+        "rows": 2,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/moisture_clock_hour_check.csv",
+        "rows": 14,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/operating_context.csv",
+        "rows": 4,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/predictions.csv",
+        "rows": 401,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/recorded_conditions.csv",
+        "rows": 4,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/shared_cohort_checks.csv",
+        "rows": 3,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/steady_on_features.csv",
+        "rows": 389,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/f3z1-first-pass/summary.csv",
+        "rows": 12,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/benchmark_sensitivity.csv",
+        "rows": 41,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/channel_quality.csv",
+        "rows": 95,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/coefficients.csv",
+        "rows": 298,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/cohort_counts.csv",
+        "rows": 240,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/cross_validation.csv",
+        "rows": 2362,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/daily_features.csv",
+        "rows": 3320,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/energy_candidates.csv",
+        "rows": 80,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/event_eligibility.csv",
+        "rows": 6528,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/event_features.csv",
+        "rows": 4143,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/hourly_reconciliation.csv",
+        "rows": 80,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/inspection_shortlist.csv",
+        "rows": 20,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/major_gaps.csv",
+        "rows": 158,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/model_summary.csv",
+        "rows": 120,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/operating_context.csv",
+        "rows": 74,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/predictions.csv",
+        "rows": 5065,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/recorded_conditions.csv",
+        "rows": 76,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/sensor_checks.csv",
+        "rows": 60,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/shared_cohort_checks.csv",
+        "rows": 60,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/steady_on_features.csv",
+        "rows": 6114,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/timestamp_audit.csv",
+        "rows": 20,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-zone-screen/zone_quality.csv",
+        "rows": 20,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/case_conclusions.csv",
+        "rows": 3,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/clock_hour_profiles.csv",
+        "rows": 286,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/daily.csv",
+        "rows": 449,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/energy_decomposition.csv",
+        "rows": 6,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/event_schedule.csv",
+        "rows": 54,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/events.csv",
+        "rows": 1923,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/hourly.csv",
+        "rows": 17856,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/matched_details.csv",
+        "rows": 1312,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/matched_states.csv",
+        "rows": 270,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/matching_balance.csv",
+        "rows": 156,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/monthly_matched_changes.csv",
+        "rows": 36,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/peer_context.csv",
+        "rows": 24,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/sensor_bias_sensitivity.csv",
+        "rows": 54,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/sensor_checks.csv",
+        "rows": 9,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/sensor_scenarios.csv",
+        "rows": 47616,
+        "status": "reproduced"
+      },
+      {
+        "file": "mould-ac-degradation/outputs/bq2-case-investigation/state_contrasts.csv",
+        "rows": 36,
+        "status": "reproduced"
+      }
+    ],
+    "identical_png_files": [
+      "mould-ac-degradation/outputs/f3z1-input-audit/event_input_readiness.png",
+      "mould-ac-degradation/outputs/f3z1-input-audit/monthly_coverage.png",
+      "mould-ac-degradation/outputs/f3z1-first-pass/startup_initial_conditions.png",
+      "mould-ac-degradation/outputs/f3z1-first-pass/supported_comparison.png",
+      "mould-ac-degradation/outputs/bq2-zone-screen/input_coverage.png",
+      "mould-ac-degradation/outputs/bq2-zone-screen/zone_comparison.png",
+      "mould-ac-degradation/outputs/bq2-case-investigation/energy_contributions.png",
+      "mould-ac-degradation/outputs/bq2-case-investigation/operating_profiles.png"
+    ],
+    "json_metadata_differences": [
+      "mould-ac-degradation/outputs/f3z1-input-audit/provenance.json"
+    ]
+  },
+  "remaining_limitations": [
+    "Field sensor calibration, local placement and clock alignment are not verified.",
+    "No measured cooling output, airflow, setpoints, occupancy or maintenance/failure outcomes.",
+    "July-August comparison only; reference quality and changing cohorts remain limitations.",
+    "Dataset-paper statements reuse prior verified source evidence; fresh article retrieval was unavailable during this review."
+  ],
+  "merge_acceptance": "After merging, verify original PR tips are ancestors of origin/main and the final tree matches the reviewed tip. Record actual merge hashes and branch cleanup in PR #5."
+}

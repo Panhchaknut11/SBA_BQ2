@@ -1,0 +1,9 @@
+{
+  "doi": "10.1038/s41597-020-00582-3",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7371880/",
+  "mounting": "ceiling",
+  "firmware_maintenance_interval": "2018-09-15 to 2019-03-05",
+  "nominal_design_temperature_accuracy_C": 0.4,
+  "nominal_design_RH_accuracy_pp": 2,
+  "caution": "Design values do not verify per-period field calibration; scenarios are not measured bias."
+}
