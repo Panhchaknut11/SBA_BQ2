@@ -54,7 +54,14 @@ def prepare_scratch(run_dir):
         shutil.copy2(REPO_ROOT / name, scratch / name)
     shutil.copytree(ANALYSIS_DIR, scratch / ANALYSIS_DIR.name,
                     ignore=shutil.ignore_patterns(".runs", "__pycache__"))
-    return scratch / ANALYSIS_DIR.name
+    scratch_analysis = scratch / ANALYSIS_DIR.name
+    # Current outputs must be produced by this run, never inherited from a copy.
+    # Keep historical first-pass evidence for the screen's parity checks.
+    for folder in REGENERATED:
+        output_dir = scratch_analysis / "outputs" / folder
+        if output_dir.exists():
+            shutil.rmtree(output_dir)
+    return scratch_analysis
 
 
 def compare_outputs(scratch_analysis):
@@ -62,6 +69,12 @@ def compare_outputs(scratch_analysis):
     for folder in REGENERATED:
         original = ANALYSIS_DIR / "outputs" / folder
         generated = scratch_analysis / "outputs" / folder
+        expected = {p.name for p in original.iterdir() if p.suffix in {".csv", ".png"}}
+        actual = {p.name for p in generated.iterdir() if p.suffix in {".csv", ".png"}}
+        if expected != actual:
+            raise AssertionError(f"Output artifact set changed in {folder}: "
+                                 f"missing={sorted(expected - actual)}, "
+                                 f"unexpected={sorted(actual - expected)}")
         for path in sorted(original.iterdir()):
             other = generated / path.name
             if path.suffix == ".csv":

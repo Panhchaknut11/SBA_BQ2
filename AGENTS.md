@@ -239,6 +239,7 @@ Save to `mould-ac-degradation/outputs/`, with one unique `floor, zone` key per r
 
 ## Organisation and verification rules
 
+- **PR #6 review:** the user authorised review, conditional merge after passing checks and cleanup of the merged branch. The [review record](mould-ac-degradation/tests/evidence/pr6_review_2026-10-31.json) records 27 passing tests and a fresh three-notebook reproduction after fixing stale-output inheritance in the scratch validator. All 52 tables, six charts and 89 protected files reconcile. Verify the final PR/Git state rather than treating this dated pre-merge record as proof of a completed merge. Scientific scope and attribution limits remain unchanged.
 - Put notebook entry points in `mould-ac-degradation/notebooks/`, reusable code in `src/bq2/`, automated tests/fixtures in `tests/`, run commands in `scripts/`, and human explanations in `reports/track-b/`. Keep raw/upstream data in their current owning folders.
 - Run `python -m unittest discover -s mould-ac-degradation/tests -v` from the repository root for fast synthetic and integrity checks. For path/import or calculation changes, also run `python mould-ac-degradation/scripts/validate_notebooks.py`. It uses fresh kernels in `tests/.runs/`, compares regenerated outputs and preserves committed evidence.
 - Historical JSON stores old source names/hashes. Do not rewrite it just to match moved modules. New scratch metadata records active paths and hashes; changed calculations require an explicitly reviewed evidence update.

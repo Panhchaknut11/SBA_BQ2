@@ -1,0 +1,324 @@
+{
+  "review_date": "2026-10-31",
+  "pull_request": "https://github.com/Panhchaknut11/SBA_BQ2/pull/6",
+  "reviewed_base_commit": "c7306533764ab2bdfed20f1ca23d2d1e46552e05",
+  "original_reviewed_head": "0c1ab2c251b708a28dbfd10c6a685fe02fb32738",
+  "remote_ci_before_review_fix": {
+    "conclusion": "success",
+    "url": "https://github.com/Panhchaknut11/SBA_BQ2/actions/runs/41095473702"
+  },
+  "finding_fixed": "The scratch copy inherited current outputs, allowing an unwritten result to survive comparison. Remove all three regenerated output folders before execution and reject missing or unexpected CSV/PNG artifacts.",
+  "fast_suite": {
+    "status": "passed",
+    "tests": 27,
+    "dependency_check": "No broken requirements found."
+  },
+  "regression_checks": [
+    "Current result folders absent before scratch execution",
+    "Historical first-pass parity inputs remain available",
+    "Original source outputs remain unchanged",
+    "Missing and unexpected result artifacts fail comparison"
+  ],
+  "calculation_function_review": {
+    "input_audit": [],
+    "reference_models": [
+      "strict_events: retain datetime dtype for an empty event table"
+    ],
+    "zone_screen": [],
+    "case_investigation": []
+  },
+  "protected_input_tree_diff_against_base": "No changes in data/, data-cleaning/, baseline/, analytical outputs, report figures or the shared helper.",
+  "scratch_outputs_cleared_before_execution": true,
+  "file_sha256": {
+    "mould-ac-degradation/src/bq2/__init__.py": "d98fa8c4f0d7b8439b0c4e34d07ebf4ebda08e6a72a1b07777e4cf006e73e83f",
+    "mould-ac-degradation/src/bq2/case_investigation.py": "2647e81d52e6a77f891483c341f5351e385a318463bad0f6a8462ed508907a43",
+    "mould-ac-degradation/src/bq2/input_audit.py": "6d11f616c4680498fa8772d6e8d2e80c734ec5cf12db26ba62f35e4f94950297",
+    "mould-ac-degradation/src/bq2/paths.py": "b21e26b7b4b7261dc6df32617d3e69c6a70f4b16ae766f90a531c82b28c0666f",
+    "mould-ac-degradation/src/bq2/reference_models.py": "01d75bc0d45c453af3803ad525f51ce9e0223ab40d7cee98c081a684f481ccd2",
+    "mould-ac-degradation/src/bq2/zone_screen.py": "9695855617c9f2551cd4055f76e1b1e30842fdb9b0610ca7f72854be2053d5a2",
+    "mould-ac-degradation/notebooks/bq2_ac.ipynb": "649dbc094b6e193be552aa5bcff427599025385b3a2646227c2a317a8386189c",
+    "mould-ac-degradation/notebooks/bq2_case_investigation.ipynb": "536837990b9e367e0f9c117a362362913c1279a7702818c264feb40326bd172a",
+    "mould-ac-degradation/notebooks/f3z1_input_audit.ipynb": "99fa7ba955cd36c38282804a9b07ccc7faa8c887477bdcdace72e4d4b20d1521",
+    "mould-ac-degradation/scripts/validate_notebooks.py": "9f0b516602141a964299ef4bc2d58c24980d1748bc0ad5f6bc14feae15ffd59e",
+    "mould-ac-degradation/tests/_support.py": "73077c6d91eb52e4e534d245e27e8aad17a49293bce6b0a7387b8666c10004f9",
+    "mould-ac-degradation/tests/test_case_diagnostics.py": "a2e8e8fb76848d0d741b3001648aa9763d4588996adf919442d5fc0c420dcffd",
+    "mould-ac-degradation/tests/test_input_quality.py": "90e739ff07ff7962849675e723e014ff7222ff73a42d0b5d7bf0c08e8a7db3a7",
+    "mould-ac-degradation/tests/test_notebook_validation.py": "67b8662f82d35a8696aa5e041aeafd318efaeb45dd87594b0f42ebf5d7dc2e08",
+    "mould-ac-degradation/tests/test_reference_models.py": "4d346260422c683c03b1e48c2ccd38d74bff701651f7ffb6c604d598d8d4b26e",
+    "mould-ac-degradation/tests/test_repository.py": "5176681ace7a2f04d0c69b680c9250674e258b83b4dd93e267034e1bcd9ec488"
+  },
+  "fresh_notebook_validation": {
+    "status": "passed",
+    "source_commit": "0c1ab2c251b708a28dbfd10c6a685fe02fb32738",
+    "notebooks": [
+      {
+        "path": "notebooks/f3z1_input_audit.ipynb",
+        "status": "passed",
+        "code_cells": 12,
+        "elapsed_seconds": 4.65
+      },
+      {
+        "path": "notebooks/bq2_ac.ipynb",
+        "status": "passed",
+        "code_cells": 8,
+        "elapsed_seconds": 31.96
+      },
+      {
+        "path": "notebooks/bq2_case_investigation.ipynb",
+        "status": "passed",
+        "code_cells": 6,
+        "elapsed_seconds": 10.69
+      }
+    ],
+    "versions": {
+      "pandas": "3.1.0",
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "statsmodels": "0.15.0",
+      "matplotlib": "3.11.2"
+    },
+    "regenerated_csv_tables": [
+      {
+        "path": "outputs/f3z1-input-audit/AC_event_input_checks.csv",
+        "rows": 1209
+      },
+      {
+        "path": "outputs/f3z1-input-audit/AC_event_monthly.csv",
+        "rows": 36
+      },
+      {
+        "path": "outputs/f3z1-input-audit/AC_event_summary.csv",
+        "rows": 2
+      },
+      {
+        "path": "outputs/f3z1-input-audit/Jul_Aug_startup_windows.csv",
+        "rows": 2
+      },
+      {
+        "path": "outputs/f3z1-input-audit/channel_quality.csv",
+        "rows": 7
+      },
+      {
+        "path": "outputs/f3z1-input-audit/daily_coverage.csv",
+        "rows": 549
+      },
+      {
+        "path": "outputs/f3z1-input-audit/daily_gate_sensitivity.csv",
+        "rows": 12
+      },
+      {
+        "path": "outputs/f3z1-input-audit/flatline_trace.csv",
+        "rows": 1
+      },
+      {
+        "path": "outputs/f3z1-input-audit/hourly_reconciliation.csv",
+        "rows": 4
+      },
+      {
+        "path": "outputs/f3z1-input-audit/meter_pair_checks.csv",
+        "rows": 6
+      },
+      {
+        "path": "outputs/f3z1-input-audit/missing_intervals_over_15min.csv",
+        "rows": 358
+      },
+      {
+        "path": "outputs/f3z1-input-audit/monthly_coverage.csv",
+        "rows": 18
+      },
+      {
+        "path": "outputs/f3z1-input-audit/sensor_flatline_examples.csv",
+        "rows": 18
+      },
+      {
+        "path": "outputs/f3z1-input-audit/sensor_flatlines.csv",
+        "rows": 6
+      },
+      {
+        "path": "outputs/f3z1-input-audit/timeline_checks.csv",
+        "rows": 4
+      },
+      {
+        "path": "outputs/bq2-zone-screen/benchmark_sensitivity.csv",
+        "rows": 41
+      },
+      {
+        "path": "outputs/bq2-zone-screen/channel_quality.csv",
+        "rows": 95
+      },
+      {
+        "path": "outputs/bq2-zone-screen/coefficients.csv",
+        "rows": 298
+      },
+      {
+        "path": "outputs/bq2-zone-screen/cohort_counts.csv",
+        "rows": 240
+      },
+      {
+        "path": "outputs/bq2-zone-screen/cross_validation.csv",
+        "rows": 2362
+      },
+      {
+        "path": "outputs/bq2-zone-screen/daily_features.csv",
+        "rows": 3320
+      },
+      {
+        "path": "outputs/bq2-zone-screen/energy_candidates.csv",
+        "rows": 80
+      },
+      {
+        "path": "outputs/bq2-zone-screen/event_eligibility.csv",
+        "rows": 6528
+      },
+      {
+        "path": "outputs/bq2-zone-screen/event_features.csv",
+        "rows": 4143
+      },
+      {
+        "path": "outputs/bq2-zone-screen/hourly_reconciliation.csv",
+        "rows": 80
+      },
+      {
+        "path": "outputs/bq2-zone-screen/inspection_shortlist.csv",
+        "rows": 20
+      },
+      {
+        "path": "outputs/bq2-zone-screen/major_gaps.csv",
+        "rows": 158
+      },
+      {
+        "path": "outputs/bq2-zone-screen/model_summary.csv",
+        "rows": 120
+      },
+      {
+        "path": "outputs/bq2-zone-screen/operating_context.csv",
+        "rows": 74
+      },
+      {
+        "path": "outputs/bq2-zone-screen/predictions.csv",
+        "rows": 5065
+      },
+      {
+        "path": "outputs/bq2-zone-screen/recorded_conditions.csv",
+        "rows": 76
+      },
+      {
+        "path": "outputs/bq2-zone-screen/sensor_checks.csv",
+        "rows": 60
+      },
+      {
+        "path": "outputs/bq2-zone-screen/shared_cohort_checks.csv",
+        "rows": 60
+      },
+      {
+        "path": "outputs/bq2-zone-screen/steady_on_features.csv",
+        "rows": 6114
+      },
+      {
+        "path": "outputs/bq2-zone-screen/timestamp_audit.csv",
+        "rows": 20
+      },
+      {
+        "path": "outputs/bq2-zone-screen/zone_quality.csv",
+        "rows": 20
+      },
+      {
+        "path": "outputs/bq2-case-investigation/case_conclusions.csv",
+        "rows": 3
+      },
+      {
+        "path": "outputs/bq2-case-investigation/clock_hour_profiles.csv",
+        "rows": 286
+      },
+      {
+        "path": "outputs/bq2-case-investigation/daily.csv",
+        "rows": 449
+      },
+      {
+        "path": "outputs/bq2-case-investigation/energy_decomposition.csv",
+        "rows": 6
+      },
+      {
+        "path": "outputs/bq2-case-investigation/event_schedule.csv",
+        "rows": 54
+      },
+      {
+        "path": "outputs/bq2-case-investigation/events.csv",
+        "rows": 1923
+      },
+      {
+        "path": "outputs/bq2-case-investigation/hourly.csv",
+        "rows": 17856
+      },
+      {
+        "path": "outputs/bq2-case-investigation/matched_details.csv",
+        "rows": 1312
+      },
+      {
+        "path": "outputs/bq2-case-investigation/matched_states.csv",
+        "rows": 270
+      },
+      {
+        "path": "outputs/bq2-case-investigation/matching_balance.csv",
+        "rows": 156
+      },
+      {
+        "path": "outputs/bq2-case-investigation/monthly_matched_changes.csv",
+        "rows": 36
+      },
+      {
+        "path": "outputs/bq2-case-investigation/peer_context.csv",
+        "rows": 24
+      },
+      {
+        "path": "outputs/bq2-case-investigation/sensor_bias_sensitivity.csv",
+        "rows": 54
+      },
+      {
+        "path": "outputs/bq2-case-investigation/sensor_checks.csv",
+        "rows": 9
+      },
+      {
+        "path": "outputs/bq2-case-investigation/sensor_scenarios.csv",
+        "rows": 47616
+      },
+      {
+        "path": "outputs/bq2-case-investigation/state_contrasts.csv",
+        "rows": 36
+      }
+    ],
+    "identical_regenerated_figures": [
+      "outputs/f3z1-input-audit/event_input_readiness.png",
+      "outputs/f3z1-input-audit/monthly_coverage.png",
+      "outputs/bq2-zone-screen/input_coverage.png",
+      "outputs/bq2-zone-screen/zone_comparison.png",
+      "outputs/bq2-case-investigation/energy_contributions.png",
+      "outputs/bq2-case-investigation/operating_profiles.png"
+    ],
+    "metadata_differences": [
+      {
+        "path": "outputs/f3z1-input-audit/provenance.json",
+        "changed_fields": [
+          "source_commit_at_run"
+        ]
+      },
+      {
+        "path": "outputs/bq2-zone-screen/summary.json",
+        "changed_fields": [
+          "code_sha256"
+        ]
+      },
+      {
+        "path": "outputs/bq2-case-investigation/summary.json",
+        "changed_fields": [
+          "code_sha256"
+        ]
+      }
+    ],
+    "protected_files_unchanged": 89,
+    "historical_first_pass": "Preserved and checked by the current screen; not rerun here"
+  },
+  "execution_provenance_note": "Notebook execution used original_reviewed_head plus the uncommitted validator fix. The file hashes above identify the exact reviewed code/notebooks/tests. No scientific code or notebook source was changed during this review.",
+  "merge_gate": "Require successful CI on the final pushed PR head before merging; verify main contains that head and has the same tree before deleting the branch.",
+  "limits": "This is an integration and reproduction review. Existing scientific attribution limits and unfinished Track A/joint work remain unchanged."
+}
