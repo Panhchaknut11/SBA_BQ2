@@ -1,0 +1,3 @@
+event,helper_candidates,continuous_state_30min,eligible_clean_60min,eligible_raw_observed_60min,helper_events_not_strict,strict_events_missing_from_helper
+start,626,626,444,355,0,0
+stop,583,583,399,303,0,0

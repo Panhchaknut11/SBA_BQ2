@@ -1,0 +1,7 @@
+meter_a,meter_b,joint_minutes_either_above_0_5kw,equal_values_pct_in_active_sample
+z1_AC1(kW),z1_AC2(kW),2731,0.0
+z1_AC1(kW),z1_AC3(kW),5008,0.0
+z1_AC1(kW),z1_AC4(kW),139030,0.0
+z1_AC2(kW),z1_AC3(kW),5961,0.0
+z1_AC2(kW),z1_AC4(kW),139958,0.0
+z1_AC3(kW),z1_AC4(kW),142341,0.0

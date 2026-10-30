@@ -10,7 +10,7 @@ The intended result is an inspection shortlist supported by humidity exposure, A
 
 - **Both AIs:** read [AGENTS.md](AGENTS.md), the canonical project context and working rules. [CLAUDE.md](CLAUDE.md) directs Claude to that same file.
 - **People:** use this README for setup, notebook run order and Git workflow.
-- **Current stage, 30 October 2026:** repository/environment/documentation setup completed. The cleaning outputs, descriptive baselines, weather cache and shared helper already exist. The three analysis notebooks below are planned; neither person's analysis is implemented by this setup.
+- **Current stage, 30 October 2026:** setup and the F3-Z1 input audit are complete. The audit is ready for user review before modelling. The three Track A/Track B/combined notebooks below remain planned; no model has been fitted.
 
 ## Responsibilities
 
@@ -44,10 +44,12 @@ baseline/
   lighting_peak_baseline.*        Other question's baseline; preserve
 mould-ac-degradation/
   bq2_utils.ipynb                 Existing shared helper notebook
+  f3z1_input_audit.ipynb          Executed input audit, before modelling
+  f3z1_audit.py                  Inspectable audit calculations
   bq2_humidity.ipynb              Planned, Track A
   bq2_ac.ipynb                    Planned, Track B
   bq2_risk_matrix.ipynb           Planned, combined
-  outputs/                       Planned destination for new BQ2 outputs
+  outputs/f3z1-input-audit/       Audit tables, source hashes and figures
 ```
 
 The helper is currently **`bq2_utils.ipynb`**. There is no `bq2_utils.py`; use the notebook-loading cell below rather than `from bq2_utils import ...`.
@@ -160,11 +162,25 @@ Use one analysis notebook per track. Coordinate shared-helper or output-schema c
 
 Review `git status` and `git diff`, stage the intended files explicitly, commit a small change, then push the branch and open a pull request into `main`. Save or commit local work before switching branches or pulling. Keep raw data, upstream outputs, virtual environments, credentials and temporary notebook executions out of setup commits.
 
+## F3-Z1 input audit
+
+Open [the executed audit notebook](mould-ac-degradation/f3z1_input_audit.ipynb). It checks raw/cleaned minute grids, filled readings, coverage, sensor flatlines, hourly export reconciliation, weather completeness and event-window eligibility. The calculations are in [f3z1_audit.py](mould-ac-degradation/f3z1_audit.py); exact tables, provenance and figures are under `mould-ac-degradation/outputs/f3z1-input-audit/`.
+
+The main limitation is missingness: only 61.92% of the full period has jointly available cleaned AC/temperature/RH. There is a second environmental gap across late November-December 2019, in addition to the known 2018-2019 outage. July-August provides the clearest initial overlap, but interpolation affects 2018 event-window retention much more than 2019. Read the notebook's sample counts and sensitivity checks before selecting a comparison cohort.
+
+With the environment active, rerun from the repository root:
+
+```bash
+python -m jupyter nbconvert --execute --to notebook --inplace --ExecutePreprocessor.kernel_name=sba-bq2 mould-ac-degradation/f3z1_input_audit.ipynb
+```
+
+This writes only the audit notebook and its own output folder. It does not regenerate upstream data or fit a model. Source hashes are checked again at the end of execution. Clock alignment and sensor drift cannot be certified by these checks.
+
 ## Planning milestones
 
 The group plan recorded on 18 October lists **3 November 2026** for analytics, **6 November** for recommendations/KPIs/slides and **9 November** for submission. These are working milestones; confirm the official eLearn upload cutoff. The updated course record places presentations in Week 14, with the exact presentation slot still unconfirmed.
 
-The next planned analysis step is an F3-Z1 input audit and a small reproducible example. Full model fitting, Track A/Track B implementation and the risk matrix follow separately.
+The F3-Z1 audit findings are ready for review. A small gated example, full model fitting, Track A/Track B implementation and the risk matrix follow separately after that review.
 
 ## Setup verification, 30 October 2026
 

@@ -1,0 +1,5 @@
+field,hours,availability_mismatches,value_mismatches_above_0_01,maximum_absolute_difference
+ac_kW,13176,0,0,0.0
+plug_kW,13176,0,0,0.0
+temp_C,13176,0,0,0.0
+rh_pct,13176,0,0,0.0

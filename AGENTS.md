@@ -7,8 +7,8 @@ This is the canonical BQ2 context for Codex, Claude and human collaborators. Rea
 - **Track A, Panhchaknut:** humidity and mould-risk indicators, including rebound after AC shutdown.
 - **Track B, Lwin:** AC performance and signs of decline, including humidity response while AC runs.
 - **Joint:** risk matrix, case investigation and an evidence-based inspection shortlist for the wider group.
-- **Stage as of 30 October 2026:** repository/environment/documentation setup completed; see README's verification record. Cleaning outputs, descriptive baselines, weather cache and shared helper are present. The three analysis notebooks below are planned. Do not start model fitting, regenerate upstream outputs or change shared calculations as part of setup.
-- **Next planned stage:** F3-Z1 input audit and a small reproducible example, followed by Track B implementation. Update this status when later work changes it, and inspect actual files/Git state before reporting completion.
+- **Stage as of 30 October 2026:** setup and the F3-Z1 input audit are complete. Read `mould-ac-degradation/f3z1_input_audit.ipynb` and its evidence under `outputs/f3z1-input-audit/`. The three Track A/Track B/combined analysis notebooks below remain planned; no model has been fitted.
+- **Current user boundary:** show the input-audit findings before modelling. Retain this review point; do not begin model fitting or change shared calculations during the audit. The next possible stage is a gated F3-Z1 example after the user reviews the findings. Update this status when later work changes it and inspect actual files/Git state before reporting completion.
 - **Working milestones:** analytics on 3 November 2026, recommendations/KPIs/slides on 6 November and submission on 9 November, from the group's 18 October plan. The official upload cutoff is unconfirmed. Presentation week is Week 14; the exact slot is unconfirmed.
 
 ## Project
@@ -42,6 +42,9 @@ baseline/
   data/                       Committed ERA5 cache; reused by the weather loader
 mould-ac-degradation/         BQ2 analysis (this is where new work goes)
   bq2_utils.ipynb             Shared helpers for every BQ2 notebook
+  f3z1_input_audit.ipynb       Executed F3-Z1 input audit; no models
+  f3z1_audit.py               Inspectable audit calculations
+  outputs/f3z1-input-audit/   Audit tables, provenance and figures
 ```
 
 ## Environment and run order
@@ -77,6 +80,8 @@ The helper's saved checks show roughly 600 starts / 580 stops on F3-Z1, clustere
 
 **Event continuity:** the existing detector drops missing power before grouping states. Its counts do not guarantee 30 continuous minutes either side of an event. Validate timestamp continuity and joint environmental coverage before calculating pull-down or rebound. This QA remains analysis-stage work; setup preserves the helper.
 
+The F3-Z1 audit compared the helper with a strict contiguous-state reference and found no event discrepancies: all 626 starts and 583 stops passed the 30-minute check. This result is scoped to F3-Z1. Environmental availability and interpolation still reduce the usable 60-minute windows to 444/355 starts and 399/303 stops (cleaned/raw-observed). July-August start-up windows are 81/29 in 2018 versus 78/71 in 2019, so interpolation sensitivity and sample selection must be addressed before comparing performance.
+
 **Moisture interpretation:** `moisture_removal_gkg` is the legacy name for the outdoor-minus-indoor humidity-ratio difference. Retain the name for compatibility and label it as a supporting dehumidification indicator. It is not measured coil moisture removal or an airflow-based removal rate. Ventilation, infiltration, internal moisture, controls and sensor behaviour can also change it.
 
 **Season interpretation:** the helper's hot/rainy/cool month groups are approximate project conventions, not exact monsoon boundaries. Use actual weather conditions as the main evidence.
@@ -109,6 +114,8 @@ Weather table (`load_bangkok_era5_weather`): index `Date` (hourly), columns
 8. **F7-Z1 AC1 was previously flagged as all-zero.** Verify its meaning before treating it as equipment behaviour; zero power alone does not prove a failed unit.
 9. **Preprocessing affects events:** existing cleaning interpolates short gaps of at most 15 minutes. Check `removed_readings.csv` and account for filled observations when validating event rates. Missing intervals remain unknown, not zero energy or zero risk; they interrupt observed continuous exposure.
 10. **Time and energy:** confirm the building timestamp convention before interpreting the Bangkok-time weather join. Compute kWh from elapsed time and adequate coverage. Electrical kW does not directly measure delivered cooling or COP.
+
+**F3-Z1 audit specifics:** paired temperature/RH are unavailable from 12 September 2018 15:22 through 6 March 2019 13:43, and again from 28 November 2019 09:23 through 19 December 2019 11:52. The latter gap limits cool-season evidence. Full-period cleaned joint AC/environment coverage is 61.92%. July-August has 39/42 and 40/41 inferred working days with at least 95% cleaned joint daily coverage in 2018/2019; the raw-observed counts are 29/40. These are audit eligibility counts, not a model split or degradation result. Raw environmental readings have no hour-long exact flatlines; a 79-minute cleaned temperature plateau bridges a four-minute raw gap. Hourly exports reconcile exactly and weather keys are complete, but clock alignment and sensor drift remain unresolved. See the notebook for definitions, sensitivity and source hashes.
 
 Always check `data_quality.csv` (`final_missing_pct`, `note`) before relying on a column.
 
