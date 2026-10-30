@@ -10,6 +10,7 @@ The intended result is an inspection shortlist supported by humidity exposure, A
 
 - **Both AIs:** read [AGENTS.md](AGENTS.md), the canonical project context and working rules. [CLAUDE.md](CLAUDE.md) directs Claude to that same file.
 - **People:** start with the [Track B report and charts](mould-ac-degradation/reports/track-b/track_b_report.md) for the consolidated findings, recommendations and limitations. Use this README for setup, notebook run order and Git workflow.
+- **Person B scope and presentation:** read the [checklist, reasoning and speaking guide](mould-ac-degradation/reports/track-b/person_b_scope_and_presentation.md) and the [analysis-folder index](mould-ac-degradation/README.md). The verified July-August screen covers part of Person B's original checklist. CUSUM remains exploratory, fair adjusted pull-down comparisons are unavailable, and controlled peer benchmarking remains pending. Older proposal claims about exact RUL, failure lead time, leak diagnosis and achieved savings exceed the current evidence.
 - **Current stage, 31 October 2026:** the 20-zone screen, three-case investigation and report have passed the [integration and reproducibility review](mould-ac-degradation/reports/track-b/review_2026-10-31.md) for the five-PR consolidation. [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb) remains the Track B analysis entry point, with the [case investigation](mould-ac-degradation/bq2_case_investigation.ipynb) providing attribution checks. Mechanical degradation, efficiency loss and actual overcooling remain unconfirmed. Broader seasonal/peer work, Track A and the joint risk matrix remain planned. Read live GitHub/Git state for integration status.
 
 ## Responsibilities
@@ -43,6 +44,7 @@ baseline/
   outputs/                       Existing baseline tables and figures
   lighting_peak_baseline.*        Other question's baseline; preserve
 mould-ac-degradation/
+  README.md                      Analysis navigation and file responsibilities
   bq2_utils.ipynb                 Existing shared helper notebook
   f3z1_input_audit.ipynb          Executed input audit, before modelling
   f3z1_audit.py                  Inspectable audit calculations
@@ -60,6 +62,7 @@ mould-ac-degradation/
   outputs/bq2-case-investigation/ Operating-state evidence and reportable conclusions
   reports/track-b/
     track_b_report.md            Consolidated findings, recommendations and limitations
+    person_b_scope_and_presentation.md  Checklist coverage, explanation and proposed KPIs
     figures/                     Two unchanged case charts bundled with the report
     review_2026-10-31.md / .json  Review scope, verification evidence and remaining limits
 ```
