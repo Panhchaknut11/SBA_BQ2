@@ -7,8 +7,8 @@ This is the canonical BQ2 context for Codex, Claude and human collaborators. Rea
 - **Track A, Panhchaknut:** humidity and mould-risk indicators, including rebound after AC shutdown.
 - **Track B, Lwin:** AC performance and signs of decline, including humidity response while AC runs.
 - **Joint:** risk matrix, case investigation and an evidence-based inspection shortlist for the wider group.
-- **Stage as of 30 October 2026:** the 20-zone screen is followed by a focused investigation of F3-Z4, F5-Z4 and F7-Z2. `bq2_ac.ipynb` remains the Track B entry point; read its diagnostic companion `bq2_case_investigation.ipynb` for the latest attribution limits and reportable wording. New evidence is under `outputs/bq2-case-investigation/`. The screen, F3-Z1 audit and first-pass outputs are preserved. Track A and the joint risk matrix remain planned.
-- **Current user boundary:** the user authorised closer operating/sensor/possible-degradation checks for these three cases and requested what can confidently be reported. Present those findings for review. No shared psychrometric change, upstream cleaning, new calendar window, confirmed fault assignment or final joint risk matrix is authorised by this diagnostic scope. Update this status when later work changes it and inspect actual files/Git state before reporting completion.
+- **Stage as of 30 October 2026:** the 20-zone screen and focused investigation of F3-Z4, F5-Z4 and F7-Z2 are consolidated in [the Track B report](mould-ac-degradation/reports/track-b/track_b_report.md), with two bundled charts, recommendations and limitations. `bq2_ac.ipynb` remains the Track B analysis entry point; its companion `bq2_case_investigation.ipynb` contains the latest attribution checks. The report adds no new modelling. Original evidence under `outputs/bq2-case-investigation/`, the screen, F3-Z1 audit and first-pass outputs is preserved. Track A and the joint risk matrix remain planned.
+- **Current user boundary:** the user authorised saving the reviewed write-up and charts, updating README/AGENTS context, and pushing the existing PR. Keep related follow-ups on the current PR rather than creating another branch by default. Redundant local branch names may be removed only after checking reachability, origin tips and worktree use; retain remote branches needed by open stacked PRs. This does not authorise merging PRs, deleting their remote branches, changing shared psychrometrics/upstream cleaning, expanding the calendar window, assigning confirmed faults or producing the final joint risk matrix. Update this status when later work changes it and inspect actual files/Git state before reporting completion.
 - **Working milestones:** analytics on 3 November 2026, recommendations/KPIs/slides on 6 November and submission on 9 November, from the group's 18 October plan. The official upload cutoff is unconfirmed. Presentation week is Week 14; the exact slot is unconfirmed.
 
 ## Project
@@ -53,6 +53,8 @@ mould-ac-degradation/         BQ2 analysis (this is where new work goes)
   outputs/f3z1-first-pass/    Features, predictions, validation, hashes and figures
   outputs/bq2-zone-screen/   Current 20-zone evidence and inspection shortlist
   outputs/bq2-case-investigation/   Operating-state diagnostics and reporting language
+  reports/track-b/track_b_report.md   Consolidated report draft for group review
+  reports/track-b/figures/     Unchanged copies of the two case-investigation charts
 ```
 
 ## Environment and run order
@@ -115,8 +117,7 @@ Weather table (`load_bangkok_era5_weather`): index `Date` (hourly), columns
 2. **Environmental outage around mid-Sep 2018 to early Mar 2019.** Exact boundaries vary by channel. Cool-season environmental coverage is especially limited. July-August is the initial matched-period candidate across years; retain other usable portions when justified. Do not apply a blanket date exclusion to energy-only analysis.
 3. **Floor 6 has no data after 22 Oct 2019 13:27** (truncated source file).
 4. **Floors 3 and 4 lose all power data** for 4-6 weeks in Oct-Nov 2018.
-5. **Stale-value checks were only run on power meters.** Check RH/temperature sensors for flat-lines
-   and drift before treating a humidity change as real.
+5. **Upstream stale-value checks covered power meters.** The later BQ2 audits also checked raw RH/temperature flatlines; no hour-long paired flatline explained the three focused cases. Those checks do not verify calibration, sensor continuity, placement or drift. Keep these unresolved when interpreting year-to-year environmental changes.
 6. **Lux is a relative indicator only** (never above about 140 lux). Not needed for BQ2.
 7. **No measured occupancy, thermostat setpoints, maintenance, failure, airflow or surface-temperature records.** Plug load can provide activity context, but is not measured occupancy. Aggregate zone readings do not identify a failing individual AC unit.
 8. **F7-Z1 AC1 was previously flagged as all-zero.** Verify its meaning before treating it as equipment behaviour; zero power alone does not prove a failed unit.
@@ -194,6 +195,15 @@ The user requested a closer check after the 20-zone screen. The diagnostic compa
 - **Methods:** these new state matches/contrasts are descriptive and do not add causal or inferential intervals. Require three candidate reference dates, ten evaluation/reference days and four weeks; stricter matching or paired-hour sensitivity can become unavailable and is withheld. Same-day contrasts are not a causal difference-in-differences design. Regional weather and unmeasured occupancy/ventilation/control states limit interpretation. Local peers have differing operations and missingness, and are context only.
 - **Handover:** `case_conclusions.csv` records confident observations, competing explanations, degradation status, next checks and reusable reporting language. Prioritise sensor continuity/calibration plus control/meter/equipment records. No mechanical fault, mould condition, COP change or RUL estimate is confirmed. Keep the historical screen's findings and the newer attribution limits distinct.
 
+### Consolidated Track B report and reuse limits
+
+The report at `mould-ac-degradation/reports/track-b/track_b_report.md` is the human-facing consolidation of the existing 20-zone screen and focused case investigation, not another model or a final joint handover. Its adjacent `figures/` contains byte-identical copies of the two case charts. Keep relative asset links portable and preserve the original outputs/provenance when updating the narrative. The report links its calculations and analysis commit; do not silently replace figures with a different cohort or rerun results during a prose-only update.
+
+- **Reportable observations:** F3-Z4 has more continuous metered operation; F5-Z4 has higher on-power with nearly unchanged runtime; F7-Z2 has higher recorded moisture during sustained AC operation. Recommend sensor continuity/calibration checks and operating/control/meter/load investigation before assigning a mechanical cause.
+- **Interpretation:** F3-Z4/F5-Z4 remain cooler after long near-zero-power periods, so actual overcooling is unverified. F7-Z2's absolute moisture change is sensitive to opposing year-specific nominal sensor-error scenarios; those scenarios are assumptions, not measured bias. Neither state associations nor electrical accounting establishes causation.
+- **Reuse limits:** July-August 2018/2019 only; 2018 is not known fault-free; removing fills changes cohorts; some references miss simple benchmarks; nominal conditional intervals have no multiplicity correction. Strict complete-day rules reduce eligibility. No fair adjusted cooling comparison, validated CUSUM fault threshold, controlled peer ranking, COP, RUL, confirmed mechanical fault, measured coil moisture removal or mould finding is established. Missing occupancy, setpoints, ventilation, airflow, cooling output and maintenance/failure outcomes limit attribution. Lower energy and unavailable comparisons do not certify healthy equipment.
+- **Next scope:** group review and later integration with Track A are separate steps. Broader seasonal/peer analysis, Track A and the joint risk matrix remain planned. The report does not complete those deliverables or establish recoverable savings.
+
 **Combined** → `bq2_risk_matrix.ipynb` (planned)
 - Merge the two handover tables on `floor, zone`. Mould exposure on one axis, AC decline on the other, sized by coverage.
 - Quadrants: both high = inspect AC and space; mould only = envelope/ventilation/schedule; AC only = maintenance/energy.
@@ -218,7 +228,7 @@ Save to `mould-ac-degradation/outputs/`, with one unique `floor, zone` key per r
 
 ## Conventions
 
-- Never edit `data/` or `data-cleaning/outputs/`. Read from them; write to `mould-ac-degradation/outputs/`.
+- Never edit `data/` or `data-cleaning/outputs/`. Read from them; write analysis evidence to `mould-ac-degradation/outputs/` and report prose/bundled figures to `mould-ac-degradation/reports/`.
 - One notebook per person/track to avoid merge conflicts. Shared logic goes in `bq2_utils.ipynb`.
 - Baselines from clean, normal days only: `day_type == "working day"`. Never fit a baseline on the period it is evaluated on.
 - Keep the notebook style used in `data-cleaning/main.ipynb`: markdown "what we're checking" → short code cell →
@@ -227,7 +237,7 @@ Save to `mould-ac-degradation/outputs/`, with one unique `floor, zone` key per r
   Do not claim confirmed mould, faults or remaining useful life. Mould metrics use room-air sensors, not surface measurements.
 - Small, separate commits with clear messages (e.g. "Add surface RH and time-of-wetness metrics").
 - Restart the kernel after editing `bq2_utils.ipynb`, then rerun dependent notebooks. Coordinate shared definitions and record changes in the handover/PR; setup itself does not change them.
-- Preserve partner work and Git history. Use task branches and reviewable pull requests into `main`; do not force-push shared history. Stage only intended files. Never commit `.venv`, credentials or temporary execution files.
+- Preserve partner work and Git history. Reuse the current task branch/PR for related follow-ups while it remains open. Use new task branches for separate work after its prerequisites are available, with reviewable PRs into `main` or an explicitly documented stacked base. The existing stack is #1 setup → #2 audit → #3 first model → #4 zone screen → #5 case investigation/report. Do not delete remote branches needed by open PRs or force-push shared history. Check descendant diffs and reconcile the stack after prerequisite merges before retargeting. Stage only intended files. Never commit `.venv`, credentials or temporary execution files.
 - During setup, check dependencies, kernel launch, helper loading and input/weather joins without overwriting source notebooks or upstream outputs. Before handing off later analysis, rerun from a fresh kernel and report exactly what passed and what remains uncertain.
 - Keep shared context in AGENTS.md and setup/run instructions in README.md. CLAUDE.md remains a pointer. Update the owning document in the same change when methods, schemas or status change.
 - For library/API/CLI-specific syntax or setup, resolve and fetch current documentation with the Context7 CLI before relying on remembered details. Never send credentials in documentation queries.

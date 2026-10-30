@@ -9,8 +9,8 @@ The intended result is an inspection shortlist supported by humidity exposure, A
 ## Start here
 
 - **Both AIs:** read [AGENTS.md](AGENTS.md), the canonical project context and working rules. [CLAUDE.md](CLAUDE.md) directs Claude to that same file.
-- **People:** use this README for setup, notebook run order and Git workflow.
-- **Current stage, 30 October 2026:** the 20-zone screen now has a focused [case investigation](mould-ac-degradation/bq2_case_investigation.ipynb) of F3-Z4, F5-Z4 and F7-Z2. Read it for the latest distinction between recorded changes and unconfirmed causes. [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb) remains the Track B entry point. Track A and the joint risk matrix remain planned.
+- **People:** start with the [Track B report and charts](mould-ac-degradation/reports/track-b/track_b_report.md) for the consolidated findings, recommendations and limitations. Use this README for setup, notebook run order and Git workflow.
+- **Current stage, 30 October 2026:** the 20-zone screen and focused investigation of F3-Z4, F5-Z4 and F7-Z2 are consolidated in the report draft. [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb) remains the Track B analysis entry point, with the [case investigation](mould-ac-degradation/bq2_case_investigation.ipynb) providing the latest attribution checks. Mechanical degradation, efficiency loss and actual overcooling remain unconfirmed. Track A and the joint risk matrix remain planned.
 
 ## Responsibilities
 
@@ -58,6 +58,9 @@ mould-ac-degradation/
   outputs/f3z1-first-pass/        Model features, predictions, validation and figures
   outputs/bq2-zone-screen/        Current quality/model evidence and inspection shortlist
   outputs/bq2-case-investigation/ Operating-state evidence and reportable conclusions
+  reports/track-b/
+    track_b_report.md            Consolidated findings, recommendations and limitations
+    figures/                     Two unchanged case charts bundled with the report
 ```
 
 The helper is currently **`bq2_utils.ipynb`**. There is no `bq2_utils.py`; use the notebook-loading cell below rather than `from bq2_utils import ...`.
@@ -158,7 +161,7 @@ ERA5 is hourly regional reanalysis in Bangkok time, not an on-site station. Conf
 
 ## Git collaboration
 
-Start from an up-to-date `main` and use a task branch:
+For related follow-ups, continue the existing task branch and PR while they remain open. Start a new task from an up-to-date `main` when its prerequisites have been merged:
 
 ```bash
 git switch main
@@ -169,6 +172,8 @@ git switch -c your-name/task-name
 Use one analysis notebook per track. Coordinate shared-helper or output-schema changes before relying on them. Update the relevant documentation when methods, run instructions or project status change.
 
 Review `git status` and `git diff`, stage the intended files explicitly, commit a small change, then push the branch and open a pull request into `main`. Save or commit local work before switching branches or pulling. Keep raw data, upstream outputs, virtual environments, credentials and temporary notebook executions out of setup commits.
+
+The existing BQ2 work is stacked: #1 setup → #2 input audit → #3 first model → #4 zone screen → #5 case investigation and report. Each PR after #1 targets the preceding branch. Review and merge prerequisites in order, reconciling descendant branches and checking their diffs before retargeting to `main`. Keep remote branches while open PRs depend on them. Local branch names can be removed after verifying their commits are preserved in the current branch and on origin; use normal deletion rather than force deletion. Remote cleanup follows completed merges and dependency checks.
 
 ## F3-Z1 input audit
 
@@ -240,11 +245,19 @@ python -m jupyter nbconvert --execute --to notebook --inplace --ExecutePreproces
 
 The output folder contains the exact energy decomposition, schedules, matched-state/cohort/balance tables, same-day contrasts, monthly sensitivity, sensor scenarios, figures and provenance. `case_conclusions.csv` provides reporting language with competing explanations and next checks. The notebook verifies source hashes and that every prior audit/screen output file remains unchanged. This is a diagnostic companion, not a second active Track B implementation or the joint risk matrix.
 
+## Consolidated Track B report
+
+Read [track_b_report.md](mould-ac-degradation/reports/track-b/track_b_report.md) for the report-ready draft, with screening results, two charts, inspection recommendations and limitations. The `figures/` directory beside it contains unchanged copies of `energy_contributions.png` and `operating_profiles.png` from `outputs/bq2-case-investigation/`. Keep the report and figures together when copying or downloading; the notebooks and original outputs remain the calculation record. This consolidation did not rerun models or change the analysis window.
+
+The report supports more continuous metered operation in F3-Z4, higher on-power with nearly unchanged runtime in F5-Z4, and higher recorded sustained-on moisture in F7-Z2. Sensor continuity/calibration and operating conditions must be checked before assigning physical causes. Cooler F3-Z4/F5-Z4 readings persist after long near-zero-power periods; F7-Z2's absolute moisture change is sensitive to year-specific sensor-error assumptions. These are inspection leads, not verified overcooling, mechanical degradation or measured efficiency/dehumidification loss.
+
+The conclusions apply to July-August 2018/2019 and quality-eligible cohorts. Removing fills changes sample membership; some references do not beat simple benchmarks; nominal screening intervals have no multiplicity correction. No zone supports a fair adjusted cooling-rate comparison. Occupancy, setpoints, ventilation, airflow, cooling output and maintenance/failure outcomes are unavailable. No final joint risk score, mould finding, validated CUSUM fault threshold, COP or RUL result is produced. Read the report's full limitations before reusing its claims in slides or the group submission.
+
 ## Planning milestones
 
 The group plan recorded on 18 October lists **3 November 2026** for analytics, **6 November** for recommendations/KPIs/slides and **9 November** for submission. These are working milestones; confirm the official eLearn upload cutoff. The updated course record places presentations in Week 14, with the exact presentation slot still unconfirmed.
 
-The three-case findings and attribution limits are ready for review. Remaining seasonal/peer work, Track A and the joint risk matrix follow separately.
+The consolidated Track B report and its attribution limits are ready for group review. Remaining seasonal/peer work, Track A and the joint risk matrix follow separately.
 
 ## Setup verification, 30 October 2026
 
