@@ -7,8 +7,8 @@ This is the canonical BQ2 context for Codex, Claude and human collaborators. Rea
 - **Track A, Panhchaknut:** humidity and mould-risk indicators, including rebound after AC shutdown.
 - **Track B, Lwin:** AC performance and signs of decline, including humidity response while AC runs.
 - **Joint:** risk matrix, case investigation and an evidence-based inspection shortlist for the wider group.
-- **Stage as of 30 October 2026:** setup, the F3-Z1 input audit and the first F3-Z1 modelling pass are complete. Read `mould-ac-degradation/f3z1_input_audit.ipynb`, then `bq2_ac.ipynb`. Evidence is under `outputs/f3z1-input-audit/` and `outputs/f3z1-first-pass/`. Track B currently covers only July-August 2018/2019 F3-Z1; Track A and the combined notebook remain planned.
-- **Current user boundary:** the user authorised the first F3-Z1 modelling pass and requested findings before expansion. Present those findings for review before modelling other zones. Do not infer permission for zone-wide rankings, final risk scores or changes to shared calculations. Update this status when later work changes it and inspect actual files/Git state before reporting completion.
+- **Stage as of 30 October 2026:** Track B has expanded the reviewed F3-Z1 example to a quality-gated July-August 2018/2019 screen of all 20 BQ2 zones. Read `mould-ac-degradation/bq2_ac.ipynb`; current evidence and the inspection shortlist are under `outputs/bq2-zone-screen/`. The prior F3-Z1 audit and first-pass outputs remain preserved, and regression checks reproduce their features/estimates. Track A and the joint risk matrix remain planned.
+- **Current user boundary:** the user authorised quality checks and comparison with/without filled readings across other eligible BQ2 zones, followed by an inspection shortlist. Present this screen for review. It does not authorise changes to shared psychrometrics, upstream cleaning, expansion beyond the 20-zone/July-August comparison, or a final joint risk matrix. Update this status when later work changes it and inspect actual files/Git state before reporting completion.
 - **Working milestones:** analytics on 3 November 2026, recommendations/KPIs/slides on 6 November and submission on 9 November, from the group's 18 October plan. The official upload cutoff is unconfirmed. Presentation week is Week 14; the exact slot is unconfirmed.
 
 ## Project
@@ -45,10 +45,12 @@ mould-ac-degradation/         BQ2 analysis (this is where new work goes)
   f3z1_input_audit.ipynb       Executed F3-Z1 input audit; no models
   f3z1_audit.py               Inspectable audit calculations
   outputs/f3z1-input-audit/   Audit tables, provenance and figures
-  bq2_ac.ipynb               Executed Track B first pass, F3-Z1 only
-  f3z1_first_pass.py          Reference models and sensitivity calculations
+  bq2_ac.ipynb               Executed Track B quality checks and 20-zone screen
+  f3z1_first_pass.py          Reused feature definitions and reference estimators
+  bq2_zone_screen.py         Zone QA, gated modelling, sensitivity and triage
   requirements.txt           Base dependencies plus statsmodels and SciPy
   outputs/f3z1-first-pass/    Features, predictions, validation, hashes and figures
+  outputs/bq2-zone-screen/   Current 20-zone evidence and inspection shortlist
 ```
 
 ## Environment and run order
@@ -141,7 +143,7 @@ Always check `data_quality.csv` (`final_missing_pct`, `note`) before relying on 
 - Lagged response of indoor humidity to outdoor dew point and rain (0-48 h); per-zone humidity sensitivity slope.
 - RH sensor QA (flat-lines, drift vs neighbouring zones).
 
-**Track B: AC performance and degradation** → `bq2_ac.ipynb` (first F3-Z1 pass implemented; wider work below remains planned)
+**Track B: AC performance and degradation** → `bq2_ac.ipynb` (20-zone July-August screen implemented; broader seasonal/peer work below remains planned)
 - Weather-adjusted daily zone AC kWh reference model using weather and plug-load context, followed by residual/CUSUM screening. Compare candidate weather formulations rather than automatically including correlated temperature and enthalpy terms together. Exclude closures and low-coverage days.
 - Use separate calibration and later evaluation periods. Eligible Jul-Dec 2018 energy data are a candidate reference, not a known fault-free baseline. Score only supported weather conditions; flag extrapolation when evaluating other seasons of 2019. Environmental outages do not automatically invalidate energy-only models, while missing required power/plug fields do.
 - Check high and low energy departures alongside cooling response; a positive residual alone is not proof of decline.
@@ -149,7 +151,7 @@ Always check `data_quality.csv` (`final_missing_pct`, `note`) before relying on 
 - Outdoor-minus-indoor humidity-ratio difference (`moisture_removal_gkg`) while AC is on, under similar conditions over time. Interpret as a proxy, not measured removal.
 - Compare peers with similar meter configuration and operating context; the same zone number on another floor does not ensure comparability. Match calendar period, time of day, initial conditions and weather where feasible for 2018/2019 comparisons.
 
-### First F3-Z1 modelling findings
+### Historical first F3-Z1 modelling findings
 
 July-August 2018 is the reference and July-August 2019 is evaluation, on inferred working days only. The reference is not known to be fault-free. The notebook compares existing cleaned values with source-observed values unchanged by cleaning, without new filling. Source data, the audit and shared helpers remain unchanged.
 
@@ -158,7 +160,23 @@ July-August 2018 is the reference and July-August 2019 is evaluation, on inferre
 - **Cooling:** 2019 starts begin about 2.4°C cooler. Only **1/78** fills-allowed and **0/71** observed-only 2019 events lie within the reference conditions, so an adjusted comparison is inconclusive and withheld. Do not label slower unadjusted cooling as decline.
 - **Support and uncertainty:** coefficients use 2018 only. Reported comparisons require predictors inside the 2018 convex hull, at least 10 supported evaluation days and four calendar weeks in each year. This is a project reporting gate, not a scientific standard. Day-balanced estimates use 2,000 calendar-week bootstrap replicates with fixed specification and supported cohort. Intervals do not establish causation or future fault probability.
 - **Filling sensitivity:** excluding filled readings reduces eligible 2019 energy days from 40 to 16 and eligible 2018 cooling events from 81 to 29. Common retained observations agree exactly across variants. Numerical interpolation effects and cohort selection are distinguished in the notebook; individual event slopes can still be affected.
-- **Interpretation:** this pass does not establish AC decline or improved efficiency/dehumidification. Clock alignment, sensor calibration, controls and operating changes remain unresolved. No other zones, final `zone_ac_metrics.csv`, risk scores, fault thresholds or RUL predictions have been produced. CUSUM is an exploratory record over available days, includes flagged extrapolations and has no fault decision threshold.
+- **Interpretation:** this first pass did not establish AC decline or improved efficiency/dehumidification. Clock alignment, sensor calibration, controls and operating changes remain unresolved. Its CUSUM is an exploratory record over available days, includes flagged extrapolations and has no fault decision threshold. The expansion below supersedes the old F3-Z1-only review boundary, while preserving its evidence.
+
+### Current 20-zone screen and inspection leads
+
+The user authorised expansion after reviewing F3-Z1. The active notebook is still `bq2_ac.ipynb`; the historical first-pass notebook is available in Git commit `b56f716`. Current outputs are in `outputs/bq2-zone-screen/`, including a separate `inspection_shortlist.csv` with all 20 unique `floor, zone` keys. This is exploratory triage, not a new final handover schema or composite fault score.
+
+- **Quality before fitting:** 20 source-file timelines, 95 relevant channel quality records and 80 hourly comparisons are checked. Parse Floor 7's raw day-first dates with `%d/%m/%y %H:%M`, matching upstream cleaning. Floor 6 has one malformed final row without measurements; record and exclude only that local empty row. Reindex absent tail minutes to missing. Raw/cleaned sources stay unchanged.
+- **QA holds:** F4-Z1 AC1/AC3 and F7-Z1 AC1 are near-all-zero in the requested windows. Verify whether channels are inactive, unmapped or faulty; zero power is not a diagnosis. Hold meter-dependent comparisons pending that check. Hold F5-Z1 environmental comparisons for unusual cold readings/unknown placement or calibration, but assess energy separately. Other ordinary zones show no requested-window hour-long paired exact sensor plateau; this does not certify calibration.
+- **Same underlying definitions:** dynamic meter lists handle one/four-meter zones, while original F3-Z1 features and energy/moisture departures are reproduced. No shared-helper changes. Existing cleaned inputs are compared against present source readings unchanged by cleaning, with no new filling or scaling of partial days. Minute coverage alone does not establish complete-day eligibility.
+- **Additional model gates:** at least 20 reference days and four reference weeks; at least 10 supported evaluation days and four evaluation weeks for a reported departure. Support is the 2018 predictor convex hull, separated by session for environmental comparisons. All fits/energy selection use 2018 only, with day balancing and 2,000 week-bootstrap replicates. The rules are project screening choices, not validated engineering thresholds.
+- **Validation and tiers:** stronger inspection leads require the reference CV MAE to beat a mean-only reference and a consistent adverse direction across both versions' nominal intervals. A separate validate-reference queue preserves descriptive leads when both input versions and a mean-only sensitivity on the exact same supported evaluation rows agree, while retaining the weak-model caution. No multiplicity correction is applied across zones; agreement between overlapping input versions is not independent replication.
+- **F3-Z4, stronger energy/controls lead:** +13.3% with fills (22 supported days) and +15.2% without (10 days). Reference validation improves on the simple benchmark. Recorded moisture is lower and cooling remains incomparable, so inspect controls/schedules/load before attributing efficiency loss.
+- **F5-Z4, energy change with reference caution:** +36.7% in both versions (23 supported days each). The weather reference has MAE 15.12 versus 11.75 kWh/day for the simple mean; it is not reliable evidence of a weather-adjusted efficiency change. Mean-only sensitivity on the same days is still +33.0%, supporting an operating/energy investigation.
+- **F7-Z2, environmental lead with reference caution:** indoor humidity-ratio departures +1.15/+1.14 g/kg from 33/29 supported days. Observed-only validation MAE 0.284 versus 0.272 for the mean misses the stronger tier. Mean-only sensitivity agrees at +1.17/+1.16 g/kg. Cross-check sensors, moisture loads, ventilation/infiltration and AC operation with Track A; no measured coil removal or confirmed mould is inferred.
+- **Provisional filling-dependent leads:** F5-Z2 (+24.7% energy) and F6-Z4 (+9.7%) have positive fills-allowed departures but no complete observed-only 2018 energy reference days. The shortlist retains them for reference/data follow-up rather than promoting them into the consistent two-version inspection group. The strict complete-day rule can cause this even at roughly 98-99% observed minute coverage.
+- **Controls context:** eligible fills-allowed steady-on temperature means fall from 21.4 to 17.9°C in F3-Z4 and 23.9 to 19.9°C in F5-Z4. These are different descriptive cohorts, not controlled setpoint measurements. Check controls and sensor behaviour before attributing higher energy to declining efficiency.
+- **Limits and unresolved zones:** no zone has a reportable adjusted cooling comparison under these rules. F3-Z1/F3-Z2 show lower supported energy as operating-change context. Other results retain reasons for insufficient reference data, unsupported conditions or weak models. Do not call unreported zones healthy. No final `zone_ac_metrics.csv`, joint risk matrix, fault threshold, seasonal generalisation or RUL result has been produced.
 
 **Combined** → `bq2_risk_matrix.ipynb` (planned)
 - Merge the two handover tables on `floor, zone`. Mould exposure on one axis, AC decline on the other, sized by coverage.

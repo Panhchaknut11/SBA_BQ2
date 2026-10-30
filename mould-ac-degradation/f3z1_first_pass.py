@@ -34,10 +34,13 @@ def strict_events(ac_kw, threshold):
         if state[before] >= 0 and state[now] >= 0 and now - before >= 30 and end[i] - now >= 30:
             rows.append({"time": ac_kw.index[now], "event": "start" if state[now] else "stop",
                          "threshold_kW": threshold})
-    return pd.DataFrame(rows)
+    return pd.DataFrame(rows, columns=["time", "event", "threshold_kW"])
 
 
-def build_tables(raw, clean, hourly, weather, helpers):
+def build_tables(raw, clean, hourly, weather, helpers, column_spec=None):
+    # Explicit columns permit the same definitions for zones with one or four meters.
+    spec = column_spec or {"ac": audit.AC, "temp": audit.TEMP, "rh": audit.RH, "plug": audit.PLUG}
+    ac_cols, temp_col, rh_col, plug_col = spec["ac"], spec["temp"], spec["rh"], spec["plug"]
     keep = scoped(clean.index)
     # Original readings replaced by upstream cleaning are also excluded in the strict variant.
     observed = raw.where(raw.eq(clean))
@@ -46,22 +49,27 @@ def build_tables(raw, clean, hourly, weather, helpers):
               "without_fills": observed.where(scope_mask, axis=0)}
     weather = helpers["add_outdoor_psychrometrics"](weather)
     day_type = hourly["day_type"].groupby(hourly.index.normalize()).first()
-    ref_ac = observed[audit.AC].sum(axis=1, min_count=4)
+    ref_ac = observed[ac_cols].sum(axis=1, min_count=len(ac_cols))
     threshold = float(helpers["ac_on_threshold"](ref_ac.loc["2018-07-01":"2018-08-31"]))
-    ac_clean = frames["with_fills"][audit.AC].sum(axis=1, min_count=4)
+    ac_clean = frames["with_fills"][ac_cols].sum(axis=1, min_count=len(ac_cols))
     candidates = strict_events(ac_clean, threshold)
     candidates = candidates[candidates.time.dt.month.isin([7, 8])].copy()
 
     daily_parts, event_parts, humidity_parts, eligibility = [], [], [], []
     for variant, frame in frames.items():
-        masks = audit.availability(frame)
-        ac = frame[audit.AC].sum(axis=1, min_count=4)
+        valid = pd.DataFrame({c: np.isfinite(frame[c]) & (frame[c].between(15, 40) if c == temp_col
+                              else frame[c].between(0, 100) if c == rh_col else frame[c].ge(0))
+                              for c in ac_cols + [temp_col, rh_col, plug_col]})
+        masks = pd.DataFrame({"ac": valid[ac_cols].all(axis=1),
+                              "environment": valid[[temp_col, rh_col]].all(axis=1),
+                              "ac_plug": valid[ac_cols + [plug_col]].all(axis=1)})
+        ac = frame[ac_cols].sum(axis=1, min_count=len(ac_cols))
         on = masks["ac"] & ac.gt(threshold)
-        moisture = helpers["humidity_ratio_gkg"](frame[audit.TEMP], frame[audit.RH])
+        moisture = helpers["humidity_ratio_gkg"](frame[temp_col], frame[rh_col])
         daily = pd.DataFrame(index=frame.resample("D").size().index)
         complete = masks["ac_plug"].resample("D").sum().eq(1440)
         daily["ac_kWh"] = (ac.resample("D").sum(min_count=1440) / 60).where(complete)
-        daily["plug_kWh"] = (frame[audit.PLUG].resample("D").sum(min_count=1440) / 60).where(complete)
+        daily["plug_kWh"] = (frame[plug_col].resample("D").sum(min_count=1440) / 60).where(complete)
         daily["AC_on_hours"] = (on.resample("D").sum() / 60).where(complete)
         daily["on_mean_kW"] = ac.where(on).resample("D").mean().where(complete)
         daily = daily.join(weather[["outdoor_temp_C", "outdoor_w_gkg", "outdoor_enthalpy_kJkg"]].resample("D").mean())
@@ -96,23 +104,23 @@ def build_tables(raw, clean, hourly, weather, helpers):
             outside = weather.loc[candidate.time.floor("h")]
             row = {"variant": variant, "time": candidate.time, "date": candidate.time.normalize(),
                    "year": candidate.time.year, "afternoon": int(hour >= 12),
-                   "initial_temp_C": float(window[audit.TEMP].iloc[:5].median()),
-                   "cooling_rate_C_per_h": float(-np.polyfit(np.arange(60), window[audit.TEMP], 1)[0] * 60),
-                   "cooling_drop_C": float(window[audit.TEMP].iloc[:5].median() - window[audit.TEMP].iloc[-5:].median()),
+                   "initial_temp_C": float(window[temp_col].iloc[:5].median()),
+                   "cooling_rate_C_per_h": float(-np.polyfit(np.arange(60), window[temp_col], 1)[0] * 60),
+                   "cooling_drop_C": float(window[temp_col].iloc[:5].median() - window[temp_col].iloc[-5:].median()),
                    "drying_rate_gkg_per_h": float(-np.polyfit(np.arange(60), air_w, 1)[0] * 60),
                    "outdoor_temp_C": float(outside.outdoor_temp_C), "outdoor_w_gkg": float(outside.outdoor_w_gkg),
-                   "first_hour_AC_kWh": float(window[audit.AC].sum(axis=1, min_count=4).sum() / 60)}
+                   "first_hour_AC_kWh": float(window[ac_cols].sum(axis=1, min_count=len(ac_cols)).sum() / 60)}
             event_parts.append(row)
 
         # Require 120 continuous AC-on minutes ending at the hour's last minute.
         # This excludes the first hour after start-up from the steady-on moisture comparison.
         stable = on.rolling(120, min_periods=120).sum().eq(120).resample("h").last()
         sensors_ok = masks["environment"].resample("h").sum().eq(60)
-        plug_ok = frame[audit.PLUG].notna().resample("h").sum().eq(60)
+        plug_ok = frame[plug_col].notna().resample("h").sum().eq(60)
         h = pd.DataFrame({"indoor_w_gkg": moisture.resample("h").mean(),
-                          "temp_C": frame[audit.TEMP].resample("h").mean(),
-                          "rh_pct": frame[audit.RH].resample("h").mean(),
-                          "plug_kW": frame[audit.PLUG].resample("h").mean(),
+                          "temp_C": frame[temp_col].resample("h").mean(),
+                          "rh_pct": frame[rh_col].resample("h").mean(),
+                          "plug_kW": frame[plug_col].resample("h").mean(),
                           "ac_kW": ac.resample("h").mean()}).join(weather)
         h["day_type"] = h.index.normalize().map(day_type)
         h["eligible"] = stable & sensors_ok & plug_ok & h.day_type.eq("working day") & scoped(h.index)
@@ -121,7 +129,9 @@ def build_tables(raw, clean, hourly, weather, helpers):
         h["afternoon"] = (h.index.hour >= 12).astype(int)
         h["variant"], h["time"], h["date"], h["year"] = variant, h.index, h.index.normalize(), h.index.year
         humidity_parts.append(h.reset_index(drop=True))
-    return (pd.concat(daily_parts, ignore_index=True), pd.DataFrame(event_parts),
+    return (pd.concat(daily_parts, ignore_index=True), pd.DataFrame(event_parts, columns=["variant", "time", "date", "year", "afternoon", "initial_temp_C",
+                "cooling_rate_C_per_h", "cooling_drop_C", "drying_rate_gkg_per_h",
+                "outdoor_temp_C", "outdoor_w_gkg", "first_hour_AC_kWh"]),
             pd.concat(humidity_parts, ignore_index=True), pd.DataFrame(eligibility), threshold)
 
 
