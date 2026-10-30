@@ -1,0 +1,298 @@
+{
+  "status": "passed",
+  "source_commit": "6c42d15e6842aafa819df009c40c53a72fb0af04",
+  "notebooks": [
+    {
+      "path": "notebooks/f3z1_input_audit.ipynb",
+      "status": "passed",
+      "code_cells": 12,
+      "elapsed_seconds": 4.8
+    },
+    {
+      "path": "notebooks/bq2_ac.ipynb",
+      "status": "passed",
+      "code_cells": 8,
+      "elapsed_seconds": 32.31
+    },
+    {
+      "path": "notebooks/bq2_case_investigation.ipynb",
+      "status": "passed",
+      "code_cells": 6,
+      "elapsed_seconds": 11.91
+    }
+  ],
+  "versions": {
+    "pandas": "3.1.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0",
+    "matplotlib": "3.11.2"
+  },
+  "regenerated_csv_tables": [
+    {
+      "path": "outputs/f3z1-input-audit/AC_event_input_checks.csv",
+      "rows": 1209
+    },
+    {
+      "path": "outputs/f3z1-input-audit/AC_event_monthly.csv",
+      "rows": 36
+    },
+    {
+      "path": "outputs/f3z1-input-audit/AC_event_summary.csv",
+      "rows": 2
+    },
+    {
+      "path": "outputs/f3z1-input-audit/Jul_Aug_startup_windows.csv",
+      "rows": 2
+    },
+    {
+      "path": "outputs/f3z1-input-audit/channel_quality.csv",
+      "rows": 7
+    },
+    {
+      "path": "outputs/f3z1-input-audit/daily_coverage.csv",
+      "rows": 549
+    },
+    {
+      "path": "outputs/f3z1-input-audit/daily_gate_sensitivity.csv",
+      "rows": 12
+    },
+    {
+      "path": "outputs/f3z1-input-audit/flatline_trace.csv",
+      "rows": 1
+    },
+    {
+      "path": "outputs/f3z1-input-audit/hourly_reconciliation.csv",
+      "rows": 4
+    },
+    {
+      "path": "outputs/f3z1-input-audit/meter_pair_checks.csv",
+      "rows": 6
+    },
+    {
+      "path": "outputs/f3z1-input-audit/missing_intervals_over_15min.csv",
+      "rows": 358
+    },
+    {
+      "path": "outputs/f3z1-input-audit/monthly_coverage.csv",
+      "rows": 18
+    },
+    {
+      "path": "outputs/f3z1-input-audit/sensor_flatline_examples.csv",
+      "rows": 18
+    },
+    {
+      "path": "outputs/f3z1-input-audit/sensor_flatlines.csv",
+      "rows": 6
+    },
+    {
+      "path": "outputs/f3z1-input-audit/timeline_checks.csv",
+      "rows": 4
+    },
+    {
+      "path": "outputs/bq2-zone-screen/benchmark_sensitivity.csv",
+      "rows": 41
+    },
+    {
+      "path": "outputs/bq2-zone-screen/channel_quality.csv",
+      "rows": 95
+    },
+    {
+      "path": "outputs/bq2-zone-screen/coefficients.csv",
+      "rows": 298
+    },
+    {
+      "path": "outputs/bq2-zone-screen/cohort_counts.csv",
+      "rows": 240
+    },
+    {
+      "path": "outputs/bq2-zone-screen/cross_validation.csv",
+      "rows": 2362
+    },
+    {
+      "path": "outputs/bq2-zone-screen/daily_features.csv",
+      "rows": 3320
+    },
+    {
+      "path": "outputs/bq2-zone-screen/energy_candidates.csv",
+      "rows": 80
+    },
+    {
+      "path": "outputs/bq2-zone-screen/event_eligibility.csv",
+      "rows": 6528
+    },
+    {
+      "path": "outputs/bq2-zone-screen/event_features.csv",
+      "rows": 4143
+    },
+    {
+      "path": "outputs/bq2-zone-screen/hourly_reconciliation.csv",
+      "rows": 80
+    },
+    {
+      "path": "outputs/bq2-zone-screen/inspection_shortlist.csv",
+      "rows": 20
+    },
+    {
+      "path": "outputs/bq2-zone-screen/major_gaps.csv",
+      "rows": 158
+    },
+    {
+      "path": "outputs/bq2-zone-screen/model_summary.csv",
+      "rows": 120
+    },
+    {
+      "path": "outputs/bq2-zone-screen/operating_context.csv",
+      "rows": 74
+    },
+    {
+      "path": "outputs/bq2-zone-screen/predictions.csv",
+      "rows": 5065
+    },
+    {
+      "path": "outputs/bq2-zone-screen/recorded_conditions.csv",
+      "rows": 76
+    },
+    {
+      "path": "outputs/bq2-zone-screen/sensor_checks.csv",
+      "rows": 60
+    },
+    {
+      "path": "outputs/bq2-zone-screen/shared_cohort_checks.csv",
+      "rows": 60
+    },
+    {
+      "path": "outputs/bq2-zone-screen/steady_on_features.csv",
+      "rows": 6114
+    },
+    {
+      "path": "outputs/bq2-zone-screen/timestamp_audit.csv",
+      "rows": 20
+    },
+    {
+      "path": "outputs/bq2-zone-screen/zone_quality.csv",
+      "rows": 20
+    },
+    {
+      "path": "outputs/bq2-case-investigation/case_conclusions.csv",
+      "rows": 3
+    },
+    {
+      "path": "outputs/bq2-case-investigation/clock_hour_profiles.csv",
+      "rows": 286
+    },
+    {
+      "path": "outputs/bq2-case-investigation/daily.csv",
+      "rows": 449
+    },
+    {
+      "path": "outputs/bq2-case-investigation/energy_decomposition.csv",
+      "rows": 6
+    },
+    {
+      "path": "outputs/bq2-case-investigation/event_schedule.csv",
+      "rows": 54
+    },
+    {
+      "path": "outputs/bq2-case-investigation/events.csv",
+      "rows": 1923
+    },
+    {
+      "path": "outputs/bq2-case-investigation/hourly.csv",
+      "rows": 17856
+    },
+    {
+      "path": "outputs/bq2-case-investigation/matched_details.csv",
+      "rows": 1312
+    },
+    {
+      "path": "outputs/bq2-case-investigation/matched_states.csv",
+      "rows": 270
+    },
+    {
+      "path": "outputs/bq2-case-investigation/matching_balance.csv",
+      "rows": 156
+    },
+    {
+      "path": "outputs/bq2-case-investigation/monthly_matched_changes.csv",
+      "rows": 36
+    },
+    {
+      "path": "outputs/bq2-case-investigation/peer_context.csv",
+      "rows": 24
+    },
+    {
+      "path": "outputs/bq2-case-investigation/sensor_bias_sensitivity.csv",
+      "rows": 54
+    },
+    {
+      "path": "outputs/bq2-case-investigation/sensor_checks.csv",
+      "rows": 9
+    },
+    {
+      "path": "outputs/bq2-case-investigation/sensor_scenarios.csv",
+      "rows": 47616
+    },
+    {
+      "path": "outputs/bq2-case-investigation/state_contrasts.csv",
+      "rows": 36
+    }
+  ],
+  "identical_regenerated_figures": [
+    "outputs/f3z1-input-audit/event_input_readiness.png",
+    "outputs/f3z1-input-audit/monthly_coverage.png",
+    "outputs/bq2-zone-screen/input_coverage.png",
+    "outputs/bq2-zone-screen/zone_comparison.png",
+    "outputs/bq2-case-investigation/energy_contributions.png",
+    "outputs/bq2-case-investigation/operating_profiles.png"
+  ],
+  "metadata_differences": [
+    {
+      "path": "outputs/f3z1-input-audit/provenance.json",
+      "changed_fields": [
+        "source_commit_at_run"
+      ]
+    },
+    {
+      "path": "outputs/bq2-zone-screen/summary.json",
+      "changed_fields": [
+        "code_sha256"
+      ]
+    },
+    {
+      "path": "outputs/bq2-case-investigation/summary.json",
+      "changed_fields": [
+        "code_sha256"
+      ]
+    }
+  ],
+  "protected_files_unchanged": 89,
+  "historical_first_pass": "Preserved and checked by the current screen; not rerun here",
+  "setup_cell_checks": [
+    {
+      "working_directory": "repository_root",
+      "status": "passed",
+      "unique_zone_hours": 263520
+    },
+    {
+      "working_directory": "notebooks_folder",
+      "status": "passed",
+      "unique_zone_hours": 263520
+    }
+  ],
+  "source_code_sha256": {
+    "src/bq2/__init__.py": "d98fa8c4f0d7b8439b0c4e34d07ebf4ebda08e6a72a1b07777e4cf006e73e83f",
+    "src/bq2/case_investigation.py": "2647e81d52e6a77f891483c341f5351e385a318463bad0f6a8462ed508907a43",
+    "src/bq2/input_audit.py": "6d11f616c4680498fa8772d6e8d2e80c734ec5cf12db26ba62f35e4f94950297",
+    "src/bq2/paths.py": "b21e26b7b4b7261dc6df32617d3e69c6a70f4b16ae766f90a531c82b28c0666f",
+    "src/bq2/reference_models.py": "01d75bc0d45c453af3803ad525f51ce9e0223ab40d7cee98c081a684f481ccd2",
+    "src/bq2/zone_screen.py": "9695855617c9f2551cd4055f76e1b1e30842fdb9b0610ca7f72854be2053d5a2"
+  },
+  "source_worktree_dirty_at_review": true,
+  "source_note": "Run checked the reorganisation worktree against unchanged evidence before committing; active module hashes identify the exact code. Historical JSON retains original paths/hashes.",
+  "unit_test_suite": {
+    "passed": 25,
+    "command": "python -m unittest discover -s mould-ac-degradation/tests -v"
+  },
+  "only_analytical_function_change": "strict_events now preserves datetime dtype for an empty event table; existing numerical results reproduce unchanged."
+}

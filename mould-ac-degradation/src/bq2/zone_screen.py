@@ -10,8 +10,8 @@ import json
 import numpy as np
 import pandas as pd
 
-import f3z1_audit as audit
-import f3z1_first_pass as model
+from . import input_audit as audit
+from . import reference_models as model
 
 FLOORS = range(3, 8)
 ZONES = [1, 2, 4, 5]

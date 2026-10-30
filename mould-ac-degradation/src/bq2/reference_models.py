@@ -5,7 +5,7 @@ import pandas as pd
 import statsmodels.api as sm
 from scipy.spatial import Delaunay, QhullError
 
-import f3z1_audit as audit
+from . import input_audit as audit
 
 
 VARIANTS = ["with_fills", "without_fills"]
@@ -34,7 +34,10 @@ def strict_events(ac_kw, threshold):
         if state[before] >= 0 and state[now] >= 0 and now - before >= 30 and end[i] - now >= 30:
             rows.append({"time": ac_kw.index[now], "event": "start" if state[now] else "stop",
                          "threshold_kW": threshold})
-    return pd.DataFrame(rows, columns=["time", "event", "threshold_kW"])
+    result = pd.DataFrame(rows, columns=["time", "event", "threshold_kW"])
+    # Empty event lists still need a datetime column for downstream .dt filters.
+    result["time"] = pd.to_datetime(result["time"])
+    return result
 
 
 def build_tables(raw, clean, hourly, weather, helpers, column_spec=None):
