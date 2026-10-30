@@ -1,6 +1,8 @@
-# Person B: scope, reasoning and presentation guide
+# Person B: scope, reasoning and teammate walkthrough
 
 Reviewed on 31 October 2026 against the friend's task split, the current shared Canva proposal, the course project briefing and the implemented evidence on `main` at `c730653`.
+
+**Immediate audience:** Lwin is walking through his findings internally with his teammate, Person A. No individual presentation time has been assigned. Use this as a practical discussion and handover guide. Formal class slides and timing can follow after the team aligns its findings.
 
 **Assessment: the implemented July-August analysis is a defensible inspection screen. The full Person B checklist remains partly complete.** Numerical reproducibility, completeness of the checklist and proof of physical degradation are separate questions. The [integration review](review_2026-10-31.md) establishes the first within its stated scope. This guide explains the other two and the presentation narrative. It adds no new modelling or result.
 
@@ -56,7 +58,7 @@ Do not describe Person B as fully complete just because the current notebooks ex
 
 Rainfall is available in the shared weather source. The current Track B energy models use temperature or enthalpy with plug activity rather than a direct rainfall coefficient. Rainfall/lag/seasonal humidity analysis remains primarily Track A's scope. Do not imply every weather variable was used as a model predictor.
 
-## 5. Findings to explain in the presentation
+## 5. Findings to explain to your teammate
 
 | Case | Observation | What it supports | What remains unknown |
 |---|---|---|---|
@@ -87,22 +89,21 @@ The shared Canva proposal, design `DAHW9_ykerw`, still contains ambitions that e
 
 The proposal can evolve as quality checks reveal what the data supports. Preserve that explanation in the presentation so methodological restraint is visible rather than appearing as an unexplained missing feature.
 
-## 7. Presentation sequence
+## 7. Internal teammate walkthrough
 
-Timing for Lwin's individual section has not been assigned in this guide. These are speaking beats that can be combined to fit the group's 20-minute presentation, not a request to create eight new slides.
+Use the existing report, notebook and charts as discussion material. Work through five questions at a pace that lets your teammate challenge the assumptions and compare her findings.
 
-1. **Decision:** identify zones worth inspecting and distinguish evidence quality from physical cause.
-2. **Data and ownership:** explain CU-BEMS, the weather cache and the shared cleaning work, then identify the additional Track B audit/modelling contribution.
-3. **Scope and filtering:** show why these 20 zones and July-August were selected, how missingness affects cohorts, and why there are two input versions.
-4. **Fair comparison:** explain the 2018 reference, 2019 evaluation, simple benchmarks and support gates in plain language. One residual means recorded energy minus expected energy under available conditions.
-5. **Findings:** use the shortlist and two report charts to distinguish F3-Z4's more continuous operation, F5-Z4's higher on-power and F7-Z2's moisture lead. Add F3-Z1 as the example showing why RH alone can mislead.
-6. **Evidence limits:** state the unavailable cooling comparison, weak references, sensor uncertainty and unmeasured operating causes alongside the affected results.
-7. **Action and measurement:** specify which site checks should happen first and which matched follow-up measures would judge a later intervention.
-8. **Handover:** explain what Person B supplies to Person A, what the joint matrix still needs, and which requested analyses remain exploratory or pending.
+1. **What did I check?** Explain Person B's AC-side question, the 20 zones, July-August comparison and completed/withheld/pending items in Section 3.
+2. **How did I get there?** Walk through the existing data and cleaning, added quality checks, two input versions, 2018 reference and supported 2019 evaluation. Explain exclusions and simple benchmarks before showing the results.
+3. **What did I find?** Show F3-Z4's operating-pattern change, F5-Z4's higher on-power and F7-Z2's recorded moisture increase. Include F3-Z1 because the original joint question focused on its RH rise.
+4. **How much can we trust each finding?** Keep sample coverage, weak references, sensor uncertainty and unavailable cooling comparisons beside the affected cases. Explain why a recorded change does not identify a mechanical cause.
+5. **What do we need from each other next?** Compare Person A's humidity/exposure findings for the same zones and periods. Agree which cases need a joint explanation, whether remaining CUSUM/peer work is worthwhile, and the fields needed for the eventual risk matrix.
 
-Suggested opening: "Our role was to check whether AC behaviour changed under comparable conditions and identify where an inspection would be useful. We first checked the data, then compared eligible periods and investigated the strongest leads."
+For each case, hand over the zone key, period, metric definition, input version, sample coverage, model-quality flag, observation, competing explanations and next check. Keep the two tracks' periods and eligible populations visible when joining results.
 
-Suggested closing: "The clearest findings are changes in operating pattern, electrical loading and recorded moisture. They support targeted checks. The available records do not establish a particular mechanical fault, so we recommend verifying the measurements and operating conditions before deciding on maintenance."
+Suggested opening: "I checked the AC side using the existing data. I first checked which readings we could trust, then compared July-August 2018 with 2019. There are three cases worth discussing, and some parts of the original checklist are still inconclusive or pending."
+
+Suggested closing: "These are the AC-side leads and the limits behind them. Let's compare them with your humidity results, especially for F3-Z1 and F7-Z2, then agree what goes into the joint matrix and what analysis is still worth doing."
 
 ## 8. Proposed follow-up KPIs
 
@@ -121,7 +122,7 @@ Any control or maintenance trial should preserve the site's approved temperature
 
 ## 9. Recommended next work
 
-1. Use this guide to align the group's presentation claims with the implemented evidence and assign the speaking time. Carry the caveats into the slides.
+1. Use this guide for the internal teammate discussion. Compare Person A/B findings, resolve differences in periods/definitions and agree the claims the group can support. Class-slide structure and speaking time can be decided later.
 2. Agree which remaining Person B deliverables are necessary for the final scope. Highest-value gaps are a clearly bounded residual/CUSUM diagnostic and defensible peer selection, if eligible data supports them. A validated fault alarm cannot be promised merely to fill a checklist row.
 3. Keep the cooling result explicitly unavailable unless a separately justified cohort/method produces a fair comparison. Do not relax gates just to obtain a desired trend.
 4. Agree the final Track B handover fields, coverage/status flags and sign conventions with Person A, then build the joint matrix after Track A is available.

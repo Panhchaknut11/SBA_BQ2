@@ -1,12 +1,12 @@
 # BQ2 analysis workspace
 
-This folder contains the shared BQ2 helpers and Lwin's current Person B work. Start with the [Person B scope and presentation guide](reports/track-b/person_b_scope_and_presentation.md) to understand the question, completed work, remaining gaps and presentation story. Read [AGENTS.md](../AGENTS.md) for shared context and the [root README](../README.md) for environment setup.
+This folder contains the shared BQ2 helpers and Lwin's current Person B work. Start with the [Person B scope and teammate walkthrough](reports/track-b/person_b_scope_and_presentation.md) to understand the question, completed work, remaining gaps and internal handover to Person A. Read [AGENTS.md](../AGENTS.md) for shared context and the [root README](../README.md) for environment setup.
 
 ## Reading order
 
 | Purpose | Open |
 |---|---|
-| Check our work against the friend's checklist and proposal | [Person B scope and presentation guide](reports/track-b/person_b_scope_and_presentation.md) |
+| Check our work and prepare the internal teammate discussion | [Person B scope and teammate walkthrough](reports/track-b/person_b_scope_and_presentation.md) |
 | Read the findings, charts, recommendations and limitations | [Track B report](reports/track-b/track_b_report.md) |
 | Inspect reproducibility and independent checks | [31 October review](reports/track-b/review_2026-10-31.md) and [verification JSON](reports/track-b/review_2026-10-31.json) |
 | Understand input quality and why July-August was selected | [F3-Z1 input audit](f3z1_input_audit.ipynb) |
@@ -33,7 +33,7 @@ mould-ac-degradation/
     bq2-zone-screen/               Current 20-zone evidence
     bq2-case-investigation/        Current diagnostic evidence
   reports/track-b/
-    person_b_scope_and_presentation.md  Scope, method reasoning and speaking outline
+    person_b_scope_and_presentation.md  Scope, method reasoning and teammate handover
     track_b_report.md              Findings, recommendations and limitations
     review_2026-10-31.md / .json    Verification record
     figures/                       Two bundled report charts
