@@ -1,0 +1,13 @@
+analysis_unit,variant,year,rows,distinct_days
+Energy days,with_fills,2018,41,41
+Energy days,with_fills,2019,40,40
+Energy days,without_fills,2018,41,41
+Energy days,without_fills,2019,16,16
+Start-up windows,with_fills,2018,81,41
+Start-up windows,with_fills,2019,78,41
+Start-up windows,without_fills,2018,29,25
+Start-up windows,without_fills,2019,71,41
+Steady-on hours,with_fills,2018,142,42
+Steady-on hours,with_fills,2019,105,38
+Steady-on hours,without_fills,2018,51,33
+Steady-on hours,without_fills,2019,91,38

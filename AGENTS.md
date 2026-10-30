@@ -7,8 +7,8 @@ This is the canonical BQ2 context for Codex, Claude and human collaborators. Rea
 - **Track A, Panhchaknut:** humidity and mould-risk indicators, including rebound after AC shutdown.
 - **Track B, Lwin:** AC performance and signs of decline, including humidity response while AC runs.
 - **Joint:** risk matrix, case investigation and an evidence-based inspection shortlist for the wider group.
-- **Stage as of 30 October 2026:** setup and the F3-Z1 input audit are complete. Read `mould-ac-degradation/f3z1_input_audit.ipynb` and its evidence under `outputs/f3z1-input-audit/`. The three Track A/Track B/combined analysis notebooks below remain planned; no model has been fitted.
-- **Current user boundary:** show the input-audit findings before modelling. Retain this review point; do not begin model fitting or change shared calculations during the audit. The next possible stage is a gated F3-Z1 example after the user reviews the findings. Update this status when later work changes it and inspect actual files/Git state before reporting completion.
+- **Stage as of 30 October 2026:** setup, the F3-Z1 input audit and the first F3-Z1 modelling pass are complete. Read `mould-ac-degradation/f3z1_input_audit.ipynb`, then `bq2_ac.ipynb`. Evidence is under `outputs/f3z1-input-audit/` and `outputs/f3z1-first-pass/`. Track B currently covers only July-August 2018/2019 F3-Z1; Track A and the combined notebook remain planned.
+- **Current user boundary:** the user authorised the first F3-Z1 modelling pass and requested findings before expansion. Present those findings for review before modelling other zones. Do not infer permission for zone-wide rankings, final risk scores or changes to shared calculations. Update this status when later work changes it and inspect actual files/Git state before reporting completion.
 - **Working milestones:** analytics on 3 November 2026, recommendations/KPIs/slides on 6 November and submission on 9 November, from the group's 18 October plan. The official upload cutoff is unconfirmed. Presentation week is Week 14; the exact slot is unconfirmed.
 
 ## Project
@@ -45,11 +45,15 @@ mould-ac-degradation/         BQ2 analysis (this is where new work goes)
   f3z1_input_audit.ipynb       Executed F3-Z1 input audit; no models
   f3z1_audit.py               Inspectable audit calculations
   outputs/f3z1-input-audit/   Audit tables, provenance and figures
+  bq2_ac.ipynb               Executed Track B first pass, F3-Z1 only
+  f3z1_first_pass.py          Reference models and sensitivity calculations
+  requirements.txt           Base dependencies plus statsmodels and SciPy
+  outputs/f3z1-first-pass/    Features, predictions, validation, hashes and figures
 ```
 
 ## Environment and run order
 
-Use this checkout's `.venv` and the `sba-bq2` Jupyter kernel. Python 3.12 is the initial runtime; setup and the executable first cell are in [README.md](README.md). Dependencies are declared in `data-cleaning/requirements.txt`. Add any extra analysis dependency to the requirements before using it; `statsmodels` is not included in the initial setup.
+Use this checkout's `.venv` and the `sba-bq2` Jupyter kernel. Python 3.12 is the initial runtime; setup and the executable first cell are in [README.md](README.md). Install `mould-ac-degradation/requirements.txt`, which includes the base cleaning requirements plus statsmodels and SciPy for Track B. Add any extra analysis dependency to the requirements before using it.
 
 The raw files, cleaned outputs, analytics tables and weather cache are already committed. Reuse them. Do not rerun cleaning, regenerate baseline outputs or refresh the cache during BQ2 work unless deliberately in scope. Importing the ERA5 loader does not run the baseline analysis.
 
@@ -137,13 +141,24 @@ Always check `data_quality.csv` (`final_missing_pct`, `note`) before relying on 
 - Lagged response of indoor humidity to outdoor dew point and rain (0-48 h); per-zone humidity sensitivity slope.
 - RH sensor QA (flat-lines, drift vs neighbouring zones).
 
-**Track B: AC performance and degradation** → `bq2_ac.ipynb` (planned)
+**Track B: AC performance and degradation** → `bq2_ac.ipynb` (first F3-Z1 pass implemented; wider work below remains planned)
 - Weather-adjusted daily zone AC kWh reference model using weather and plug-load context, followed by residual/CUSUM screening. Compare candidate weather formulations rather than automatically including correlated temperature and enthalpy terms together. Exclude closures and low-coverage days.
 - Use separate calibration and later evaluation periods. Eligible Jul-Dec 2018 energy data are a candidate reference, not a known fault-free baseline. Score only supported weather conditions; flag extrapolation when evaluating other seasons of 2019. Environmental outages do not automatically invalidate energy-only models, while missing required power/plug fields do.
 - Check high and low energy departures alongside cooling response; a positive residual alone is not proof of decline.
 - Pull-down rate after start-up (first 30-60 min), trended by month.
 - Outdoor-minus-indoor humidity-ratio difference (`moisture_removal_gkg`) while AC is on, under similar conditions over time. Interpret as a proxy, not measured removal.
 - Compare peers with similar meter configuration and operating context; the same zone number on another floor does not ensure comparability. Match calendar period, time of day, initial conditions and weather where feasible for 2018/2019 comparisons.
+
+### First F3-Z1 modelling findings
+
+July-August 2018 is the reference and July-August 2019 is evaluation, on inferred working days only. The reference is not known to be fault-free. The notebook compares existing cleaned values with source-observed values unchanged by cleaning, without new filling. Source data, the audit and shared helpers remain unchanged.
+
+- **Energy:** complete 1,440-minute AC-plus-plug days; temperature-plus-plug reference selected by expanding 2018-only validation (MAE 8.89 kWh/day, versus 9.62 for a mean-only benchmark). Under supported conditions, 2019 departures are **−9.0% with fills** (25 days; conditional 95% interval −11.8% to −5.4%) and **−10.2% without fills** (12 days; −13.0% to −6.7%). Alternative temperature/enthalpy specifications agree in direction on the same jointly supported days.
+- **Recorded moisture:** complete steady-on hours, after at least 120 continuous AC-on minutes, with outdoor humidity ratio, outdoor temperature, plug activity and session as predictors. Supported indoor humidity-ratio departures are **−0.40/−0.41 g/kg** with/without fills, from 34 hours/18 days and 15 hours/10 days respectively. Exact clock hour and elapsed run time are not regression controls; descriptive clock-hour checks agree in direction. Higher RH alongside lower temperature does not imply more absolute moisture.
+- **Cooling:** 2019 starts begin about 2.4°C cooler. Only **1/78** fills-allowed and **0/71** observed-only 2019 events lie within the reference conditions, so an adjusted comparison is inconclusive and withheld. Do not label slower unadjusted cooling as decline.
+- **Support and uncertainty:** coefficients use 2018 only. Reported comparisons require predictors inside the 2018 convex hull, at least 10 supported evaluation days and four calendar weeks in each year. This is a project reporting gate, not a scientific standard. Day-balanced estimates use 2,000 calendar-week bootstrap replicates with fixed specification and supported cohort. Intervals do not establish causation or future fault probability.
+- **Filling sensitivity:** excluding filled readings reduces eligible 2019 energy days from 40 to 16 and eligible 2018 cooling events from 81 to 29. Common retained observations agree exactly across variants. Numerical interpolation effects and cohort selection are distinguished in the notebook; individual event slopes can still be affected.
+- **Interpretation:** this pass does not establish AC decline or improved efficiency/dehumidification. Clock alignment, sensor calibration, controls and operating changes remain unresolved. No other zones, final `zone_ac_metrics.csv`, risk scores, fault thresholds or RUL predictions have been produced. CUSUM is an exploratory record over available days, includes flagged extrapolations and has no fault decision threshold.
 
 **Combined** → `bq2_risk_matrix.ipynb` (planned)
 - Merge the two handover tables on `floor, zone`. Mould exposure on one axis, AC decline on the other, sized by coverage.

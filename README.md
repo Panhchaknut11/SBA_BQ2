@@ -10,11 +10,11 @@ The intended result is an inspection shortlist supported by humidity exposure, A
 
 - **Both AIs:** read [AGENTS.md](AGENTS.md), the canonical project context and working rules. [CLAUDE.md](CLAUDE.md) directs Claude to that same file.
 - **People:** use this README for setup, notebook run order and Git workflow.
-- **Current stage, 30 October 2026:** setup and the F3-Z1 input audit are complete. The audit is ready for user review before modelling. The three Track A/Track B/combined notebooks below remain planned; no model has been fitted.
+- **Current stage, 30 October 2026:** setup, the F3-Z1 input audit and the first F3-Z1 modelling pass are complete. Review [the executed Track B notebook](mould-ac-degradation/bq2_ac.ipynb) before expanding to other zones. Track A and the combined notebook remain planned.
 
 ## Responsibilities
 
-| Track | Owner | Planned notebook | Handover |
+| Track | Owner | Notebook | Planned handover |
 |---|---|---|---|
 | A: humidity and mould-risk indicators, including shutdown rebound | Panhchaknut | `bq2_humidity.ipynb` | `zone_mould_metrics.csv` |
 | B: AC performance and signs of decline, including humidity response while AC runs | Lwin | `bq2_ac.ipynb` | `zone_ac_metrics.csv` |
@@ -46,10 +46,13 @@ mould-ac-degradation/
   bq2_utils.ipynb                 Existing shared helper notebook
   f3z1_input_audit.ipynb          Executed input audit, before modelling
   f3z1_audit.py                  Inspectable audit calculations
+  f3z1_first_pass.py             F3-Z1 reference models and sensitivity checks
+  requirements.txt              Base requirements plus Track B modelling dependencies
   bq2_humidity.ipynb              Planned, Track A
-  bq2_ac.ipynb                    Planned, Track B
+  bq2_ac.ipynb                    Executed first pass, F3-Z1 only
   bq2_risk_matrix.ipynb           Planned, combined
   outputs/f3z1-input-audit/       Audit tables, source hashes and figures
+  outputs/f3z1-first-pass/        Model features, predictions, validation and figures
 ```
 
 The helper is currently **`bq2_utils.ipynb`**. There is no `bq2_utils.py`; use the notebook-loading cell below rather than `from bq2_utils import ...`.
@@ -68,16 +71,16 @@ The initial setup uses Python **3.12** on macOS. From the repository root:
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r data-cleaning/requirements.txt
+python -m pip install -r mould-ac-degradation/requirements.txt
 python -m ipykernel install --user --name sba-bq2 --display-name "SBA_BQ2 (Python 3.12)"
 python -m pip check
 ```
 
 The activation command is for macOS/Linux. Use your platform's virtual-environment activation equivalent on Windows. Install into `.venv`, not the system Python. Git ignores `.venv`; recreate it on each computer.
 
-The declared dependencies include pandas, NumPy, Matplotlib, IPython kernel, JupyterLab and nbconvert. Add any additional analysis dependency to the declared requirements before using it. Regression packages such as `statsmodels` are not installed by this initial setup.
+The BQ2 requirements include the base pandas, NumPy, Matplotlib, IPython kernel, JupyterLab and nbconvert dependencies, plus statsmodels and SciPy for Track B. Add any additional analysis dependency to the declared requirements before using it.
 
-The 30 October setup resolved Python 3.12.16 with pandas 3.1.0, numpy 2.5.4, matplotlib 3.11.2, ipykernel 7.4.0, jupyterlab 4.6.5, nbconvert 7.17.2. The requirements use version ranges rather than a lockfile, so later installations may resolve different versions; rerun the setup checks after dependency changes.
+The 30 October environment resolved Python 3.12.16 with pandas 3.1.0, numpy 2.5.4, matplotlib 3.11.2, ipykernel 7.4.0, jupyterlab 4.6.5, nbconvert 7.17.2, statsmodels 0.15.0 and SciPy 1.18.1. The requirements use version ranges rather than a lockfile, so later installations may resolve different versions; rerun the setup checks after dependency changes. The first-pass `summary.json` records the analysis package versions and source hashes.
 
 ### Open notebooks
 
@@ -176,11 +179,31 @@ python -m jupyter nbconvert --execute --to notebook --inplace --ExecutePreproces
 
 This writes only the audit notebook and its own output folder. It does not regenerate upstream data or fit a model. Source hashes are checked again at the end of execution. Clock alignment and sensor drift cannot be certified by these checks.
 
+## F3-Z1 first modelling pass
+
+Open [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb) after the input audit. It uses July-August 2018 as a reference and July-August 2019 for evaluation, comparing existing cleaned inputs against unchanged source observations. Coefficients and energy-model selection use 2018 only. Common support, day balancing and calendar-week uncertainty checks limit the comparison to the observed evidence.
+
+| Supported 2019 departure from the reference | With existing fills | Without filled/replaced readings |
+|---|---:|---:|
+| Daily AC energy | −9.0%, 25 days | −10.2%, 12 days |
+| Recorded indoor humidity ratio | −0.40 g/kg, 18 days | −0.41 g/kg, 10 days |
+| Cooling response | Inconclusive, 1 supported event | Inconclusive, 0 supported events |
+
+These findings do not establish AC decline or higher efficiency. Initial rooms are about 2.4°C cooler in 2019, leaving too little overlap for a fair cooling comparison. Higher RH accompanies cooler room temperatures and lower absolute moisture in the eligible readings. Operations, sensor calibration and clock alignment remain unresolved. Removing filled values changes cohort membership substantially; read the notebook's counts, conditional intervals and sensitivity checks before generalising.
+
+Rerun from the repository root with `.venv` active:
+
+```bash
+python -m jupyter nbconvert --execute --to notebook --inplace --ExecutePreprocessor.kernel_name=sba-bq2 --ExecutePreprocessor.timeout=180 mould-ac-degradation/bq2_ac.ipynb
+```
+
+Calculations are in `mould-ac-degradation/f3z1_first_pass.py`. Outputs under `mould-ac-degradation/outputs/f3z1-first-pass/` include cohort/features tables, predictions with support flags, coefficients, 2018 validation, bootstrap summaries, sensitivity checks, two figures and provenance. CUSUM is diagnostic over available days, includes flagged extrapolations and has no fault threshold. No final zone handover scores are produced. The notebook checks source hashes and preserves raw/cleaned inputs, baseline outputs, the prior audit and shared helper. Review this pass before modelling other zones.
+
 ## Planning milestones
 
 The group plan recorded on 18 October lists **3 November 2026** for analytics, **6 November** for recommendations/KPIs/slides and **9 November** for submission. These are working milestones; confirm the official eLearn upload cutoff. The updated course record places presentations in Week 14, with the exact presentation slot still unconfirmed.
 
-The F3-Z1 audit findings are ready for review. A small gated example, full model fitting, Track A/Track B implementation and the risk matrix follow separately after that review.
+The first F3-Z1 model findings are ready for review. Expansion to other zones, the remaining Track A/Track B work and the risk matrix follow separately after that review.
 
 ## Setup verification, 30 October 2026
 
@@ -189,7 +212,7 @@ The F3-Z1 audit findings are ready for review. A small gated example, full model
 - The README's exact first cell executed successfully in that kernel: 263,520 unique zone-hours across all 20 scope zones, with complete weather matches.
 - Known-value dew-point and humidity-ratio examples passed a separate import smoke check.
 
-These checks establish environment and input-loading compatibility. Event continuity, sensor quality, model validation and analytical findings remain future work. The checks did not overwrite notebooks, raw data or upstream outputs, and the verification kernel was shut down.
+These setup checks establish environment and input-loading compatibility. The later audit and F3-Z1 modelling checks are recorded in their executed notebooks. Setup did not overwrite notebooks, raw data or upstream outputs, and its verification kernel was shut down.
 
 ## References
 
