@@ -6,8 +6,8 @@ from pathlib import Path
 import json
 import numpy as np
 import pandas as pd
-import bq2_zone_screen as screen
-import f3z1_first_pass as model
+from . import zone_screen as screen
+from . import reference_models as model
 
 CASES={3:4,5:4,7:2}
 OUTCOMES=['ac_kW','temp_C','rh_pct','indoor_w_gkg','plug_kW','peer_temp_C','peer_w_gkg']

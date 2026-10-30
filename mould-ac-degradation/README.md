@@ -1,50 +1,39 @@
 # BQ2 analysis workspace
 
-This folder contains the shared BQ2 helpers and Lwin's current Person B work. Start with the [Person B scope and teammate walkthrough](reports/track-b/person_b_scope_and_presentation.md) to understand the question, completed work, remaining gaps and internal handover to Person A. Read [AGENTS.md](../AGENTS.md) for shared context and the [root README](../README.md) for environment setup.
+Start with the [teammate walkthrough](reports/track-b/person_b_scope_and_presentation.md) to understand Person B's work, or the [report](reports/track-b/track_b_report.md) for the findings and charts. [Setup](../docs/setup.md) and [shared AI context](../AGENTS.md) live at repository level.
 
-## Reading order
+## Where things belong
 
-| Purpose | Open |
-|---|---|
-| Check our work and prepare the internal teammate discussion | [Person B scope and teammate walkthrough](reports/track-b/person_b_scope_and_presentation.md) |
-| Read the findings, charts, recommendations and limitations | [Track B report](reports/track-b/track_b_report.md) |
-| Inspect reproducibility and independent checks | [31 October review](reports/track-b/review_2026-10-31.md) and [verification JSON](reports/track-b/review_2026-10-31.json) |
-| Understand input quality and why July-August was selected | [F3-Z1 input audit](f3z1_input_audit.ipynb) |
-| Inspect all 20 zones and eligible metric comparisons | [Main Track B notebook](bq2_ac.ipynb) |
-| Explain the three inspection cases | [Focused investigation](bq2_case_investigation.ipynb) |
+| Folder/file | Purpose | Start here |
+|---|---|---|
+| `notebooks/` | Executed analysis entry points | [Notebook order](notebooks/README.md) |
+| `src/bq2/` | Reusable Python calculations | [input_audit.py](src/bq2/input_audit.py), [reference_models.py](src/bq2/reference_models.py), [zone_screen.py](src/bq2/zone_screen.py), [case_investigation.py](src/bq2/case_investigation.py) |
+| `tests/` | Automated checks, synthetic inputs and evidence fingerprints | [Test guide](tests/README.md) |
+| `scripts/` | Commands for complete validation | [validate_notebooks.py](scripts/validate_notebooks.py) |
+| `outputs/` | Original calculation tables, figures and provenance | [Zone shortlist](outputs/bq2-zone-screen/inspection_shortlist.csv) |
+| `reports/track-b/` | Human-facing explanations and review history | [Report index](reports/track-b/README.md) |
+| `bq2_utils.ipynb` | Stable shared helper for both tracks | [Loading instructions](../docs/setup.md#shared-helper-loading-cell) |
+| `requirements.txt` | Declared analysis dependencies | [requirements.txt](requirements.txt) |
 
-## File responsibilities
+Raw data, upstream cleaning and the weather cache retain their owning folders outside this workspace. The shared helper stays at its existing path so both tracks and historical input manifests continue to agree. New reusable code goes in `src/bq2/`; new automated checks go in `tests/`.
 
-```text
-mould-ac-degradation/
-  README.md                       Navigation and file responsibilities
-  requirements.txt                Declared analysis dependencies
-  bq2_utils.ipynb                  Shared definitions for both tracks
-  f3z1_input_audit.ipynb           Executed input-quality audit
-  bq2_ac.ipynb                     Current 20-zone Track B screen
-  bq2_case_investigation.ipynb     Current three-case diagnostic companion
-  f3z1_audit.py                    Audit calculations
-  f3z1_first_pass.py               Reused feature/reference-model calculations
-  bq2_zone_screen.py               Quality gates, screen and shortlist
-  bq2_case_investigation.py        Operating/sensor diagnostics
-  outputs/
-    f3z1-input-audit/              Audit evidence and provenance
-    f3z1-first-pass/               Preserved first-model evidence
-    bq2-zone-screen/               Current 20-zone evidence
-    bq2-case-investigation/        Current diagnostic evidence
-  reports/track-b/
-    person_b_scope_and_presentation.md  Scope, method reasoning and teammate handover
-    track_b_report.md              Findings, recommendations and limitations
-    review_2026-10-31.md / .json    Verification record
-    figures/                       Two bundled report charts
+## Which notebook to use
+
+1. [F3-Z1 input audit](notebooks/f3z1_input_audit.ipynb): understand quality and eligibility.
+2. [Main Track B screen](notebooks/bq2_ac.ipynb): inspect all 20 zones and eligible comparisons.
+3. [Case investigation](notebooks/bq2_case_investigation.ipynb): explain F3-Z4, F5-Z4 and F7-Z2.
+
+The old first F3-Z1 notebook is preserved in [commit b56f716](https://github.com/Panhchaknut11/SBA_BQ2/blob/b56f716/mould-ac-degradation/bq2_ac.ipynb). Its evidence remains under `outputs/f3z1-first-pass/`, and the current screen checks parity against it. The reusable model definitions now live in `src/bq2/reference_models.py`.
+
+## Test and reproduce
+
+From the repository root with the environment active:
+
+```bash
+python -m unittest discover -s mould-ac-degradation/tests -v
+python mould-ac-degradation/scripts/validate_notebooks.py
 ```
 
-Raw data belongs in `../data/`. Upstream cleaning, analytics exports and weather inputs retain their existing locations in `../data-cleaning/` and `../baseline/`. Analysis code reads those inputs and writes its own evidence under `outputs/`. Human-facing explanations belong in `reports/track-b/`.
+The first command runs small synthetic and repository-integrity checks. The second uses fresh kernels in an ignored scratch copy, compares regenerated results and preserves committed evidence. Its run records stay under `tests/.runs/`.
 
-The shared helper is a notebook. Load it with `%run -i ./bq2_utils.ipynb` after setting `RUN_CHECKS = False`, as shown in the root README. The module named `f3z1_first_pass.py` now also supplies calculations reused by the zone screen. The historical first F3-Z1 notebook is preserved in [commit b56f716](https://github.com/Panhchaknut11/SBA_BQ2/blob/b56f716/mould-ac-degradation/bq2_ac.ipynb); the current notebook at that path covers 20 zones.
-
-Track A's `bq2_humidity.ipynb`, the combined `bq2_risk_matrix.ipynb` and the agreed final handover tables remain planned. Existing baseline humidity outputs do not complete Track A. The current 20-row `inspection_shortlist.csv` is an intermediate screening output, not the final joint risk matrix.
-
-## Reproduction
-
-Use the root README's environment and run commands. The dependency order is the input audit, main screen, then focused companion. The historical first-pass evidence is already committed and is checked by the current screen. Keep the calculation files in their existing locations because notebook imports, relative paths and evidence references depend on them. This navigation update moves no calculation or evidence file and adds no new model run.
+Track A, final AC handover fields and the joint matrix remain planned in this checkout. `inspection_shortlist.csv` is an intermediate output, not the final matrix. Organisation and testing do not expand the analysis window or establish physical faults.

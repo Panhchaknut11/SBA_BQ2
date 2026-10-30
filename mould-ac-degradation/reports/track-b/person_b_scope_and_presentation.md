@@ -28,7 +28,7 @@ A coil-side removal rate would require airflow and the coil inlet/outlet humidit
 
 | Requested item | Current status | Evidence and practical boundary |
 |---|---|---|
-| Weather-normalised daily energy and residuals | Implemented for eligible July-August comparisons | `bq2_ac.ipynb`, `outputs/bq2-zone-screen/model_summary.csv` and `predictions.csv`. Models use weather plus plug-load context. Some references fail to improve on a simple benchmark and remain explicitly weaker evidence. |
+| Weather-normalised daily energy and residuals | Implemented for eligible July-August comparisons | `notebooks/bq2_ac.ipynb`, `outputs/bq2-zone-screen/model_summary.csv` and `predictions.csv`. Models use weather plus plug-load context. Some references fail to improve on a simple benchmark and remain explicitly weaker evidence. |
 | CUSUM | Exploratory F3-Z1 trace only | `outputs/f3z1-first-pass/cusum_available_days.csv`. No validated alarm, all-zone CUSUM assessment or progressive-failure claim is complete. |
 | Pull-down rate after startup, tracked over time | Feature extraction and comparability assessment implemented; adjusted result withheld | Startups have continuity/coverage checks. No zone passes the adjusted comparison gates. An interpretable deterioration trend is unavailable. |
 | Moisture while AC runs | Implemented as a supporting humidity indicator | `steady_on_features.csv` contains the humidity gap. Models use indoor humidity ratio with outdoor context after sustained operation. This provides no measured coil-removal rate. |
@@ -132,4 +132,4 @@ Any control or maintenance trial should preserve the site's approved temperature
 
 The [analysis-folder index](../../README.md) groups the current entry notebooks, reusable code, generated evidence and report material by purpose. Keep raw data and upstream preparation in their owning folders. Preserve the historical audit/first-pass evidence. Use the existing `reports/track-b/` for the presentation story and limitations.
 
-The current analysis has only a small number of calculation files. A clear index and separate evidence/report folders make it navigable without moving notebooks or breaking relative imports. If the code later grows enough to justify `src/` and `notebooks/`, migrate imports, run paths and provenance references together in a separately verified change. No such migration is needed to explain the current findings.
+The user requested a physical reorganisation after this scope review. Current notebooks now live in `notebooks/`, calculation modules in `src/bq2/`, automated checks in `tests/` and the full validation command in `scripts/`. Setup cells and links use the new layout. The shared helper and recorded output folders keep their original locations. Historical source references in dated review evidence retain their original meaning; the migration is checked against unchanged analytical outputs.

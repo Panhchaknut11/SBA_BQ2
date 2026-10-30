@@ -1,282 +1,68 @@
 # SBA_BQ2
 
-Shared workspace for Panhchaknut and Lwin's IS4001 Smart Building Analytics final-project business question 2 (BQ2):
-
-> How can seasonal weather changes, air-con performance and humidity levels be analysed to detect zones at risk of air-con degradation, mould growth, or both?
-
-The intended result is an inspection shortlist supported by humidity exposure, AC behaviour and evidence quality. The readings do not establish confirmed mould, a particular mechanical fault or an exact failure date.
+Panhchaknut and Lwin's shared IS4001 Smart Building Analytics workspace. BQ2 asks how weather, AC behaviour and humidity can identify zones worth inspecting for AC or mould risk.
 
 ## Start here
 
-- **Both AIs:** read [AGENTS.md](AGENTS.md), the canonical project context and working rules. [CLAUDE.md](CLAUDE.md) directs Claude to that same file.
-- **People:** start with the [Track B report and charts](mould-ac-degradation/reports/track-b/track_b_report.md) for the consolidated findings, recommendations and limitations. Use this README for setup, notebook run order and Git workflow.
-- **Person B scope and internal handover:** read the [checklist, reasoning and teammate walkthrough](mould-ac-degradation/reports/track-b/person_b_scope_and_presentation.md) and the [analysis-folder index](mould-ac-degradation/README.md). The immediate audience is Person A; class presentation timing remains unassigned. The verified July-August screen covers part of Person B's original checklist. CUSUM remains exploratory, fair adjusted pull-down comparisons are unavailable, and controlled peer benchmarking remains pending. Older proposal claims about exact RUL, failure lead time, leak diagnosis and achieved savings exceed the current evidence.
-- **Current stage, 31 October 2026:** the 20-zone screen, three-case investigation and report have passed the [integration and reproducibility review](mould-ac-degradation/reports/track-b/review_2026-10-31.md) for the five-PR consolidation. [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb) remains the Track B analysis entry point, with the [case investigation](mould-ac-degradation/bq2_case_investigation.ipynb) providing attribution checks. Mechanical degradation, efficiency loss and actual overcooling remain unconfirmed. Broader seasonal/peer work, Track A and the joint risk matrix remain planned. Read live GitHub/Git state for integration status.
+| I want to… | Open |
+|---|---|
+| Explain Person B findings to my teammate | [Internal walkthrough](mould-ac-degradation/reports/track-b/person_b_scope_and_presentation.md) |
+| Read the findings and charts | [Track B report](mould-ac-degradation/reports/track-b/track_b_report.md) |
+| Explore or rerun the analysis | [Notebook index](mould-ac-degradation/notebooks/README.md) |
+| Find calculation code, outputs or reports | [Analysis workspace](mould-ac-degradation/README.md) |
+| Set up Python and Jupyter | [Setup and run guide](docs/setup.md) |
+| Run tests or check reproducibility | [Test guide](mould-ac-degradation/tests/README.md) |
+| Give either AI the project context | [AGENTS.md](AGENTS.md), also used through [CLAUDE.md](CLAUDE.md) |
 
-## Responsibilities
-
-| Track | Owner | Notebook | Planned handover |
-|---|---|---|---|
-| A: humidity and mould-risk indicators, including shutdown rebound | Panhchaknut | `bq2_humidity.ipynb` | `zone_mould_metrics.csv` |
-| B: AC performance and signs of decline, including humidity response while AC runs | Lwin | `bq2_ac.ipynb` | `zone_ac_metrics.csv` |
-| Combined inspection priorities | Both | `bq2_risk_matrix.ipynb` | Risk matrix and supporting cases |
-
-The agreed scope is Floors 3-7, zones 1, 2, 4 and 5: 20 zones, subject to quality checks. Lighting analysis belongs to the other business question.
-
-## Repository layout
+## Folder structure
 
 ```text
-AGENTS.md                         Canonical context for both AIs
-CLAUDE.md                         Claude entry point to AGENTS.md
-README.md                         Setup and run instructions
-data/                             14 raw floor/year CSVs; preserve unchanged
-data-cleaning/
-  main.ipynb                      Upstream cleaning implementation
-  requirements.txt                Declared Python dependencies
-  outputs/clean/                  14 committed cleaned minute-level CSVs
-  outputs/analytics/              zone_hourly.csv, data_quality.csv, etc.
-  outputs/figures/                Existing cleaning figures
-baseline/
-  humidity_risk_baseline.ipynb     Existing descriptive BQ2 baseline
-  humidity_risk_baseline.py       Baseline functions and ERA5 loader
-  _shared.py                     Baseline input helpers
-  data/                          Committed Bangkok ERA5 weather cache
-  outputs/                       Existing baseline tables and figures
-  lighting_peak_baseline.*        Other question's baseline; preserve
-mould-ac-degradation/
-  README.md                      Analysis navigation and file responsibilities
-  bq2_utils.ipynb                 Existing shared helper notebook
-  f3z1_input_audit.ipynb          Executed input audit, before modelling
-  f3z1_audit.py                  Inspectable audit calculations
-  f3z1_first_pass.py             F3-Z1 reference models and sensitivity checks
-  bq2_zone_screen.py             Zone QA, gated comparisons and inspection triage
-  bq2_case_investigation.py      Focused operating/sensor diagnostic calculations
-  bq2_case_investigation.ipynb   Executed diagnostic companion, three screened cases
-  requirements.txt              Base requirements plus Track B modelling dependencies
-  bq2_humidity.ipynb              Planned, Track A
-  bq2_ac.ipynb                    Executed current 20-zone screen, Track B
-  bq2_risk_matrix.ipynb           Planned, combined
-  outputs/f3z1-input-audit/       Audit tables, source hashes and figures
-  outputs/f3z1-first-pass/        Model features, predictions, validation and figures
-  outputs/bq2-zone-screen/        Current quality/model evidence and inspection shortlist
-  outputs/bq2-case-investigation/ Operating-state evidence and reportable conclusions
-  reports/track-b/
-    track_b_report.md            Consolidated findings, recommendations and limitations
-    person_b_scope_and_presentation.md  Checklist coverage, explanation and proposed KPIs
-    figures/                     Two unchanged case charts bundled with the report
-    review_2026-10-31.md / .json  Review scope, verification evidence and remaining limits
+SBA_BQ2/
+  README.md                    Start here
+  AGENTS.md / CLAUDE.md         Shared AI context
+  docs/                        Setup and run instructions
+  data/                        Original building CSVs
+  data-cleaning/               Shared upstream cleaning and exports
+  baseline/                    Earlier baselines and cached weather
+  mould-ac-degradation/
+    README.md                  BQ2 analysis index
+    requirements.txt           Analysis dependencies
+    bq2_utils.ipynb            Stable shared helper for both tracks
+    notebooks/                 Executed audit, screen and case notebooks
+    src/bq2/                   Reusable Python calculation modules
+    tests/                     Automated tests and small fixtures
+    scripts/                   Safe full-notebook validation command
+    outputs/                   Preserved analysis tables, charts and provenance
+    reports/track-b/            Findings, teammate guide and review records
 ```
 
-The helper is currently **`bq2_utils.ipynb`**. There is no `bq2_utils.py`; use the notebook-loading cell below rather than `from bq2_utils import ...`.
+Local environments, Python caches and `tests/.runs/` validation copies are ignored by Git. Raw inputs, upstream preparation and saved evidence each have an owning folder. Tests and validation scripts do not belong beside the report or notebook entry points.
 
-## Clone and create an environment
+## Run checks
 
-Each teammate needs their own checkout and local virtual environment. Clone the existing repository into your chosen project directory:
+After [environment setup](docs/setup.md), run from the repository root:
 
 ```bash
-git clone https://github.com/Panhchaknut11/SBA_BQ2.git
-cd SBA_BQ2
+python -m unittest discover -s mould-ac-degradation/tests -v
 ```
 
-The initial setup uses Python **3.12** on macOS. From the repository root:
+For a fresh-kernel reproduction that preserves committed evidence:
 
 ```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r mould-ac-degradation/requirements.txt
-python -m ipykernel install --user --name sba-bq2 --display-name "SBA_BQ2 (Python 3.12)"
-python -m pip check
+python mould-ac-degradation/scripts/validate_notebooks.py
 ```
 
-The activation command is for macOS/Linux. Use your platform's virtual-environment activation equivalent on Windows. Install into `.venv`, not the system Python. Git ignores `.venv`; recreate it on each computer.
+The [test guide](mould-ac-degradation/tests/README.md) explains test coverage, scratch outputs and historical provenance.
+The fast suite also runs automatically through [GitHub Actions](.github/workflows/bq2-tests.yml) on pull requests and pushes to `main`.
 
-The BQ2 requirements include the base pandas, NumPy, Matplotlib, IPython kernel, JupyterLab and nbconvert dependencies, plus statsmodels and SciPy for Track B. Add any additional analysis dependency to the declared requirements before using it.
+## Current scope
 
-The 30 October environment resolved Python 3.12.16 with pandas 3.1.0, numpy 2.5.4, matplotlib 3.11.2, ipykernel 7.4.0, jupyterlab 4.6.5, nbconvert 7.17.2, statsmodels 0.15.0 and SciPy 1.18.1. The requirements use version ranges rather than a lockfile, so later installations may resolve different versions; rerun the setup checks after dependency changes. The first-pass `summary.json` records the analysis package versions and source hashes.
+Track B covers quality checks across 20 agreed zones and eligible July-August 2018/2019 comparisons. F3-Z4 shows more continuous metered operation, F5-Z4 higher on-power and F7-Z2 higher recorded sustained-on moisture. These are inspection leads. Sensor/operating uncertainty prevents confirmed mechanical-degradation, efficiency-loss or mould claims.
 
-### Open notebooks
+The original Person B checklist is partly complete: CUSUM is exploratory, fair adjusted pull-down comparisons are unavailable, and controlled peer benchmarking remains pending. Panhchaknut owns Track A; its integration, final handover tables and the joint risk matrix remain planned in this checkout. Read the report and scope guide for the evidence and limitations.
 
-With `.venv` active, launch JupyterLab from the repository root:
+The earlier [five-PR review](mould-ac-degradation/reports/track-b/review_2026-10-31.md) records fresh execution and independent checks before this structural migration. Its dated source references remain historical. The analysis window, formulas and saved evidence are preserved by the reorganisation.
 
-```bash
-python -m jupyterlab
-```
+## Collaboration
 
-Select **SBA_BQ2 (Python 3.12)** as the notebook kernel. In VS Code, open the repository folder and select that kernel or the `.venv/bin/python` interpreter.
-
-Confirm the selected interpreter in a notebook:
-
-```python
-import sys
-print(sys.executable)
-```
-
-It should point inside this checkout's `.venv`. Existing notebook metadata and older `data-cleaning/README.md` examples may mention `python3`, `sba-py315` or Python 3.15. Select `sba-bq2` explicitly instead of installing into an unrelated interpreter.
-
-Inspect registered kernels with:
-
-```bash
-python -m jupyter kernelspec list
-```
-
-## Inputs and run order
-
-All 14 raw files, 14 cleaned files, analytics tables and the ERA5 cache are committed. A new clone can read them without rerunning cleaning, uploading another dataset or refreshing weather.
-
-1. Read `data-cleaning/README.md` and `data-cleaning/outputs/analytics/data_quality.csv` for provenance and flags.
-2. Inspect the existing humidity baseline. Importing its weather loader does not rerun the baseline analysis.
-3. Run BQ2 notebooks from `mould-ac-degradation/` using the cell below.
-4. Once implemented, run Track A and Track B before the combined risk-matrix notebook.
-
-Rebuild cleaning or baseline outputs only when that upstream work is deliberately in scope. Existing cleaning fills short gaps of at most 15 minutes; account for that when validating start-up rates and exposure episodes.
-
-### First cell for a BQ2 notebook
-
-Use an IPython/Jupyter notebook with `mould-ac-degradation/` as its working directory:
-
-```python
-from pathlib import Path
-import sys
-
-RUN_CHECKS = False
-%run -i ./bq2_utils.ipynb
-
-repo_root = Path.cwd().parent
-assert (repo_root / "data-cleaning").is_dir(), "Run from mould-ac-degradation/"
-CLEAN_DIR = repo_root / "data-cleaning" / "outputs" / "clean"
-ANALYTICS_DIR = repo_root / "data-cleaning" / "outputs" / "analytics"
-BASELINE_DIR = repo_root / "baseline"
-
-sys.path.insert(0, str(BASELINE_DIR))
-from humidity_risk_baseline import load_bangkok_era5_weather
-
-weather = load_bangkok_era5_weather(
-    BASELINE_DIR / "data" / "bangkok_era5_hourly_2018-2019.csv"
-)
-zh = load_zone_hourly(ANALYTICS_DIR / "zone_hourly.csv")
-df = merge_weather(zh, weather)
-
-print(f"{len(df):,} zone-hours across {df.groupby(['floor', 'zone']).ngroups} zones")
-```
-
-`%run -i` preserves the caller's `RUN_CHECKS = False` and loads helper definitions. To run the built-in checks, open `bq2_utils.ipynb` itself and run all cells from a fresh kernel. After helper edits, restart the kernel and rerun dependent notebooks. Saved outputs remain historical until rerun.
-
-ERA5 is hourly regional reanalysis in Bangkok time, not an on-site station. Confirm the building timestamp convention before interpreting aligned readings.
-
-## Git collaboration
-
-For related follow-ups, continue the existing task branch and PR while they remain open. Start a new task from an up-to-date `main` when its prerequisites have been merged:
-
-```bash
-git switch main
-git pull --ff-only
-git switch -c your-name/task-name
-```
-
-Use one analysis notebook per track. Coordinate shared-helper or output-schema changes before relying on them. Update the relevant documentation when methods, run instructions or project status change.
-
-Review `git status` and `git diff`, stage the intended files explicitly, commit a small change, then push the branch and open a pull request into `main`. Save or commit local work before switching branches or pulling. Keep raw data, upstream outputs, virtual environments, credentials and temporary notebook executions out of setup commits.
-
-The initial BQ2 delivery used a stack: #1 setup → #2 input audit → #3 first model → #4 zone screen → #5 case investigation and report. The user authorised ordered integration on 31 October. Merge commits preserve its ancestry; retarget the next PR to `main` only after its prerequisite merges and verify its remaining diff. Delete topic branches only after their tips are reachable from `origin/main` and no open PR depends on them. See [PR #5](https://github.com/Panhchaknut11/SBA_BQ2/pull/5) for the final merge/cleanup record and check live Git state before starting follow-up work.
-
-## F3-Z1 input audit
-
-Open [the executed audit notebook](mould-ac-degradation/f3z1_input_audit.ipynb). It checks raw/cleaned minute grids, filled readings, coverage, sensor flatlines, hourly export reconciliation, weather completeness and event-window eligibility. The calculations are in [f3z1_audit.py](mould-ac-degradation/f3z1_audit.py); exact tables, provenance and figures are under `mould-ac-degradation/outputs/f3z1-input-audit/`.
-
-The main limitation is missingness: only 61.92% of the full period has jointly available cleaned AC/temperature/RH. There is a second environmental gap across late November-December 2019, in addition to the known 2018-2019 outage. July-August provides the clearest initial overlap, but interpolation affects 2018 event-window retention much more than 2019. Read the notebook's sample counts and sensitivity checks before selecting a comparison cohort.
-
-With the environment active, rerun from the repository root:
-
-```bash
-python -m jupyter nbconvert --execute --to notebook --inplace --ExecutePreprocessor.kernel_name=sba-bq2 mould-ac-degradation/f3z1_input_audit.ipynb
-```
-
-This writes only the audit notebook and its own output folder. It does not regenerate upstream data or fit a model. Source hashes are checked again at the end of execution. Clock alignment and sensor drift cannot be certified by these checks.
-
-## F3-Z1 first modelling pass
-
-The historical first pass used July-August 2018 as a reference and July-August 2019 for evaluation, comparing existing cleaned inputs against unchanged source observations. Its notebook is preserved in [commit b56f716](https://github.com/Panhchaknut11/SBA_BQ2/blob/b56f716/mould-ac-degradation/bq2_ac.ipynb). Its tables/figures remain in `outputs/f3z1-first-pass/`; the active notebook now covers all 20 zones and verifies that F3-Z1's features and estimates reproduce.
-
-| Supported 2019 departure from the reference | With existing fills | Without filled/replaced readings |
-|---|---:|---:|
-| Daily AC energy | −9.0%, 25 days | −10.2%, 12 days |
-| Recorded indoor humidity ratio | −0.40 g/kg, 18 days | −0.41 g/kg, 10 days |
-| Cooling response | Inconclusive, 1 supported event | Inconclusive, 0 supported events |
-
-These findings do not establish AC decline or higher efficiency. Initial rooms are about 2.4°C cooler in 2019, leaving too little overlap for a fair cooling comparison. Higher RH accompanies cooler room temperatures and lower absolute moisture in the eligible readings. Operations, sensor calibration and clock alignment remain unresolved. Removing filled values changes cohort membership substantially; read the notebook's counts, conditional intervals and sensitivity checks before generalising.
-
-## Current BQ2 zone screen
-
-Open [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb). It first checks all source files and constructs the two input versions, then fits only quality-eligible metric comparisons. One/four-meter configurations use explicit channel lists. Sources and shared helpers are preserved.
-
-| Inspection lead | With fills | Without fills | Evidence limitation |
-|---|---:|---:|---|
-| F3-Z4 energy/controls | +13.3%, 22 supported days | +15.2%, 10 days | Model improves on the mean benchmark; cause unresolved |
-| F5-Z4 energy change | +36.7%, 23 days | +36.7%, 23 days | Weather model fails mean-only validation; same-day mean sensitivity is +33.0% |
-| F7-Z2 recorded moisture | +1.15 g/kg, 33 days | +1.14 g/kg, 29 days | Observed-only model slightly misses mean validation; mean sensitivity agrees |
-
-Check F4-Z1/F7-Z1's near-all-zero AC channels and F5-Z1's suspect environmental sensor separately. No zone supports a fair adjusted cooling-rate comparison under this screen's coverage/support rules. These are inspection leads, not confirmed faults, mould or measured efficiency changes. Unsupported zones are not certified healthy.
-
-F5-Z2 (+24.7% energy) and F6-Z4 (+9.7%) are provisional fills-allowed leads with no complete observed-only 2018 energy reference days. The shortlist retains their filling dependence explicitly. F3-Z4 and F5-Z4 also record substantially cooler ceiling-sensor readings in their eligible 2019 steady-on cohorts, supporting controls/sensor checks before attributing extra energy to equipment decline.
-
-The model needs 20 reference days across four weeks, then 10 supported evaluation days across four weeks. Stronger leads must also improve mean-only 2018 validation. A separate queue retains descriptive leads supported by both versions and a mean-only sensitivity, with reference limitations visible. The 2,000 week-bootstrap intervals are nominal and conditional; they are not adjusted for screening many zones. Filled/observed-only cohorts overlap and are not independent replications.
-
-The strict 1,440-minute day rule can reject all observed-only reference days even when minute coverage is high. Read `cohort_counts.csv` and each model's status instead of treating unavailable results as zero use or no risk. The notebook explicitly handles Floor 7's day-first source format and logs Floor 6's empty malformed tail row without changing either source.
-
-Rerun the complete current screen from the repository root with `.venv` active:
-
-```bash
-python -m jupyter nbconvert --execute --to notebook --inplace --ExecutePreprocessor.kernel_name=sba-bq2 --ExecutePreprocessor.timeout=300 mould-ac-degradation/bq2_ac.ipynb
-```
-
-Current calculations are in `mould-ac-degradation/bq2_zone_screen.py`, reusing `f3z1_first_pass.py` feature/model definitions. Outputs under `mould-ac-degradation/outputs/bq2-zone-screen/` include `inspection_shortlist.csv` (all 20 unique zone keys), quality/coverage tables, model statuses, 2018 validation, support-flagged predictions, coefficients, nominal bootstrap intervals, benchmark sensitivity, figures and provenance. This shortlist is separate from the planned `zone_ac_metrics.csv` handover and joint risk matrix. The historical F3-Z1 CUSUM remains diagnostic with no fault threshold. No final risk scores are produced. Review this screen before changing its window/methods or combining with Track A.
-
-## Focused case investigation
-
-Open [bq2_case_investigation.ipynb](mould-ac-degradation/bq2_case_investigation.ipynb), the diagnostic companion to the main Track B notebook. It decomposes raw energy changes, checks schedules and inactive-state controls, matches operating-state hours, and tests measurement sensitivity. It uses the same July-August comparison and both input versions, preserving earlier evidence.
-
-- **F3-Z4:** increased on-time and on-power, with less low-power time inside normal business-hour windows. This supports a metered operating-pattern change.
-- **F5-Z4:** nearly unchanged runtime and about 15.1→20.1 kW on-power; roughly 99% of the raw energy increase is an on-power contribution.
-- **F7-Z2:** higher recorded sustained-on moisture and a changed day/night association remain diagnostic leads. Calibration/continuity, ventilation, moisture loads and controls prevent a confirmed degradation attribution.
-
-Cooler readings in F3-Z4/F5-Z4 persist after long near-zero-power periods. The notebook's original-paper context and sensor scenarios therefore matter: actual overcooling, dehumidification loss and mechanical faults remain unconfirmed. A changed uniform T/RH offset cannot explain every state association, but sensor changes are not ruled out. New matched comparisons are descriptive; no new causal or inferential intervals are fitted.
-
-Rerun this focused diagnostic from the repository root:
-
-```bash
-python -m jupyter nbconvert --execute --to notebook --inplace --ExecutePreprocessor.kernel_name=sba-bq2 --ExecutePreprocessor.timeout=300 mould-ac-degradation/bq2_case_investigation.ipynb
-```
-
-The output folder contains the exact energy decomposition, schedules, matched-state/cohort/balance tables, same-day contrasts, monthly sensitivity, sensor scenarios, figures and provenance. `case_conclusions.csv` provides reporting language with competing explanations and next checks. The notebook verifies source hashes and that every prior audit/screen output file remains unchanged. This is a diagnostic companion, not a second active Track B implementation or the joint risk matrix.
-
-## Consolidated Track B report
-
-Read [track_b_report.md](mould-ac-degradation/reports/track-b/track_b_report.md) for the report-ready draft, with screening results, two charts, inspection recommendations and limitations. The `figures/` directory beside it contains unchanged copies of `energy_contributions.png` and `operating_profiles.png` from `outputs/bq2-case-investigation/`. Keep the report and figures together when copying or downloading; the notebooks and original outputs remain the calculation record. This consolidation did not rerun models or change the analysis window.
-
-The report supports more continuous metered operation in F3-Z4, higher on-power with nearly unchanged runtime in F5-Z4, and higher recorded sustained-on moisture in F7-Z2. Sensor continuity/calibration and operating conditions must be checked before assigning physical causes. Cooler F3-Z4/F5-Z4 readings persist after long near-zero-power periods; F7-Z2's absolute moisture change is sensitive to year-specific sensor-error assumptions. These are inspection leads, not verified overcooling, mechanical degradation or measured efficiency/dehumidification loss.
-
-The conclusions apply to July-August 2018/2019 and quality-eligible cohorts. Removing fills changes sample membership; some references do not beat simple benchmarks; nominal screening intervals have no multiplicity correction. No zone supports a fair adjusted cooling-rate comparison. Occupancy, setpoints, ventilation, airflow, cooling output and maintenance/failure outcomes are unavailable. No final joint risk score, mould finding, validated CUSUM fault threshold, COP or RUL result is produced. Read the report's full limitations before reusing its claims in slides or the group submission.
-
-The [31 October review](mould-ac-degradation/reports/track-b/review_2026-10-31.md) and its [machine-readable checks](mould-ac-degradation/reports/track-b/review_2026-10-31.json) distinguish code review, fresh execution and independent recomputation. Four notebooks passed from fresh kernels; all 70 saved CSV tables and eight PNGs reproduced. Recorded outputs were preserved. The local environment's broken Homebrew interpreter link was repaired using a compatible Python 3.12 runtime; `.venv` remains ignored and each teammate should recreate their own environment using the setup above. No GitHub CI workflow/checks were configured at review time, so these are local checks rather than a CI pass.
-
-## Planning milestones
-
-The group plan recorded on 18 October lists **3 November 2026** for analytics, **6 November** for recommendations/KPIs/slides and **9 November** for submission. These are working milestones; confirm the official eLearn upload cutoff. The updated course record places presentations in Week 14, with the exact presentation slot still unconfirmed.
-
-The consolidated Track B report and its attribution limits are ready for group review. Remaining seasonal/peer work, Track A and the joint risk matrix follow separately.
-
-## Setup verification, 30 October 2026
-
-- `python -m pip check` passed, and the JupyterLab entry point reported its installed version.
-- The registered `sba-bq2` kernel launched and used this checkout's `.venv/bin/python`.
-- The README's exact first cell executed successfully in that kernel: 263,520 unique zone-hours across all 20 scope zones, with complete weather matches.
-- Known-value dew-point and humidity-ratio examples passed a separate import smoke check.
-
-These setup checks establish environment and input-loading compatibility. The later audit and F3-Z1 modelling checks are recorded in their executed notebooks. Setup did not overwrite notebooks, raw data or upstream outputs, and its verification kernel was shut down.
-
-## References
-
-- [CU-BEMS original dataset paper](https://www.nature.com/articles/s41597-020-00582-3)
-- [CU-BEMS dataset](https://www.kaggle.com/datasets/claytonmiller/cubems-smart-building-energy-and-iaq-data)
-- [Python virtual environments](https://docs.python.org/3/library/venv.html)
-- [IPython kernel installation](https://ipython.readthedocs.io/en/stable/install/kernel_install.html)
+Use the existing open task branch/PR for related follow-ups. Start later independent work from current `main`; review intended files before committing. Coordinate shared-helper/schema changes with the other track. Do not commit `.venv`, credentials, Python caches or scratch runs. The setup guide contains the detailed [Git workflow](docs/setup.md#git-workflow).

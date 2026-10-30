@@ -98,6 +98,6 @@ Subsequent monitoring should retain energy-reference departures, on-time, on-pow
 
 ## Supporting evidence
 
-Supporting calculations and reporting language are available in the [Track B screening notebook](../../bq2_ac.ipynb) and [focused case investigation](../../bq2_case_investigation.ipynb). The [screening evidence](../../outputs/bq2-zone-screen/) and [case evidence](../../outputs/bq2-case-investigation/) contain the underlying tables and provenance.
+Supporting calculations and reporting language are available in the [Track B screening notebook](../../notebooks/bq2_ac.ipynb) and [focused case investigation](../../notebooks/bq2_case_investigation.ipynb). The [screening evidence](../../outputs/bq2-zone-screen/) and [case evidence](../../outputs/bq2-case-investigation/) contain the underlying tables and provenance.
 
 This report consolidates the analysis preserved in [commit 58896d3](https://github.com/Panhchaknut11/SBA_BQ2/tree/58896d3d9672374b2c0bb9a27ca647204d515061/mould-ac-degradation). Its two figures are unchanged copies of the case-investigation charts, bundled in `figures/` for portable rendering. Saving this report did not rerun the models or alter earlier evidence. It is a Track B report draft for group review; broader seasonal/peer work, Track A and the joint risk matrix remain separate work.
