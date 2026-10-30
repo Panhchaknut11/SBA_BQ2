@@ -38,6 +38,7 @@ class RepositoryTests(unittest.TestCase):
         paths = [REPO_ROOT / name for name in ["README.md", "AGENTS.md", "CLAUDE.md"]]
         paths += list((REPO_ROOT / "docs").glob("*.md"))
         paths += [ANALYSIS_DIR / "README.md", ANALYSIS_DIR / "tests/README.md"]
+        paths += list((ANALYSIS_DIR / "notebooks").glob("*.md"))
         paths += list((ANALYSIS_DIR / "reports").rglob("*.md"))
         for path in paths:
             for raw in re.findall(r'!?\[[^\]]*\]\(([^)]+)\)', path.read_text()):

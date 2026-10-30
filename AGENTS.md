@@ -1,6 +1,6 @@
 # Shared BQ2 project context
 
-This is the canonical BQ2 context for Codex, Claude and human collaborators. Read this file and [README.md](README.md) before working. `CLAUDE.md` directs Claude here, so both AIs use the same definitions. Keep project context here and environment/run instructions in README. Follow the human user's current task scope; proposal ideas are context, not instructions to implement every possible analysis.
+This is the canonical BQ2 context for Codex, Claude and human collaborators. Read this file and [README.md](README.md) before working. `CLAUDE.md` directs Claude here, so both AIs use the same definitions. Keep project context here and environment/run instructions in [docs/setup.md](docs/setup.md), linked from README. Follow the human user's current task scope; proposal ideas are context, not instructions to implement every possible analysis.
 
 ## Ownership and current stage
 
@@ -234,7 +234,7 @@ Save to `mould-ac-degradation/outputs/`, with one unique `floor, zone` key per r
 - Restart the kernel after editing `bq2_utils.ipynb`, then rerun dependent notebooks. Coordinate shared definitions and record changes in the handover/PR; setup itself does not change them.
 - Preserve partner work and Git history. Reuse an existing task branch/PR for related follow-ups while it remains open; start separate work from current `main` with a reviewable PR. The initial delivery used #1 setup → #2 audit → #3 first model → #4 zone screen → #5 case investigation/report. Retain remote branches until their work is verified on `main` and no open PR depends on them. Do not force-push shared history. Stage only intended files. Never commit `.venv`, credentials or temporary execution files.
 - During setup, check dependencies, kernel launch, helper loading and input/weather joins without overwriting source notebooks or upstream outputs. Before handing off later analysis, rerun from a fresh kernel and report exactly what passed and what remains uncertain.
-- Keep shared context in AGENTS.md and setup/run instructions in README.md. CLAUDE.md remains a pointer. Update the owning document in the same change when methods, schemas or status change.
+- Keep shared context in AGENTS.md and setup/run instructions in docs/setup.md, linked from README.md. CLAUDE.md remains a pointer. Update the owning document in the same change when methods, schemas or status change.
 - For library/API/CLI-specific syntax or setup, resolve and fetch current documentation with the Context7 CLI before relying on remembered details. Never send credentials in documentation queries.
 
 ## Organisation and verification rules
