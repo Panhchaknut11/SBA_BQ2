@@ -10,7 +10,7 @@ The intended result is an inspection shortlist supported by humidity exposure, A
 
 - **Both AIs:** read [AGENTS.md](AGENTS.md), the canonical project context and working rules. [CLAUDE.md](CLAUDE.md) directs Claude to that same file.
 - **People:** start with the [Track B report and charts](mould-ac-degradation/reports/track-b/track_b_report.md) for the consolidated findings, recommendations and limitations. Use this README for setup, notebook run order and Git workflow.
-- **Current stage, 30 October 2026:** the 20-zone screen and focused investigation of F3-Z4, F5-Z4 and F7-Z2 are consolidated in the report draft. [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb) remains the Track B analysis entry point, with the [case investigation](mould-ac-degradation/bq2_case_investigation.ipynb) providing the latest attribution checks. Mechanical degradation, efficiency loss and actual overcooling remain unconfirmed. Track A and the joint risk matrix remain planned.
+- **Current stage, 31 October 2026:** the 20-zone screen, three-case investigation and report have passed the [integration and reproducibility review](mould-ac-degradation/reports/track-b/review_2026-10-31.md) for the five-PR consolidation. [bq2_ac.ipynb](mould-ac-degradation/bq2_ac.ipynb) remains the Track B analysis entry point, with the [case investigation](mould-ac-degradation/bq2_case_investigation.ipynb) providing attribution checks. Mechanical degradation, efficiency loss and actual overcooling remain unconfirmed. Broader seasonal/peer work, Track A and the joint risk matrix remain planned. Read live GitHub/Git state for integration status.
 
 ## Responsibilities
 
@@ -61,6 +61,7 @@ mould-ac-degradation/
   reports/track-b/
     track_b_report.md            Consolidated findings, recommendations and limitations
     figures/                     Two unchanged case charts bundled with the report
+    review_2026-10-31.md / .json  Review scope, verification evidence and remaining limits
 ```
 
 The helper is currently **`bq2_utils.ipynb`**. There is no `bq2_utils.py`; use the notebook-loading cell below rather than `from bq2_utils import ...`.
@@ -173,7 +174,7 @@ Use one analysis notebook per track. Coordinate shared-helper or output-schema c
 
 Review `git status` and `git diff`, stage the intended files explicitly, commit a small change, then push the branch and open a pull request into `main`. Save or commit local work before switching branches or pulling. Keep raw data, upstream outputs, virtual environments, credentials and temporary notebook executions out of setup commits.
 
-The existing BQ2 work is stacked: #1 setup → #2 input audit → #3 first model → #4 zone screen → #5 case investigation and report. Each PR after #1 targets the preceding branch. Review and merge prerequisites in order, reconciling descendant branches and checking their diffs before retargeting to `main`. Keep remote branches while open PRs depend on them. Local branch names can be removed after verifying their commits are preserved in the current branch and on origin; use normal deletion rather than force deletion. Remote cleanup follows completed merges and dependency checks.
+The initial BQ2 delivery used a stack: #1 setup → #2 input audit → #3 first model → #4 zone screen → #5 case investigation and report. The user authorised ordered integration on 31 October. Merge commits preserve its ancestry; retarget the next PR to `main` only after its prerequisite merges and verify its remaining diff. Delete topic branches only after their tips are reachable from `origin/main` and no open PR depends on them. See [PR #5](https://github.com/Panhchaknut11/SBA_BQ2/pull/5) for the final merge/cleanup record and check live Git state before starting follow-up work.
 
 ## F3-Z1 input audit
 
@@ -252,6 +253,8 @@ Read [track_b_report.md](mould-ac-degradation/reports/track-b/track_b_report.md)
 The report supports more continuous metered operation in F3-Z4, higher on-power with nearly unchanged runtime in F5-Z4, and higher recorded sustained-on moisture in F7-Z2. Sensor continuity/calibration and operating conditions must be checked before assigning physical causes. Cooler F3-Z4/F5-Z4 readings persist after long near-zero-power periods; F7-Z2's absolute moisture change is sensitive to year-specific sensor-error assumptions. These are inspection leads, not verified overcooling, mechanical degradation or measured efficiency/dehumidification loss.
 
 The conclusions apply to July-August 2018/2019 and quality-eligible cohorts. Removing fills changes sample membership; some references do not beat simple benchmarks; nominal screening intervals have no multiplicity correction. No zone supports a fair adjusted cooling-rate comparison. Occupancy, setpoints, ventilation, airflow, cooling output and maintenance/failure outcomes are unavailable. No final joint risk score, mould finding, validated CUSUM fault threshold, COP or RUL result is produced. Read the report's full limitations before reusing its claims in slides or the group submission.
+
+The [31 October review](mould-ac-degradation/reports/track-b/review_2026-10-31.md) and its [machine-readable checks](mould-ac-degradation/reports/track-b/review_2026-10-31.json) distinguish code review, fresh execution and independent recomputation. Four notebooks passed from fresh kernels; all 70 saved CSV tables and eight PNGs reproduced. Recorded outputs were preserved. The local environment's broken Homebrew interpreter link was repaired using a compatible Python 3.12 runtime; `.venv` remains ignored and each teammate should recreate their own environment using the setup above. No GitHub CI workflow/checks were configured at review time, so these are local checks rather than a CI pass.
 
 ## Planning milestones
 
