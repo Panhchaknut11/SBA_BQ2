@@ -95,4 +95,3 @@ git switch -c your-name/task-name
 ```
 
 Review `git status`/`git diff`, stage intended files explicitly, commit and push the branch, then open a reviewable PR into `main`. Save local changes before switching. Retire topic branches only after their work is verified on `main` and no open PR depends on them. Never force-push shared history.
-
