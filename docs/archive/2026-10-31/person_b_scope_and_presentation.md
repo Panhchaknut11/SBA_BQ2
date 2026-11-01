@@ -69,7 +69,7 @@ Rainfall is available in the shared weather source. The current Track B energy m
 
 Slash-separated figures give the fills-allowed and observed-only versions in that order. The F7-Z2 screen uses a separate cohort and gives +1.15/+1.14 g/kg. Keep the screen and focused-match cohorts distinct when labelling charts.
 
-Use [the report's energy chart](figures/energy_contributions.png) to distinguish time and power contributions, [operating profiles](figures/operating_profiles.png) for descriptive context, and the [20-zone comparison](../../outputs/bq2-zone-screen/zone_comparison.png) with its weak-reference and unavailable-result cautions. The full [report](track_b_report.md) owns the detailed results and limitations.
+Use [the report's energy chart](../../../mould-ac-degradation/reports/track-b/figures/energy_contributions.png) to distinguish time and power contributions, [operating profiles](../../../mould-ac-degradation/reports/track-b/figures/operating_profiles.png) for descriptive context, and the [20-zone comparison](../../../mould-ac-degradation/outputs/bq2-zone-screen/zone_comparison.png) with its weak-reference and unavailable-result cautions. The full [report](../../../mould-ac-degradation/reports/track-b/track_b_report.md) owns the detailed results and limitations.
 
 ## 6. Update the older proposal claims before presenting
 
@@ -130,6 +130,6 @@ Any control or maintenance trial should preserve the site's approved temperature
 
 ## 10. Folder organisation
 
-The [analysis-folder index](../../README.md) groups the current entry notebooks, reusable code, generated evidence and report material by purpose. Keep raw data and upstream preparation in their owning folders. Preserve the historical audit/first-pass evidence. Use the existing `reports/track-b/` for the presentation story and limitations.
+The [analysis-folder index](../../../mould-ac-degradation/README.md) groups the current entry notebooks, reusable code, generated evidence and report material by purpose. Keep raw data and upstream preparation in their owning folders. Preserve the historical audit/first-pass evidence. Use the existing `reports/track-b/` for the presentation story and limitations.
 
 The user requested a physical reorganisation after this scope review. Current notebooks now live in `notebooks/`, calculation modules in `src/bq2/`, automated checks in `tests/` and the full validation command in `scripts/`. Setup cells and links use the new layout. The shared helper and recorded output folders keep their original locations. Historical source references in dated review evidence retain their original meaning; the migration is checked against unchanged analytical outputs.

@@ -221,3 +221,6 @@ __marimo__/
 
 # Local notebook validation copies and run records
 mould-ac-degradation/tests/.runs/
+
+# Personal tools and notes; not part of the shared project
+/.local/
