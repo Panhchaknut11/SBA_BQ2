@@ -1,39 +1,36 @@
-# SBA_BQ2 — Person B overview
+# SBA_BQ2
 
-**Purpose:** identify zones worth inspecting for changes in AC operation and indoor moisture. Panhchaknut owns humidity/mould analysis (Track A); Lwin owns AC analysis (Track B). The joint risk matrix is still pending.
+Panhchaknut and Lwin's BQ2 workspace: use weather, AC operation and humidity observations to identify zones worth inspecting. Track A covers humidity/mould indicators; Track B covers AC operation. Findings remain inspection leads, with the joint matrix pending.
 
-## What we did
+## Setup
 
-- Reused existing CU-BEMS building measurements and cached Bangkok weather.
-- Audited 20 zones: Floors 3–7, zones 1, 2, 4 and 5.
-- Compared July–August 2018 with 2019, using complete daily energy and continuous environmental/event windows.
-- Repeated comparisons with and without filled readings, then investigated three leads.
-
-## Findings to discuss
-
-| Zone | Recorded change | Next check |
-|---|---|---|
-| F3-Z4 | Energy about 13–15% above the model reference; more continuous operation | Controls, operating modes and load |
-| F5-Z4 | Operating power about 15.1 → 20.1 kW; runtime nearly unchanged | Controls, equipment/loading and metering |
-| F7-Z2 | Matched sustained-on moisture about 1.15–1.16 g/kg higher | Sensor comparability, ventilation/moisture sources and AC operation |
-| F3-Z1 | Supported energy and absolute moisture lower despite the earlier RH concern | Joint interpretation with Track A |
-
-**Limits:** these are inspection leads, not confirmed AC faults or efficiency loss. Sensor comparability remains uncertain; some references are weak. Cooling comparisons were withheld, CUSUM is exploratory and controlled peer benchmarking remains pending. Removing fills changes the eligible sample. Results do not establish other seasons, measured coil moisture removal or mould.
-
-## What we do together next
-
-Compare Track A/B findings for the same zones and periods, especially F3-Z1 and F7-Z2. Agree the observations, coverage, uncertainty and next checks for each case, then build the joint matrix after Track A is available.
-
-## Where to go
-
-- [Detailed report and charts](mould-ac-degradation/reports/track-b/track_b_report.md): evidence, methods, recommendations and limitations.
-- [Notebooks](mould-ac-degradation/notebooks/README.md): input audit → 20-zone screen → case investigation.
-- [Setup](docs/setup.md) · [Calculation code](mould-ac-degradation/src/bq2/) · [Tests](mould-ac-degradation/tests/README.md) · [AI context](AGENTS.md).
-
-From the repository root with the environment active:
+Use Python 3.12. From the repository root (macOS/Linux):
 
 ```bash
-python -m unittest discover -s mould-ac-degradation/tests -v
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r mould-ac-degradation/requirements.txt
+python -m ipykernel install --user --name sba-bq2 --display-name "SBA_BQ2 (Python 3.12)"
+python -m jupyterlab
 ```
 
-Original data, cleaning, weather, analysis code and saved results retain their existing locations. Personal validation tools stay local and ignored. Historical notes are in the [archive](docs/archive/README.md).
+Choose **SBA_BQ2 (Python 3.12)**. Each notebook loads the shared definitions and cached weather. Inputs and cleaned exports are already present; upstream cleaning and weather downloads need not be rerun.
+
+## Run order
+
+| Order | Notebook | Purpose |
+|---|---|---|
+| 1 | [F3-Z1 input audit](mould-ac-degradation/notebooks/f3z1_input_audit.ipynb) | Coverage, filling and usable comparison windows |
+| 2 | [20-zone screen](mould-ac-degradation/notebooks/bq2_ac.ipynb) | Eligible July–August 2018/2019 comparisons, with/without fills |
+| 3 | [Case investigation](mould-ac-degradation/notebooks/bq2_case_investigation.ipynb) | Operating/sensor explanations for F3-Z4, F5-Z4 and F7-Z2 |
+
+The case investigation uses the screen's saved results. When inputs or shared definitions change, rerun in order. Direct execution updates each notebook's output folder; use a scratch copy to preserve existing evidence during verification.
+
+## Code and findings
+
+- [Detailed report](mould-ac-degradation/reports/track-b/track_b_report.md): findings, charts, recommendations and limitations.
+- [Calculation modules](mould-ac-degradation/src/bq2/) and [shared functions](mould-ac-degradation/bq2_utils.ipynb).
+- [Zone shortlist](mould-ac-degradation/outputs/bq2-zone-screen/inspection_shortlist.csv) and [case conclusions](mould-ac-degradation/outputs/bq2-case-investigation/case_conclusions.csv).
+- [AI working context](AGENTS.md), also used through [CLAUDE.md](CLAUDE.md).
+
+Original data, shared cleaning/baselines and saved results retain their locations. Development tests, validation tools and old review notes are kept locally rather than distributed with the project.
