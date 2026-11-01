@@ -6,14 +6,17 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from _support import ANALYSIS_DIR
+from _support import REPO_ROOT
 
-spec = importlib.util.spec_from_file_location(
-    "bq2_notebook_validation", ANALYSIS_DIR / "scripts/validate_notebooks.py")
-validation = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(validation)
+validator_path = REPO_ROOT / ".local/validation/validate_notebooks.py"
+validation = None
+if validator_path.is_file():
+    spec = importlib.util.spec_from_file_location("bq2_notebook_validation", validator_path)
+    validation = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(validation)
 
 
+@unittest.skipIf(validation is None, "Personal notebook runner is local-only and not distributed")
 class NotebookValidationTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()

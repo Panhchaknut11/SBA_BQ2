@@ -18,7 +18,7 @@ python -m pip check
 
 The activation command is for macOS/Linux. Use the platform equivalent on Windows. Python 3.12 must already be installed. Requirements use version ranges rather than a lockfile; the dated analysis records contain the versions used for the saved results.
 
-The local environment was repaired on 31 October after its original Homebrew interpreter disappeared. `.venv` is ignored and not portable between machines. If its interpreter becomes unavailable, recreate the environment and reselect/register the kernel instead of changing analysis code.
+`.venv` is ignored and is not portable between machines. If its interpreter becomes unavailable, recreate the environment and reselect/register the kernel instead of changing analysis code.
 
 ## Open notebooks
 
@@ -49,13 +49,9 @@ The 14 raw CSVs, cleaned exports, analytics tables and weather cache are already
 
 Their setup cells locate the repository from any subfolder, add `mould-ac-degradation/src/` to the Python path and load the stable shared helper. Notebook outputs use the analysis `outputs/` directory rather than the notebook working directory.
 
-Direct execution regenerates that notebook's output folder. For a preservation-safe check of all three, use:
+Direct execution regenerates that notebook's output folder. To preserve committed evidence, execute a scratch copy from a fresh kernel and compare the regenerated tables/charts. Personal validation helpers remain local and ignored rather than being distributed with the project.
 
-```bash
-python mould-ac-degradation/scripts/validate_notebooks.py
-```
-
-See the [test guide](../mould-ac-degradation/tests/README.md) for the fast suite, scratch records and `--save-executed` option. Track A and the combined matrix remain planned; agree their entry paths and output contracts before implementing them.
+See the [test guide](../mould-ac-degradation/tests/README.md) for the shared automated checks. Track A and the combined matrix remain planned; agree their entry paths and output contracts before implementing them.
 
 ## Shared-helper loading cell
 
@@ -99,5 +95,3 @@ git switch -c your-name/task-name
 ```
 
 Review `git status`/`git diff`, stage intended files explicitly, commit and push the branch, then open a reviewable PR into `main`. Save local changes before switching. Retire topic branches only after their work is verified on `main` and no open PR depends on them. Never force-push shared history.
-
-PRs #1-#5 were integrated with merge commits in dependency order. [PR #5](https://github.com/Panhchaknut11/SBA_BQ2/pull/5) records that integration and its branch cleanup. Later task branches are separate work.

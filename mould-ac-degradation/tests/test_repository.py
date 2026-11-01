@@ -36,7 +36,7 @@ class RepositoryTests(unittest.TestCase):
 
     def test_owned_documentation_local_links_resolve(self):
         paths = [REPO_ROOT / name for name in ["README.md", "AGENTS.md", "CLAUDE.md"]]
-        paths += list((REPO_ROOT / "docs").glob("*.md"))
+        paths += list((REPO_ROOT / "docs").rglob("*.md"))
         paths += [ANALYSIS_DIR / "README.md", ANALYSIS_DIR / "tests/README.md"]
         paths += list((ANALYSIS_DIR / "notebooks").glob("*.md"))
         paths += list((ANALYSIS_DIR / "reports").rglob("*.md"))
