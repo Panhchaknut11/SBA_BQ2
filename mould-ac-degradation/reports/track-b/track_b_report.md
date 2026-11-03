@@ -33,9 +33,18 @@ Eight zones remained inconclusive. F3-Z1 and F3-Z2 showed lower supported energy
 
 ## F3-Z4 and F5-Z4 have different electrical operating changes
 
+![Runtime and operating power in F3-Z4 and F5-Z4, comparing 2018 with both 2019 input versions](figures/runtime_and_power.png)
+
+*Figure 1. Unadjusted complete-day means from the case electricity cohorts. F3-Z4 has 41 reference and 22/10 evaluation days with/without fills; F5-Z4 has 41 and 23/23. The shared 2018 reference is identical across input versions for these zones. These are descriptive means, not weather-model estimates or causal effects.*
+
+<details>
+<summary>Supporting energy accounting</summary>
+
 ![Accounting decomposition of the observed energy changes](figures/energy_contributions.png)
 
-*Figure 1. Decomposition of the unadjusted change in mean daily AC electricity. The comparison uses 2018 reference days and the screen’s supported 2019 days. Contributions reconcile arithmetically; they are not causal effects or components of the weather-model residual.*
+*Supporting figure. Decomposition of the unadjusted change in mean daily AC electricity. The comparison uses 2018 reference days and the screen’s supported 2019 days. Contributions reconcile arithmetically; they are not causal effects or components of the weather-model residual.*
+
+</details>
 
 **F3-Z4 operated more continuously.** Mean time above the AC-on threshold increased from approximately **6.75 to 7.24–7.27 hours/day**, while average power during operation increased from **19.4 to 20.6–20.8 kW**.
 
@@ -47,9 +56,14 @@ The observed comparison-cohort increase was **33.0%**. This differs from the **3
 
 ## Temperature and moisture readings require a separate interpretation
 
+<details>
+<summary>Supporting hourly power, temperature and moisture profiles</summary>
+
 ![Working-day power, temperature and humidity-ratio profiles](figures/operating_profiles.png)
 
-*Figure 2. Mean working-day profiles for complete joint hours. Blue represents 2018 and orange represents 2019; solid and dashed lines distinguish fills-allowed and observed-only readings. Cohorts differ between years and input versions.*
+*Supporting figure. Mean working-day profiles for complete joint hours. Blue represents 2018 and orange represents 2019; solid and dashed lines distinguish fills-allowed and observed-only readings. Cohorts differ between years and input versions.*
+
+</details>
 
 F3-Z4 and F5-Z4 recorded cooler temperatures in 2019 during both active and inactive periods. After matching clock hour, regional weather and plug activity, readings remained approximately **2.6–3.0°C lower even after at least 24 hours of near-zero AC power**.
 
@@ -60,6 +74,10 @@ The original dataset paper documents ceiling-mounted sensors and their removal f
 Consequently, **actual overcooling remains unverified**, even where recorded temperatures are lower.
 
 ## F7-Z2 remains a possible performance or control issue
+
+![F7-Z2 recorded indoor moisture during matched sustained AC operation in 2018 and 2019, with and without fills](figures/f7z2_sustained_moisture.png)
+
+*Figure 2. Day-weighted primary matched comparisons: 42/38 reference days and 37/31 evaluation days with/without fills. No new confidence intervals are estimated. The cross-year sensor scenarios discussed below can erase this recorded increase; the plot does not establish physical dehumidification loss.*
 
 The focused matched-hour comparison reproduced an approximately **1.15–1.16 g/kg increase in recorded moisture during sustained AC operation**, across 37/31 evaluation days with/without fills. Power during those hours changed little, and the moisture increase appeared in both July and August.
 
@@ -100,4 +118,4 @@ Subsequent monitoring should retain energy-reference departures, on-time, on-pow
 
 Supporting calculations and reporting language are available in the [Track B screening notebook](../../notebooks/bq2_ac.ipynb) and [focused case investigation](../../notebooks/bq2_case_investigation.ipynb). The [screening evidence](../../outputs/bq2-zone-screen/) and [case evidence](../../outputs/bq2-case-investigation/) contain the underlying tables and provenance.
 
-This report consolidates the analysis preserved in [commit 58896d3](https://github.com/Panhchaknut11/SBA_BQ2/tree/58896d3d9672374b2c0bb9a27ca647204d515061/mould-ac-degradation). Its two figures are unchanged copies of the case-investigation charts, bundled in `figures/` for portable rendering. Saving this report did not rerun the models or alter earlier evidence. It is a Track B report draft for group review; broader seasonal/peer work, Track A and the joint risk matrix remain separate work.
+This report consolidates the analysis preserved in [commit 58896d3](https://github.com/Panhchaknut11/SBA_BQ2/tree/58896d3d9672374b2c0bb9a27ca647204d515061/mould-ac-degradation). The two main figures are reproducible views of [energy_decomposition.csv](../../outputs/bq2-case-investigation/energy_decomposition.csv) and [matched_states.csv](../../outputs/bq2-case-investigation/matched_states.csv), rendered by [report_figures.py](../../src/bq2/report_figures.py). The original case charts remain in the expandable supporting detail. Presentation changes do not change the saved model results, cohorts or original plots. It is a Track B report draft for group review; broader seasonal/peer work, Track A and the joint risk matrix remain separate work.

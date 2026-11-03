@@ -1,8 +1,8 @@
 # Shared AI context
 
-Read [README.md](README.md) for setup/run order and [the report](mould-ac-degradation/reports/track-b/track_b_report.md) for findings. Keep detailed explanations there; follow the current user request.
+Read [README.md](README.md) for the short findings, setup and run order; use [the report](mould-ac-degradation/reports/track-b/track_b_report.md) for evidence and limitations. Keep detailed explanations there; follow the current user request.
 
-- **Ownership:** Panhchaknut = humidity/mould indicators (A); Lwin = AC operation/performance indicators (B). Joint case interpretation and the risk matrix remain pending. Do not edit the group Canva deck unless asked.
+- **Ownership:** Panhchaknut = humidity/mould indicators ([Track A notebook](mould-ac-degradation/notebooks/bq2_humidity.ipynb)); Lwin = AC operation/performance indicators (B). Joint interpretation and the risk matrix remain pending. Wetter air or post-shutdown rebound alone does not identify an AC cause. Do not edit the group Canva deck unless asked.
 - **Scope:** CU-BEMS, Floors 3–7, zones 1, 2, 4, 5 (20 zones). Track B compares eligible July–August 2018/2019 readings with/without fills; no confirmed mechanical degradation is established. CUSUM is exploratory; adjusted cooling, controlled peers and broader seasonal conclusions remain unavailable/pending.
 - **Definitions:** reuse `mould-ac-degradation/bq2_utils.ipynb` and `src/bq2/`. Do not create competing helper definitions. Coordinate shared changes across tracks; restart kernels and rerun dependent notebooks. The legacy humidity-gap field is not measured coil removal.
 - **Inputs:** preserve `data/`, `data-cleaning/`, `baseline/` and cached weather. Do not rerun upstream preparation or replace evidence unless in scope. The case notebook consumes screen outputs; retain the run order.
