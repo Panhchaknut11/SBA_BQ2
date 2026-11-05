@@ -1,0 +1,21 @@
+zone_id,mould_priority,time_of_wetness_h,not_drying,air_leaks,overcooling,trackB,ac_concern,data_hold,action,reason
+F5-Z4,Inspect first,68.0,True,False,False,Inspect energy change; validate reference,True,False,1. Inspect AC and space together,AC not drying enough
+F5-Z5,Inspect first,62.6,True,False,False,Insufficient comparable evidence,True,False,1. Inspect AC and space together,AC not drying enough
+F7-Z2,Inspect first,55.5,True,False,False,Inspect environment; validate reference,True,False,1. Inspect AC and space together,AC not drying enough
+F3-Z4,Inspect first,54.9,False,False,True,Inspect energy and controls,True,False,1. Inspect AC and space together,AC overcooling
+F3-Z5,Inspect first,106.5,False,False,False,Insufficient comparable evidence,False,False,2. Inspect area,"colder room, not AC-driven"
+F4-Z5,Inspect first,60.3,False,False,False,No consistent adverse departure,False,False,2. Inspect area,"colder room, not AC-driven"
+F7-Z4,Inspect first,50.2,False,True,False,Insufficient comparable evidence,False,False,2. Inspect area,air leaks
+F4-Z2,Inspect first,34.1,False,False,False,Insufficient comparable evidence,False,False,2. Inspect area,"colder room, not AC-driven"
+F5-Z2,Monitor,41.9,False,False,False,Review fill-dependent energy lead,True,False,3. Review AC operation,AC energy change
+F4-Z4,Monitor,16.3,False,False,True,Insufficient comparable evidence,True,False,3. Review AC operation,AC overcooling
+F6-Z4,Monitor,12.7,False,False,False,Review fill-dependent energy lead,True,False,3. Review AC operation,AC energy change
+F5-Z1,Check sensor first,58.1,False,False,True,Verify environmental sensor,True,True,4. Verify sensor or meter first,suspect sensor
+F7-Z1,Inspect first,45.4,False,True,True,Verify AC meter mapping,True,True,4. Verify sensor or meter first,AC meter check
+F4-Z1,Monitor,7.9,False,False,False,Verify AC meter mapping,False,True,4. Verify sensor or meter first,AC meter check
+F7-Z5,Monitor,35.0,False,True,False,No consistent adverse departure,False,False,5. Monitor,air leaks
+F6-Z1,Monitor,22.1,False,False,False,Insufficient comparable evidence,False,False,5. Monitor,typical
+F6-Z2,Monitor,19.2,False,False,False,Insufficient comparable evidence,False,False,5. Monitor,typical
+F6-Z5,Monitor,13.4,False,False,False,Insufficient comparable evidence,False,False,5. Monitor,typical
+F3-Z2,Monitor,13.3,False,False,False,Review operating change,False,False,5. Monitor,typical
+F3-Z1,Monitor,6.5,False,False,False,Review operating change,False,False,5. Monitor,typical
